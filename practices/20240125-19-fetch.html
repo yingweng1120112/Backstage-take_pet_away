@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XML Http Request</title>
+  </head>
+  <body>
+    <input type="number" id="a" placeholder="a" />
+    +
+    <input type="number" id="b" placeholder="b" />
+    <button onclick="sendData()">=</button>
+    <span id="result"></span>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      const a_in = document.querySelector("#a");
+      const b_in = document.querySelector("#b");
+      const result_el = document.querySelector("#result");
+      //重要 做法較新 大多用2個.then
+      function sendData() {
+        fetch(`20240118-07-plus.php?a=${a_in.value}&b=${b_in.value}`) //傳給你但還拿不到資料(形式參數 
+          .then(function (response) { 
+            //所以response可以自行命名 通常用r 可以改寫為
+            //.then((r)=>r.text()) 
+            
+            //console.log(response.status);
+            return response.text();
+          })
+          .then((txt) => {
+            result_el.innerHTML = txt;
+          });
+      }
+    </script>
+  </body>
+</html>

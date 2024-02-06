@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      name="form1"
+      action="20240118-06-plus.php"
+      method="get"
+      onsubmit="event.preventDefault()"
+    >
+      <!-- get預設/onsubmit是行內事件處理器(在html裡)使用後可用js語法 一定要用event 不能用e(event是形式參數 已定義好 用途是阻止預設=>阻止送出表單)-->
+      <input type="text" name="account" placeholder="帳號" />
+      <!-- 用name才能送出資料 不是id(連接用) -->
+      <br/>
+      <input type="password" name="password" placeholder="密碼" />
+      <br/>
+      <input type="submit" />
+    </form>
+    <script>
+      //舊作法 會蓋掉form1裡的相同功能
+      document.form1.onsubmit = function (e) {
+        const account = document.form1.account.value;
+        const password = document.form1.password.value;
+        console.log({account,password});
+        //e.preventDefault(); //可以用e 因為是自己定義
+        return false; //同上效果
+      };
+    </script>
+  </body>
+</html>
