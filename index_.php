@@ -3,7 +3,7 @@
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
-<!-- 123 -->
+
 <!-- 主頁預設登入介面 -->
 <section class="mt-5">
   <div class="row justify-content-center">
