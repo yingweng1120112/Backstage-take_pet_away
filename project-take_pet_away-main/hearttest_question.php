@@ -7,7 +7,7 @@ require __DIR__ . '/parts/pdo-connect.php';
 $title = '通訊錄列表';
 $pageName = 'list';
 $pageName = 'list123';
-
+/*123*/
 //7-1.分頁功能
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
