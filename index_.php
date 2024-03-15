@@ -6,7 +6,7 @@ $pageName = 'login';
 if (isset($_SESSION['admin'])) {
   header('Location: index_.php');
   exit;
-  /*123*/
+  /*123456*/
 }
 ?>
 <!-- 所有頁面的拼接順序 每一頁都主要是換掉section的部分 -->
