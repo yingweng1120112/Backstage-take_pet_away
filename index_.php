@@ -25,7 +25,7 @@ if (isset($_SESSION['admin'])) {
         <div class="card-body">
           <form name="form1" onsubmit="sendData(event)">
             <div class="form-floating mb-3">
-              <label for="email" class="form-label">電郵</label>
+              <label for="email" class="form-label">電郵22222</label>
               <input type="text" class="form-control" id="email" name="email">
             </div>
             <div class="form-floating mb-3">
