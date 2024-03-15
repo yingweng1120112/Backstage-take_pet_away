@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="console.log('A');">AAAAA</button>
+  <br/>
+  <br/>
+  <button onclick="console.log('a');">aaaaa</button>
+
+
+
+  <script>
+    const [btn1, btn2] = document.querySelectorAll('button')
+
+    btn1.onclick = event=>{
+      console.log("BBBBB");
+    }; //跟AAAAA設定意思相同
+
+    btn1.onclick = function (event){
+      console.log('CCCCC');
+    }; //會蓋掉上面結果
+    btn2.addEventListener('click',(event)=>{
+      console.log('bbbbb');
+    }); //不會蓋掉行內處理器
+    btn2.addEventListener('click',(event)=>{
+      console.log('ccccc'); 
+    }); //呈現 a bbbbb ccccc
+
+  </script>
+</body>
+</html>

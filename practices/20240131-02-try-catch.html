@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //js除錯
+    //若字串是錯的
+    const str = '{"name":"shin",}';
+
+    let obj;
+    // try catch結構後的程式碼仍會執行
+    try{
+      obj = JSON.parse(str);
+      console.log('--------------try');
+    }catch(ex){
+      console.log('--------------catch');
+      console.log(ex);
+    }
+
+    console.log(obj);
+    console.log('--------------end');
+  </script>
+</body>
+</html>

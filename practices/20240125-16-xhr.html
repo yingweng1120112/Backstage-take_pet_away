@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XML Http Request</title>
+</head>
+<body>
+  <input type="number" id="a" placeholder="a">
+  +
+  <input type="number" id="b" placeholder="b">
+  <button onclick="sendData()">=</button>
+  <span id="result"></span>
+
+  <script>
+    const a_in = document.querySelector('#a');
+    const b_in = document.querySelector('#b');
+    const result_el = document.querySelector('#result');
+    function sendData(){
+      //console.log(a_in.value,b_in.value); //預設 有設定id會自動變成window屬性 如a沒有宣告變數 但會變成element 
+      //ajax是跟後端溝通 沒有要刷新頁面 XMLHttpRequest、fetch都包含
+      
+      //1.建立
+      const xhr = new XMLHttpRequest();
+
+      //2.定義事件處理器 資料回來後要做什麼
+      xhr.onload = (event) =>{
+        console.log('A');
+        result_el.innerHTML = xhr.responseText;
+      };
+      
+      //3.發ajax之前的設定 (方法)
+      xhr.open('GET',`20240118-07-plus.php?a=${a_in.value}&b=${b_in.value}`);
+      console.log('B');
+      
+      //4.發送
+      //除錯時可以去看f12 network有沒有發送request
+      //點回傳資料 payload response
+      xhr.send();
+      console.log('C');
+      //回傳順序 B>C>A 代表非同步(資料發出後不理它) 同步(資料發出後等待做下一步)
+      
+
+    }
+  </script>
+
+</body>
+</html>
