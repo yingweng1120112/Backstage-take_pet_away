@@ -1,7 +1,7 @@
 <!-- 心理測驗題目 暫連上課資料庫(參考用)-->
 
 <!-- 以下註解是筆記 懶得刪 請忽略 -->
-<!-- 1.1656取需要的資料 -->
+<!-- 1.165取需要的資料 -->
 <?php
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '通訊錄列表';
@@ -102,51 +102,51 @@ if ($totalRows > 0) {
             <?php endforeach ?>
           </tbody>
         </table>
-      <!-- 6-3.分頁按鈕 -->
-    <div class="col">
-      <!-- https://getbootstrap.com/docs/5.3/components/pagination/ -->
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <!-- 12.按鈕功能(往下一頁、跳到最後頁) -->
-          <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
-            <!-- 11.跳頁按鈕的外觀 -->
-            <!-- https://fontawesome.com/search?q=angle&o=r&m=free -->
-            <a class="page-link" href="?page=1">
-              <i class="fa-solid fa-angles-left"></i>
-            </a>
-          </li>
-
-          <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $page - 1 ?>">
-              <i class="fa-solid fa-angle-left"></i>
-            </a>
-          </li>
-          <!-- 9.最多 11 個頁碼按鈕 -->
-          <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
-            <?php if ($i >= 1 and $i <= $totalPages) : ?>
-              <!-- 8.當前頁碼的提示修改 -->
-              <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                <!-- href 是省略資源檔(因為前面都相同) ?page=10#abc -->
-                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+        <!-- 6-3.分頁按鈕 -->
+        <div class="col">
+          <!-- https://getbootstrap.com/docs/5.3/components/pagination/ -->
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <!-- 12.按鈕功能(往下一頁、跳到最後頁) -->
+              <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
+                <!-- 11.跳頁按鈕的外觀 -->
+                <!-- https://fontawesome.com/search?q=angle&o=r&m=free -->
+                <a class="page-link" href="?page=1">
+                  <i class="fa-solid fa-angles-left"></i>
+                </a>
               </li>
-            <?php endif ?>
-          <?php endfor ?>
 
-          <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $page + 1 ?>">
-              <i class="fa-solid fa-angle-right"></i>
-            </a>
-          </li>
+              <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
+                <a class="page-link" href="?page=<?= $page - 1 ?>">
+                  <i class="fa-solid fa-angle-left"></i>
+                </a>
+              </li>
+              <!-- 9.最多 11 個頁碼按鈕 -->
+              <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
+                <?php if ($i >= 1 and $i <= $totalPages) : ?>
+                  <!-- 8.當前頁碼的提示修改 -->
+                  <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                    <!-- href 是省略資源檔(因為前面都相同) ?page=10#abc -->
+                    <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                  </li>
+                <?php endif ?>
+              <?php endfor ?>
 
-          <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $totalPages ?>">
-              <i class="fa-solid fa-angles-right"></i>
-            </a>
-          </li>
+              <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
+                <a class="page-link" href="?page=<?= $page + 1 ?>">
+                  <i class="fa-solid fa-angle-right"></i>
+                </a>
+              </li>
 
-        </ul>
-      </nav>
-    </div>
+              <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
+                <a class="page-link" href="?page=<?= $totalPages ?>">
+                  <i class="fa-solid fa-angles-right"></i>
+                </a>
+              </li>
+
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
@@ -158,9 +158,9 @@ if ($totalRows > 0) {
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
 <script>
-    //3.php 倒資料給 js
-    const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
+  //3.php 倒資料給 js
+  const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
 
-    console.log(myRows);
-  </script>
+  console.log(myRows);
+</script>
 <?php include __DIR__ . '/parts/6_foot.php' ?>
