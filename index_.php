@@ -8,6 +8,7 @@ if (isset($_SESSION['admin'])) {
   exit;
   /*123456*/
 }
+// 123456
 ?>
 <!-- 所有頁面的拼接順序 每一頁都主要是換掉section的部分 -->
 <?php include __DIR__ . '/parts/1_head.php' ?>
