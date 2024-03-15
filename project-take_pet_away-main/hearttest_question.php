@@ -9,6 +9,7 @@ $pageName = 'list';
 $pageName = 'list';
 $pageName = 'list';
 $pageName = 'list';
+$pageName = 'list';
 //7-1.分頁功能
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
