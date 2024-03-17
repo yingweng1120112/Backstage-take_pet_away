@@ -30,7 +30,7 @@
           </a>
           <div class="collapse" id="collapsePagesAnimal" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav accordion" id="collapseContentAnimal">
-              <a class="nav-link collapsed" href="pet_info_list.php">
+              <a class="nav-link collapsed" href="pet_list.php">
                 基本資訊
               </a>
               <a class="nav-link collapsed" href="#">
