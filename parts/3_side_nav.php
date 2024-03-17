@@ -17,7 +17,7 @@
             </a>
             <div class="collapse" id="collapsePagesUser" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav accordion" id="collapsePagesUser">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="login.php">
                   登入
                 </a>
                 <a class="nav-link collapsed" href="#">
@@ -38,7 +38,7 @@
                 <a class="nav-link collapsed" href="#">
                   收藏
                 </a>
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="logout.php">
                   登出
                 </a>
               </nav>
