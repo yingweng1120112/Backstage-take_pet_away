@@ -4,7 +4,7 @@
 $db_host = "localhost";
 $db_user = "root";
 $db_pass = "";
-$db_name = "proj01";
+$db_name = "take_pet_away";
 
 $dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8mb4";
 
@@ -16,19 +16,6 @@ $pdo_options = [
 
 $pdo = new PDO($dsn, $db_user, $db_pass, $pdo_options);
 
-/*
-$db_host = "localhost";
-$db_user = "root";
-$db_pass = "";
-$db_name = "proj01";
-
-$dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8mb4";
-
-$pdo_options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
-
-
-$pdo = new PDO($dsn, $db_user, $db_pass, $pdo_options);
-*/
+if (!isset($_SESSION)){
+  session_start();
+}
