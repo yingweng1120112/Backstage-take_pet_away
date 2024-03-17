@@ -41,7 +41,7 @@ $rows = $pdo->query($sql)->fetchAll();
         <i class="fas fa-table me-1"></i>
         題目與對應分數
       </div>
-      <div class="card-body">
+      <div class="card-body table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -57,22 +57,23 @@ $rows = $pdo->query($sql)->fetchAll();
               <th>選項B分數</th>
               <th>選項C分數</th>
               <th>選項D分數</th>
-              <th><i class="fa-solid a-file-pen"></i></th>
+              <th>
+                <!-- 完全新增一筆資料 將question_id設為空值 -->
+              <a href="hearttest_question_add.php?question_id=" class="btn btn-primary">新增題目</a>
+              </th>
             </tr>
           </thead>
           <tbody>
-            <?php /*
-          //php區塊註解  (若用<!--  --> html註解 php部分還是會執行)
-          */ ?>
             <!-- 4.用表格輸出資料 -->
             <?php foreach ($rows as $r) : ?>
               <tr>
                 <td>
                   <!-- 13-1. 符號設定-->
-                  <a href="delete.php?sid=<?= $r['sid'] ?>">
+                  <a href="delete.php?sid=<?= $r['question_id'] ?>">
                     <i class="fa-solid fa-trash"></i>
                   </a>
                 </td>
+                <td><?= $r['question_id'] ?></td>
                 <td><?= $r['question_content'] ?></td>
                 <td><?= $r['option_a'] ?></td>
                 <td><?= $r['option_b'] ?></td>
@@ -84,7 +85,7 @@ $rows = $pdo->query($sql)->fetchAll();
                 <td><?= $r['option_value_d'] ?></td>
                 <!-- 13-2.符號設定 -->
                 <td>
-                  <a href="edit.php?sid=<?= $r['sid'] ?>">
+                  <a href="edit.php?question_id=<?= $r['question_id'] ?>">
                     <i class="fa-solid fa-pen-to-square"></i>
                   </a>
                 </td>
