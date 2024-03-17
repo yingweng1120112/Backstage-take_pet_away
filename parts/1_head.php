@@ -9,7 +9,8 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>後臺介面</title>
+    <title><?= empty($title)? "TAKE PET AWAY" :"$title - TAKE PET AWAY" ?></title>
+    <!-- <title>後臺介面</title> -->
     <link href="css/styles.css" rel="stylesheet" />
     
   </head>
