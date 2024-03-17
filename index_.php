@@ -3,7 +3,7 @@ require __DIR__ . '/parts/pdo-connect.php';
 $title = '登入';
 $pageName = 'login';
 
-if (isset($_SESSION['admin'])) {
+if (isset($_SESSION['root'])) {
   header('Location: index_.php');
   exit;
 }
