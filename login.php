@@ -1,3 +1,4 @@
+<!-- login+register -->
 <?php
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '登入';
@@ -31,6 +32,7 @@ if (isset($_SESSION['admin'])) {
               <div class="form-text"></div>
             </div>
             <button type="submit" class="mx-auto d-block col-3 btn btn-primary">登入</button>
+
           </form>
           <div class="text-center mt-3">
             <button type="button" class="col-3 btn btn-secondary" onclick="show_hide()">註冊帳號</button>
@@ -40,9 +42,6 @@ if (isset($_SESSION['admin'])) {
     </div>
   </div>
 </div>
-
-
-
 
 <div class="modal fade" id="failureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -69,14 +68,19 @@ if (isset($_SESSION['admin'])) {
       <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-body">
           <h5 class="text-center font-weight-light my-4">註冊</h5>
-          <form name="form1" onsubmit="sendData(event)">
+          <form name="form2" onsubmit="sendData(event)">
             <div class="mb-3">
               <label for="name" class="form-label">姓名</label>
               <input type="text" class="form-control" id="name" name="name">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">電郵</label>
+              <label for="account" class="form-label">電話</label>
+              <input type="text" class="form-control" id="account" name="account">
+              <div class="form-text"></div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">電子信箱</label>
               <input type="text" class="form-control" id="email" name="email">
               <div class="form-text"></div>
             </div>
@@ -86,8 +90,13 @@ if (isset($_SESSION['admin'])) {
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">確認密碼</label>
-              <input type="password" class="form-control" id="password" name="password">
+              <label for="comfirm_password" class="form-label">確認密碼</label>
+              <input type="password" class="form-control" id="comfirm_password" name="comfirm_password">
+              <div class="form-text"></div>
+            </div>
+            <div class="mb-3">
+              <label for="address_detail" class="form-label">通訊地址</label>
+              <input type="text" class="form-control" id="address_detail" name="address_detail">
               <div class="form-text"></div>
             </div>
             <button type="submit" class="mx-auto d-block col-3 btn btn-primary">註冊</button>
@@ -107,6 +116,11 @@ if (isset($_SESSION['admin'])) {
       password: passwordField
     } = document.form1;
 
+    const {
+      email: emailFieldsignup,
+      password: passwordFieldsigup
+    } = document.form2;
+
     function validateEmail(email) {
       const re =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -117,14 +131,9 @@ if (isset($_SESSION['admin'])) {
 
     function sendData(e) {
       // 欄位的外觀要回復原來的狀態
-
       emailField.style.border = "1px solid #CCC";
       emailField.nextElementSibling.innerHTML = '';
-
-
-
       e.preventDefault(); // 不要讓有外觀的表單以傳統的方式送出
-
       let isPass = true; // 有沒有通過檢查, 預設值為 true
 
       // TODO: 檢查資料的格式
@@ -136,12 +145,9 @@ if (isset($_SESSION['admin'])) {
         emailField.nextElementSibling.innerHTML = '請輸入正確的 Email';
       }
 
-
-
       // 如果欄位都有通過檢查, 才要發 AJAX
       if (isPass) {
-        const fd = new FormData(document.form1); // 看成沒有外觀的表單
-
+        const fd = new FormData(document.form1);
         fetch('login-api.php', {
             method: 'POST',
             body: fd
@@ -160,14 +166,33 @@ if (isset($_SESSION['admin'])) {
           })
       }
 
+      // 如果欄位都有通過檢查, 才要發 AJAX
+      if (isPass) {
+        const fd = new FormData(document.form2);
+        fetch('login-api.php', {
+            method: 'POST',
+            body: fd
+          })
+          .then(r => r.json())
+          .then(result => {
+            console.log(result);
+            if (result.success) {
+              location.href = 'index_.php';
+            } else {
+              failureModal.show();
+            }
+          })
+          .catch(ex => {
+            console.log(ex);
+          })
+      }
 
     }
     const failureModal = new bootstrap.Modal('#failureModal');
-
     // 切換註冊、 登入頁面
     function show_hide() {
-      var login = document.getElementById("signin");
-      var signup = document.getElementById("signup");
+      const login = document.getElementById("signin");
+      const signup = document.getElementById("signup");
 
       if (login.classList.contains("d-none")) {
         login.classList.remove("d-none"); // 登入區塊顯示
@@ -176,11 +201,12 @@ if (isset($_SESSION['admin'])) {
         login.classList.add("d-none"); // 登入區塊隱藏
         signup.classList.remove("d-none"); // 註冊區塊顯示
       }
-      document.getElementById("fullname").value = "";
-      document.getElementById("username1").value = "";
-      document.getElementById("username2").value = "";
-      document.getElementById("password2").value = "";
+      document.getElementById("name").value = "";
+      document.getElementById("account").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("password").value = "";
       document.getElementById("comfirm_password").value = "";
+      document.getElementById("address_detail").value = "";
 
     }
   </script>

@@ -25,8 +25,13 @@ if (!empty($_POST['email']) and !empty($_POST['password'])) {
     if (password_verify($_POST['password'], $row['password'])) {
       # 密碼是對的
       $_SESSION['admin'] = [
+        'user_id' => $row['user_id'],
+        'name' => $row['name'],
+        'account' => $row['account'],
         'email' => $row['email'],
         'password' => $row['password'],
+        'comfirm_password' => $row['comfirm_password'],
+        'address_detail' => $row['address_detail'],
       ];
       $output['success'] = true;
       $output['error'] = '';

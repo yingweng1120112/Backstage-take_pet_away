@@ -18,10 +18,7 @@
             <div class="collapse" id="collapsePagesUser" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav accordion" id="collapsePagesUser">
                 <a class="nav-link collapsed" href="login.php">
-                  登入
-                </a>
-                <a class="nav-link collapsed" href="#">
-                  註冊
+                  登入/註冊
                 </a>
                 <a class="nav-link collapsed" href="#">
                   更改會員資料
