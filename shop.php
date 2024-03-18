@@ -12,7 +12,7 @@ if ($page < 1) {
 
 $perPage = 10; #決定一頁有多少筆資料
 
-$t_sql = "SELECT COUNT(1) FROM address_book"; #這是要查詢表單所有資料所以 FROM之後 要改自己的表單
+$t_sql = "SELECT COUNT(1) FROM commodity"; #這是要查詢表單所有資料所以 FROM之後 要改自己的表單
 $t_stmt = $pdo->query($t_sql); #這是要執行上方查詢的動作
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
 $totalPages = ceil($totalRows / $perPage); #總筆數除一頁有幾筆 ceil為無條件進位 並存入一個變數(總頁數的算法)
@@ -26,7 +26,7 @@ if ($totalPages > 0) {
 }
 
 
-$sql = sprintf("SELECT * FROM address_book LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
+$sql = sprintf("SELECT * FROM commodity LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
 $rows = $pdo->query($sql)->fetchAll();
 ?>
 
@@ -65,13 +65,13 @@ $rows = $pdo->query($sql)->fetchAll();
                             <?php foreach ($rows as $r) : ?>
                                 <tr>
                                     <!-- $r[裡面要改成表單的欄位名稱] -->
-                                    <th><?= $r['sid'] ?></th>
+                                    <th><?= $r['commodity_id'] ?></th>
+                                    <td><?= $r['pic'] ?></td>
                                     <td><?= $r['name'] ?></td>
-                                    <td><?= $r['email'] ?></td>
-                                    <td><?= $r['mobile'] ?></td>
-                                    <td><?= $r['birthday'] ?></td>
-                                    <td><?= $r['address'] ?></td>
-                                    <td><?= $r['created_at'] ?></td>
+                                    <td><?= $r['brand_name'] ?></td>
+                                    <td><?= $r['price'] ?></td>
+                                    <td><?= $r['type'] ?></td>
+                                    <td><?= $r['species'] ?></td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
