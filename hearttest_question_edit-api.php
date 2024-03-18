@@ -12,56 +12,37 @@ $output = [
     'code' => 0,
 ];
 
-if (!empty($_POST['question_id'])) {
-    $isPass = true;
+$isPass = true;
 
 
 //有無表單送過來 若表單不是空的就處理
 if (!empty($_POST['question_content'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 if (!empty($_POST['option_a'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 if (!empty($_POST['option_b'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 if (!empty($_POST['option_c'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 if (!empty($_POST['option_d'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 if (!empty($_POST['option_value_a'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 if (!empty($_POST['option_value_b'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 if (!empty($_POST['option_value_c'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 if (!empty($_POST['option_value_d'])) {
     $isPass = true;
-} else {
-    $isPass = false;
-}
+};
 
 
 if ($isPass) {
@@ -92,7 +73,7 @@ if ($isPass) {
 
     $output['success'] = boolval($stmt->rowCount());
 }
-}
+
 
 
 echo json_encode($output, JSON_UNESCAPED_UNICODE);

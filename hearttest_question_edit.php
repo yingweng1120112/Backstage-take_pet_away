@@ -34,11 +34,9 @@ if (empty($r)) {
     <div class="col-10">
       <div class="card">
         <div class="card-body container ">
-          <div class="container row">
+          <form name="form1" class="container row" onsubmit="sendData(event)">
             <h5 class="card-title col-md-10 ">編輯測驗題目</h5>
-            <h5 class="col-md-2 btn btn-info disabled">編號 <?= $r['question_id'] ?></h5>
-          </div>
-          <form name="form1" onsubmit="sendData(event)">
+            <input class="col-md-2 btn btn-info disabled" name="question_id" value="<?= $r['question_id'] ?>" readonly>
             <div class="row mb-3">
               <label for="question" class="form-label ">題目</label>
               <div class="col-md-12">
@@ -49,48 +47,52 @@ if (empty($r)) {
             <div class="row mb-4">
               <div class="col-md-6">
                 <label for="optionA" class="form-label">選項 A</label>
-                <input type="text" class="form-control" id="optionA" name="option_a" placeholder="最多輸入 15 個字" maxlength="15"  value="<?= $r['option_a'] ?>">
+                <input type="text" class="form-control" id="optionA" name="option_a" placeholder="最多輸入 15 個字" maxlength="15" value="<?= $r['option_a'] ?>">
                 <div class="form-text"></div>
               </div>
               <div class="col-md-6">
                 <label for="valueA" class="form-label">選項 A 分數</label>
-                <input type="text" class="form-control" id="valueA" name="option_value_a" placeholder="請輸入1～4，每個選項不可重複"  value="<?= $r['option_value_a'] ?>">
+                <input type="text" class="form-control" id="valueA" name="option_value_a"
+                maxlength="1" placeholder="請輸入1～4，每個選項不可重複" value="<?= $r['option_value_a'] ?>">
                 <div class="form-text"></div>
               </div>
             </div>
             <div class="row mb-4">
               <div class="col-md-6">
                 <label for="optionB" class="form-label">選項 B</label>
-                <input type="text" class="form-control" id="optionB" name="option_b" placeholder="最多輸入 15 個字" maxlength="15"  value="<?= $r['option_b'] ?>">
+                <input type="text" class="form-control" id="optionB" name="option_b" placeholder="最多輸入 15 個字" maxlength="15" value="<?= $r['option_b'] ?>">
                 <div class="form-text"></div>
               </div>
               <div class="col-md-6">
                 <label for="valueB" class="form-label">選項 B 分數</label>
-                <input type="text" class="form-control" id="valueB" name="option_value_b" placeholder="請輸入1～4，每個選項不可重複"  value="<?= $r['option_value_b'] ?>">
+                <input type="text" class="form-control" id="valueB" name="option_value_b"
+                maxlength="1" placeholder="請輸入1～4，每個選項不可重複" value="<?= $r['option_value_b'] ?>">
                 <div class="form-text"></div>
               </div>
             </div>
             <div class="row mb-4">
               <div class="col-md-6">
                 <label for="optionC" class="form-label">選項 C</label>
-                <input type="text" class="form-control" id="optionC" name="option_c" placeholder="最多輸入 15 個字" maxlength="15"  value="<?= $r['option_c'] ?>">
+                <input type="text" class="form-control" id="optionC" name="option_c" 
+                placeholder="最多輸入 15 個字" maxlength="15" value="<?= $r['option_c'] ?>">
                 <div class="form-text"></div>
               </div>
               <div class="col-md-6">
                 <label for="valueC" class="form-label">選項 C 分數</label>
-                <input type="text" class="form-control" id="valueC" name="option_value_c" placeholder="請輸入1～4，每個選項不可重複"  value="<?= $r['option_value_c'] ?>">
+                <input type="text" class="form-control" id="valueC" name="option_value_c" 
+                maxlength="1" placeholder="請輸入1～4，每個選項不可重複" value="<?= $r['option_value_c'] ?>">
                 <div class="form-text"></div>
               </div>
             </div>
             <div class="row mb-4">
               <div class="col-md-6">
                 <label for="optionD" class="form-label">選項 D</label>
-                <input type="text" class="form-control" id="optionD" name="option_d" placeholder="最多輸入 15 個字" maxlength="15"  value="<?= $r['option_d'] ?>">
+                <input type="text" class="form-control" id="optionD" name="option_d" placeholder="最多輸入 15 個字" maxlength="15" value="<?= $r['option_d'] ?>">
                 <div class="form-text"></div>
               </div>
               <div class="col-md-6">
                 <label for="valueD" class="form-label">選項 D 分數</label>
-                <input type="text" class="form-control" id="valueD" name="option_value_d" placeholder="請輸入1～4，每個選項不可重複"  value="<?= $r['option_value_d'] ?>">
+                <input type="text" class="form-control" id="valueD" name="option_value_d" maxlength="1" placeholder="請輸入1～4，每個選項不可重複" value="<?= $r['option_value_d'] ?>">
                 <div class="form-text"></div>
               </div>
             </div>

@@ -36,7 +36,13 @@ $pageName = 'question_add'
                             </div>
                             <div class="col-md-6">
                                 <label for="valueA" class="form-label">選項 A 分數</label>
-                                <input type="text" class="form-control" id="valueA" name="option_value_a" placeholder="請輸入1～4，每個選項不可重複">
+                                <select class="form-select" aria-label="Default select example" name="option_value_a" id="valueA">
+                                    <option selected>選項</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
                                 <div class="form-text"></div>
                             </div>
                         </div>
@@ -48,7 +54,13 @@ $pageName = 'question_add'
                             </div>
                             <div class="col-md-6">
                                 <label for="valueB" class="form-label">選項 B 分數</label>
-                                <input type="text" class="form-control" id="valueB" name="option_value_b" placeholder="請輸入1～4，每個選項不可重複">
+                                <select class="form-select" aria-label="Default select example" name="option_value_b" id="valueB">
+                                    <option selected>選項</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
                                 <div class="form-text"></div>
                             </div>
                         </div>
@@ -60,7 +72,13 @@ $pageName = 'question_add'
                             </div>
                             <div class="col-md-6">
                                 <label for="valueC" class="form-label">選項 C 分數</label>
-                                <input type="text" class="form-control" id="valueC" name="option_value_c" placeholder="請輸入1～4，每個選項不可重複">
+                                <select class="form-select" aria-label="Default select example" name="option_value_c" id="valueC">
+                                    <option selected>選項</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
                                 <div class="form-text"></div>
                             </div>
                         </div>
@@ -72,7 +90,13 @@ $pageName = 'question_add'
                             </div>
                             <div class="col-md-6">
                                 <label for="valueD" class="form-label">選項 D 分數</label>
-                                <input type="text" class="form-control" id="valueD" name="option_value_d" placeholder="請輸入1～4，每個選項不可重複">
+                                <select class="form-select" aria-label="Default select example" name="option_value_d" id="valueD">
+                                    <option selected>選項</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
                                 <div class="form-text"></div>
                             </div>
                         </div>
@@ -158,13 +182,9 @@ $pageName = 'question_add'
         optionC.nextElementSibling.innerHTML = '';
         optionD.style.border = "1px solid #CCC";
         optionD.nextElementSibling.innerHTML = '';
-        valueA.style.border = "1px solid #CCC";
         valueA.nextElementSibling.innerHTML = '';
-        valueB.style.border = "1px solid #CCC";
         valueB.nextElementSibling.innerHTML = '';
-        valueC.style.border = "1px solid #CCC";
         valueC.nextElementSibling.innerHTML = '';
-        valueD.style.border = "1px solid #CCC";
         valueD.nextElementSibling.innerHTML = '';
 
 
@@ -200,26 +220,26 @@ $pageName = 'question_add'
             optionD.style.border = "2px solid red"
             optionD.nextElementSibling.innerHTML = '此欄為必填';
         }
-        if (valueA.value.length < 1) {
+        if (valueA.value === '選項') {
             isPass = false;
-            valueA.style.border = "2px solid red"
-            valueA.nextElementSibling.innerHTML = '此欄為必填';
+            valueA.nextElementSibling.innerHTML = '請選擇分數';
         }
-        if (valueB.value.length < 1) {
+        if (valueB.value === '選項') {
             isPass = false;
-            valueB.style.border = "2px solid red"
-            valueB.nextElementSibling.innerHTML = '此欄為必填';
+            valueB.nextElementSibling.innerHTML = '請選擇分數';
         }
-        if (valueC.value.length < 1) {
+        if (valueC.value === '選項') {
             isPass = false;
-            valueC.style.border = "2px solid red"
-            valueC.nextElementSibling.innerHTML = '此欄為必填';
+            valueC.nextElementSibling.innerHTML = '請選擇分數';
         }
-        if (valueD.value.length < 1) {
+        if (valueD.value === '選項') {
             isPass = false;
-            valueD.style.border = "2px solid red"
-            valueD.nextElementSibling.innerHTML = '此欄為必填';
+            valueD.nextElementSibling.innerHTML = '請選擇分數';
         }
+
+
+
+
 
 
         //欄位都有通過檢查 發AJAX取得值
