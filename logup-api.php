@@ -30,7 +30,7 @@ if (!empty($_POST['email']) and !empty($_POST['password'])) {
         'account' => $row['account'],
         'email' => $row['email'],
         'password' => $row['password'],
-        'comfirm_password' => $row['comfirm_password'],
+        'confirm_password' => $row['confirm_password'],
         'address_detail' => $row['address_detail'],
       ];
       $output['success'] = true;

@@ -14,7 +14,7 @@ if (isset($_SESSION['admin'])) {
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
-<div id="signin">
+<div id="login">
   <div class="row justify-content-center">
     <div class="col-6 col-lg-5 mx-auto my-auto">
       <div class="card shadow-lg border-0 rounded-lg mt-5">
@@ -22,7 +22,7 @@ if (isset($_SESSION['admin'])) {
           <h5 class="text-center font-weight-light my-4">登入</h5>
           <form name="form1" onsubmit="sendData(event)">
             <div class="mb-3">
-              <label for="email" class="form-label">電郵</label>
+              <label for="email" class="form-label">電子郵件</label>
               <input type="text" class="form-control" id="email" name="email">
               <div class="form-text"></div>
             </div>
@@ -90,8 +90,8 @@ if (isset($_SESSION['admin'])) {
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="comfirm_password" class="form-label">確認密碼</label>
-              <input type="password" class="form-control" id="comfirm_password" name="comfirm_password">
+              <label for="confirm_password" class="form-label">確認密碼</label>
+              <input type="password" class="form-control" id="confirm_password" name="confirm_password">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
@@ -116,17 +116,11 @@ if (isset($_SESSION['admin'])) {
       password: passwordField
     } = document.form1;
 
-    const {
-      email: emailFieldsignup,
-      password: passwordFieldsigup
-    } = document.form2;
-
     function validateEmail(email) {
       const re =
         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     }
-
 
 
     function sendData(e) {
@@ -191,7 +185,7 @@ if (isset($_SESSION['admin'])) {
     const failureModal = new bootstrap.Modal('#failureModal');
     // 切換註冊、 登入頁面
     function show_hide() {
-      const login = document.getElementById("signin");
+      const login = document.getElementById("login");
       const signup = document.getElementById("signup");
 
       if (login.classList.contains("d-none")) {
@@ -205,7 +199,7 @@ if (isset($_SESSION['admin'])) {
       document.getElementById("account").value = "";
       document.getElementById("email").value = "";
       document.getElementById("password").value = "";
-      document.getElementById("comfirm_password").value = "";
+      document.getElementById("confirm_password").value = "";
       document.getElementById("address_detail").value = "";
 
     }
