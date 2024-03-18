@@ -1,4 +1,4 @@
-<!-- 先連上課範例資料庫 ( 參考用 暫放) -->
+
 <?php
 
 $db_host = "localhost";
@@ -15,3 +15,7 @@ $pdo_options = [
 
 
 $pdo = new PDO($dsn, $db_user, $db_pass, $pdo_options);
+
+if (!isset($_SESSION)) {
+  session_start();
+}
