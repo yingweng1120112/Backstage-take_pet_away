@@ -14,7 +14,7 @@ if (isset($_SESSION['admin'])) {
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
-<div id="login">
+<div id="signIn">
   <div class="row justify-content-center">
     <div class="col-6 col-lg-5 mx-auto my-auto">
       <div class="card shadow-lg border-0 rounded-lg mt-5">
@@ -22,7 +22,7 @@ if (isset($_SESSION['admin'])) {
           <h5 class="text-center font-weight-light my-4">登入</h5>
           <form name="form1" onsubmit="sendData(event)">
             <div class="mb-3">
-              <label for="email" class="form-label">電子郵件</label>
+              <label for="email" class="form-label">電郵</label>
               <input type="text" class="form-control" id="email" name="email">
               <div class="form-text"></div>
             </div>
@@ -31,12 +31,13 @@ if (isset($_SESSION['admin'])) {
               <input type="password" class="form-control" id="password" name="password">
               <div class="form-text"></div>
             </div>
+            <div class="text-center">還沒有帳號？&nbsp<a href="register.php" class="goRegister">註冊</a></div>
             <button type="submit" class="mx-auto d-block col-3 btn btn-primary">登入</button>
 
           </form>
-          <div class="text-center mt-3">
+          <!-- <div class="text-center mt-3">
             <button type="button" class="col-3 btn btn-secondary" onclick="show_hide()">註冊帳號</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -62,52 +63,6 @@ if (isset($_SESSION['admin'])) {
   </div>
 </div>
 
-<div id="signup" class="d-none">
-  <div class=" row justify-content-center">
-    <div class="col-6 col-lg-5 mx-auto my-auto">
-      <div class="card shadow-lg border-0 rounded-lg mt-5">
-        <div class="card-body">
-          <h5 class="text-center font-weight-light my-4">註冊</h5>
-          <form name="form2" onsubmit="sendData(event)">
-            <div class="mb-3">
-              <label for="name" class="form-label">姓名</label>
-              <input type="text" class="form-control" id="name" name="name">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="account" class="form-label">電話</label>
-              <input type="text" class="form-control" id="account" name="account">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">電子信箱</label>
-              <input type="text" class="form-control" id="email" name="email">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">密碼</label>
-              <input type="password" class="form-control" id="password" name="password">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="confirm_password" class="form-label">確認密碼</label>
-              <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="address_detail" class="form-label">通訊地址</label>
-              <input type="text" class="form-control" id="address_detail" name="address_detail">
-              <div class="form-text"></div>
-            </div>
-            <button type="submit" class="mx-auto d-block col-3 btn btn-primary">註冊</button>
-          </form>
-          <div class="text-center mt-3">
-            <button type="button" class="col-3 btn btn-secondary" onclick="show_hide()">登入帳號</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <?php include __DIR__ . '/parts/5_script.php' ?>
   <script>
@@ -183,26 +138,8 @@ if (isset($_SESSION['admin'])) {
 
     }
     const failureModal = new bootstrap.Modal('#failureModal');
-    // 切換註冊、 登入頁面
-    function show_hide() {
-      const login = document.getElementById("login");
-      const signup = document.getElementById("signup");
 
-      if (login.classList.contains("d-none")) {
-        login.classList.remove("d-none"); // 登入區塊顯示
-        signup.classList.add("d-none"); // 註冊區塊隱藏
-      } else {
-        login.classList.add("d-none"); // 登入區塊隱藏
-        signup.classList.remove("d-none"); // 註冊區塊顯示
-      }
-      document.getElementById("name").value = "";
-      document.getElementById("account").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("confirm_password").value = "";
-      document.getElementById("address_detail").value = "";
-
-    }
+  
   </script>
 
   <?php include __DIR__ . '/parts/6_foot.php' ?>
