@@ -10,7 +10,7 @@ CREATE TABLE Psycological_Test_Result (
 
 
 CREATE TABLE Psycological_Test (
-                question_id VARCHAR(7) NOT NULL,
+                question_id INT NOT NULL,
                 question_content VARCHAR(50) NOT NULL,
                 option_a VARCHAR(30) NOT NULL,
                 option_b VARCHAR(30) NOT NULL,
