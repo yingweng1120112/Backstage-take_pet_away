@@ -59,7 +59,7 @@ $rows = $pdo->query($sql)->fetchAll();
               <th>選項D分數</th>
               <th>
                 <!-- 完全新增一筆資料 將question_id設為空值 -->
-              <a href="hearttest_question_add.php?question_id=" class="btn btn-primary">新增題目</a>
+              <a href="hearttest_question_add.php?question_id=" class="btn btn-primary btn-sm">新增題目</a>
               </th>
             </tr>
           </thead>
@@ -69,7 +69,7 @@ $rows = $pdo->query($sql)->fetchAll();
               <tr>
                 <td>
                   <!-- 13-1. 符號設定-->
-                  <a href="delete.php?sid=<?= $r['question_id'] ?>">
+                  <a href="hearttest_question_delete.php?question_id=<?= $r['question_id'] ?>">
                     <i class="fa-solid fa-trash"></i>
                   </a>
                 </td>
@@ -85,8 +85,8 @@ $rows = $pdo->query($sql)->fetchAll();
                 <td><?= $r['option_value_d'] ?></td>
                 <!-- 13-2.符號設定 -->
                 <td>
-                  <a href="edit.php?question_id=<?= $r['question_id'] ?>">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                  <a href="hearttest_question_edit.php?question_id=<?= $r['question_id'] ?>">
+                    <p class="btn btn-outline-success btn-sm">變更</p>
                   </a>
                 </td>
               </tr>
