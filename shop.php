@@ -32,6 +32,20 @@ $rows = $pdo->query($sql)->fetchAll();
 
 <!-- 所有頁面的拼接順序 每一頁都主要是換掉section的部分 -->
 <?php include __DIR__ . '/parts/1_head.php' ?>
+<style>
+    .row .card-body .table-striped thead tr th {
+        text-align: center;
+    }
+
+    .row .card-body .table-striped tbody tr th {
+        text-align: center;
+    }
+
+    .row .card-body .table-striped tbody tr td {
+        text-align: center;
+    }
+</style>
+
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
