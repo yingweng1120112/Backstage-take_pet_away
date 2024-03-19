@@ -9,7 +9,7 @@ if (empty($commodity_id)) {
     exit;
 }
 
-$r = $pdo->query("SELECT * FROM commodity WHERE commodity_id=commodity_id")->fetch();
+$r = $pdo->query("SELECT * FROM commodity WHERE commodity_id=$commodity_id")->fetch();
 if (empty($r)) {
     header('Location: edit-shop.php');
     exit;
@@ -82,13 +82,9 @@ if (empty($r)) {
                         </select>
                         <div class="form-text"></div>
 
-
                         <div class="mb-3 mt-3">
                             <label for="pic" class="form-label">產品圖片</label>
-                            <input class="form-control" type="file" id="pic" name="photo" multiple>
-                        </div>
-                        <div class="mb-3">
-                            <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
+                            <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
                             <br />
                             <img id="show_image" src="" />
                         </div>
@@ -110,7 +106,7 @@ if (empty($r)) {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">商品狀態</h1>
+                    <h1 class="modal-title fs-5">修改狀況</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -119,8 +115,8 @@ if (empty($r)) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-                    <a href="shop.php" class="btn btn-primary">前往產品列表</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">重新修改</button>
+                    <a href="edit-shop.php" class="btn btn-primary">前往編輯列表</a>
                 </div>
             </div>
         </div>
@@ -140,7 +136,7 @@ if (empty($r)) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">重新修改</button>
-                    <a href="shop.php" class="btn btn-primary">前往產品列表</a>
+                    <a href="edit-shop.php" class="btn btn-primary">前往編輯列表</a>
                 </div>
             </div>
         </div>
