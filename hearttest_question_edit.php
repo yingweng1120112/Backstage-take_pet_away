@@ -16,7 +16,10 @@ if (empty($r)) {
   header('Location: hearttest_question.php');
   exit;
 }
-
+$selectA = $r['option_value_a'];
+$selectB = $r['option_value_b'];
+$selectC = $r['option_value_c'];
+$selectD = $r['option_value_d'];
 ?>
 
 <style>
@@ -27,6 +30,9 @@ if (empty($r)) {
 <?php include __DIR__ . '/parts/1_head.php' ?>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
+
+
+
 
 
 <section class="container mt-auto">
@@ -52,8 +58,13 @@ if (empty($r)) {
               </div>
               <div class="col-md-6">
                 <label for="valueA" class="form-label">選項 A 分數</label>
-                <input type="text" class="form-control" id="valueA" name="option_value_a"
-                maxlength="1" placeholder="請輸入1～4，每個選項不可重複" value="<?= $r['option_value_a'] ?>">
+                <select class="form-select" aria-label="Default select example" name="option_value_a" id="valueA" value="<?= $r['option_value_a'] ?>">
+                  <option selected>選項</option>
+                  <option value="1" <?php if (!empty($selectA) && $selectA == '1')  echo 'selected = "selected"'; ?>>1</option>
+                  <option value="2" <?php if (!empty($selectA) && $selectA == '2')  echo 'selected = "selected"'; ?>>2</option>
+                  <option value="3" <?php if (!empty($selectA) && $selectA == '3')  echo 'selected = "selected"'; ?>>3</option>
+                  <option value="4" <?php if (!empty($selectA) && $selectA == '4')  echo 'selected = "selected"'; ?>>4</option>
+                </select>
                 <div class="form-text"></div>
               </div>
             </div>
@@ -65,22 +76,30 @@ if (empty($r)) {
               </div>
               <div class="col-md-6">
                 <label for="valueB" class="form-label">選項 B 分數</label>
-                <input type="text" class="form-control" id="valueB" name="option_value_b"
-                maxlength="1" placeholder="請輸入1～4，每個選項不可重複" value="<?= $r['option_value_b'] ?>">
+                <select class="form-select" aria-label="Default select example" name="option_value_b" id="valueB" value="<?= $r['option_value_b'] ?>">
+                  <option selected>選項</option>
+                  <option value="1" <?php if (!empty($selectB) && $selectB == '1')  echo 'selected = "selected"'; ?>>1</option>
+                  <option value="2" <?php if (!empty($selectB) && $selectB == '2')  echo 'selected = "selected"'; ?>>2</option>
+                  <option value="3" <?php if (!empty($selectB) && $selectB == '3')  echo 'selected = "selected"'; ?>>3</option>
+                  <option value="4" <?php if (!empty($selectB) && $selectB == '4')  echo 'selected = "selected"'; ?>>4</option>
+                </select>
                 <div class="form-text"></div>
               </div>
             </div>
             <div class="row mb-4">
               <div class="col-md-6">
                 <label for="optionC" class="form-label">選項 C</label>
-                <input type="text" class="form-control" id="optionC" name="option_c" 
-                placeholder="最多輸入 15 個字" maxlength="15" value="<?= $r['option_c'] ?>">
+                <input type="text" class="form-control" id="optionC" name="option_c" placeholder="最多輸入 15 個字" maxlength="15" value="<?= $r['option_c'] ?>">
                 <div class="form-text"></div>
               </div>
               <div class="col-md-6">
                 <label for="valueC" class="form-label">選項 C 分數</label>
-                <input type="text" class="form-control" id="valueC" name="option_value_c" 
-                maxlength="1" placeholder="請輸入1～4，每個選項不可重複" value="<?= $r['option_value_c'] ?>">
+                <select class="form-select" aria-label="Default select example" name="option_value_c" id="valueC" value="<?= $r['option_value_c'] ?>">
+                <option value="1" <?php if (!empty($selectC) && $selectC == '1')  echo 'selected = "selected"'; ?>>1</option>
+                  <option value="2" <?php if (!empty($selectC) && $selectC == '2')  echo 'selected = "selected"'; ?>>2</option>
+                  <option value="3" <?php if (!empty($selectC) && $selectC == '3')  echo 'selected = "selected"'; ?>>3</option>
+                  <option value="4" <?php if (!empty($selectC) && $selectC == '4')  echo 'selected = "selected"'; ?>>4</option>
+                </select>
                 <div class="form-text"></div>
               </div>
             </div>
@@ -92,7 +111,14 @@ if (empty($r)) {
               </div>
               <div class="col-md-6">
                 <label for="valueD" class="form-label">選項 D 分數</label>
-                <input type="text" class="form-control" id="valueD" name="option_value_d" maxlength="1" placeholder="請輸入1～4，每個選項不可重複" value="<?= $r['option_value_d'] ?>">
+                <select class="form-select" aria-label="Default select example" name="option_value_d" id="valueD">
+                  <option selected>選項</option>
+                  <option value="1" <?php if (!empty($selectD) && $selectD == '1')  echo 'selected = "selected"'; ?>>1</option>
+                  <option value="2" <?php if (!empty($selectD) && $selectD == '2')  echo 'selected = "selected"'; ?>>2</option>
+                  <option value="3" <?php if (!empty($selectD) && $selectD == '3')  echo 'selected = "selected"'; ?>>3</option>
+                  <option value="4" <?php if (!empty($selectD) && $selectD == '4')  echo 'selected = "selected"'; ?>>4</option>
+                </select>
+                </select>
                 <div class="form-text"></div>
               </div>
             </div>
@@ -119,7 +145,7 @@ if (empty($r)) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續修改</button>
-            <a href="list.php" class="btn btn-primary">跳到列表頁</a>
+            <a href="hearttest_question.php" class="btn btn-primary">跳到列表頁</a>
           </div>
         </div>
       </div>

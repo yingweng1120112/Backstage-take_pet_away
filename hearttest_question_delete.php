@@ -9,14 +9,11 @@ if(!empty($questionId)){
   $pdo->query($sql);
 }
 
-$rowCount = $pdo->query($sql)->rowCount();
-echo "Deleted rows: " . $rowCount;
 
-
-// $backTo = 'hearttest_question.php';
-// if(!empty($_SERVER['HTTP_REFERER'])){
-  //   $backTo = $_SERVER['HTTP_REFERER'];
-  // }
+$backTo = 'hearttest_question.php';
+if(!empty($_SERVER['HTTP_REFERER'])){
+    $backTo = $_SERVER['HTTP_REFERER'];
+  }
   
-  // header("Location: $backTo");
+  header("Location: $backTo");
   ?>
