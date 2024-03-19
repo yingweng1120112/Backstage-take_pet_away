@@ -45,9 +45,9 @@ if (!empty($_POST['name'])) {
     }
 
     if ($isPass) {
-        $sql = "INSERT INTO `commodity`(`name`, `brand_name`, `price`,`pic`, `type`, `species`
+        $sql = "INSERT INTO `commodity`(`name`, `brand_name`, `price`, `pic`, `type`, `species`
         ) VALUES (
-            ?, ?, ?, ?, ?,?
+            ?, ?, ?, ?, ?, ?
         )";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([

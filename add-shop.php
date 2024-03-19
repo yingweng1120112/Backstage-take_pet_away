@@ -57,13 +57,9 @@ $title = '新增產品';
                         <div class="form-text"></div>
 
 
-                        <div class="mb-3 mt-3">
+                        <div class="mb-3  mt-3">
                             <label for="pic" class="form-label">產品圖片</label>
-                            <input class="form-control" type="file" id="pic" name="photo" multiple>
-                        </div>
-
-                        <div class="mb-3">
-                            <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
+                            <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
                             <br />
                             <img id="show_image" src="" />
                         </div>
