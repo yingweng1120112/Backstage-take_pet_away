@@ -13,7 +13,7 @@ if ($page < 1) {
 $perPage = 20;
 
 # 機算資料總筆數
-$t_sql = "SELECT COUNT(1) FROM address_book";
+$t_sql = "SELECT COUNT(1) FROM pet_info";
 $t_stmt = $pdo->query($t_sql);
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
 $totalPages = ceil($totalRows / $perPage);  # 總頁數
@@ -26,7 +26,7 @@ if ($totalPages > 0) {
     exit;
   }
   #取得分頁資料
-  $sql = sprintf("SELECT * FROM address_book order by sid DESC LIMIT %s ,%s", ($page - 1) * $perPage, $perPage);
+  $sql = sprintf("SELECT * FROM pet_info order by pet_id DESC LIMIT %s ,%s", ($page - 1) * $perPage, $perPage);
   $rows = $pdo->query($sql)->fetchAll();
 }
 ?>
@@ -48,46 +48,35 @@ if ($totalPages > 0) {
       <table class="table table-striped table-hover lh-lg">
         <thead>
           <tr class="table-dark">
-            <th><i class="fa-solid fa-trash"></i></th>
-            <th scope="col">#</th>
-            <th scope="col">名字</th>
-            <th scope="col">性格類型</th>
-            <th scope="col">hashtag</th>
-            <th scope="col">年齡</th>
-            <th scope="col">種類</th>
-            <th scope="col">性別</th>
+            <th class="text-center"><i class="fa-solid fa-trash"></i></th>
+            <th class="text-center" scope="col">#</th>
+            <th class="text-center" scope="col">名字</th>
+            <th class="text-center" scope="col">性格類型</th>
+            <th class="text-center" scope="col">hashtag</th>
+            <th class="text-center" scope="col">年齡</th>
+            <th class="text-center" scope="col">種類</th>
+            <th class="text-center" scope="col">性別</th>
             <!-- <th scope="col">品種</th> -->
-            <th scope="col">是否被領養</th>
-            <th><i class="fa-solid fa-pen-to-square"></i></th>
+            <th class="text-center" scope="col">是否被領養</th>
+            <th class="text-center"><i class="fa-solid fa-pen-to-square"></i></th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($rows as $r) : ?>
             <tr>
-              <td>
-                <a href="javascript: deleteOne(<?= $r['sid'] ?>)"><i class="fa-solid fa-trash text-secondary"></i></a>
+              <td class="text-center">
+                <a href="javascript: deleteOne(<?= $r['pet_id'] ?>)"><i class="fa-solid fa-trash text-secondary"></i></a>
               </td>
-              <td><?= $r["sid"] ?></td>
-              <td><?= $r["name"] ?></td>
-              <td><?= $r["mobile"] ?></td>
-              <td><?= $r["name"] ?></td>
-              <td><?= $r["email"] ?></td>
-              <td><?= $r["name"] ?></td>
-              <td><?= $r["birthday"] ?></td>
-              <td><?= $r["birthday"] ?></td>
-              <td><a href="edit.php?sid=<?= $r["sid"] ?>"><i class="fa-solid fa-pen-to-square text-secondary"></a></i></td>
+              <td class="text-center"><?= $r["pet_id"] ?></td>
+              <td class="text-center"><?= $r["name"] ?></td>
+              <td class="text-center"><?= $r["personality_type"] ?></td>
+              <td class="text-center"><?= $r["tag"] ?></td>
+              <td class="text-center"><?= $r["age"] ?></td>
+              <td class="text-center"><?= $r["type"] ?></td>
+              <td class="text-center"><?= $r["sex"] ?></td>
+              <td class="text-center"><?= $r["adopted"] ?></td>
+              <td class="text-center"><a href="pet_edit.php?pet_id=<?= $r["pet_id"] ?>"><i class="fa-solid fa-pen-to-square text-secondary"></a></i></td>
             </tr>
-
-            <!-- 
-              <td><?= $r["pet_id"] ?></td>
-              <td><?= $r["name"] ?></td>
-              <td><?= $r["personality_type"] ?></td>
-              <td><?= $r["tag"] ?></td>
-              <td><?= $r["age"] ?></td> 
-              <td><?= $r["type"] ?></td> 
-              <td><?= $r["sex"] ?></td> 
-              <td><?= $r["adopted"] ?></td> 
-            -->
 
           <?php endforeach ?>
         </tbody>
@@ -105,7 +94,7 @@ if ($totalPages > 0) {
             <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="fa-solid fa-angle-left"></i></a>
           </li>
           <?php for ($i = $page - 2; $i <= $page + 2; $i++) : ?>
-            <?php if ($i >= 1 and $i < $totalPages) : ?>
+            <?php if ($i >= 1 and $i <= $totalPages) : ?>
               <li class="page-item <?= $i != $page ?: "active" ?>">
                 <a class="page-link" href="?page= <?= $i ?>"><?= $i ?></a>
               </li>
@@ -127,9 +116,9 @@ if ($totalPages > 0) {
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
   // console.log(myRows);
 
-  function deleteOne(sid) {
-    if (confirm(`是否要刪除編號為 ${sid} 的項目?`)) {
-      location.href = `delete.php?sid=${sid}`;
+  function deleteOne(pet_id) {
+    if (confirm(`是否要刪除編號為 ${pet_id} 的項目?`)) {
+      location.href = `pet_delete.php?pet_id=${pet_id}`;
     }
   }
 </script>
