@@ -110,12 +110,12 @@ if ($totalRows > 0) {
             <td><?= $r['pic'] ?></td>
             <td><?= $r['time'] ?></td>
             <td>
-              <a href="#">
+              <a href="page_edit.php?blog_id=<?= $r['blog_id'] ?>">
                 <i class="fa-solid fa-file-pen"></i>
               </a>
             </td>
             <td>
-              <a href="page_edit.php">
+              <a href="javascript: deleteOne(<?= $r['blog_id'] ?>)">
                 <i class="fa-solid fa-trash"></i>
               </a>
             </td>
@@ -130,4 +130,13 @@ if ($totalRows > 0) {
 <a href="page_plus.php">+</a>
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
+
+<script>
+  function deleteOne(blog_id) {
+    if (confirm(`是否要刪除編號為 ${blog_id} 的項目?`)) {
+      location.href = `delete.php?blog_id=${blog_id}`;
+    }
+  }
+</script>
+
 <?php include __DIR__ . '/parts/6_foot.php' ?>
