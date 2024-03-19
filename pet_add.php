@@ -20,15 +20,16 @@ $pageName = "pet_add";
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a class="text-reset text-decoration-none" href="index_.php">Take Pet Away</a></li>
       <li class="breadcrumb-item"><a class="text-reset text-decoration-none" href="#">收容動物</a></li>
-      <li class="breadcrumb-item active" aria-current="page">基本資訊</li>
+      <li class="breadcrumb-item"><a class="text-reset text-decoration-none" href="pet_list.php">寵物資訊</a></li>
+      <li class="breadcrumb-item active" aria-current="page">新增寵物</li>
     </ol>
   </nav>
-  <h1 class="my-3">寵物基本資料</h1>
+  <h1 class="my-3">新增寵物資料</h1>
   <div class="row">
     <div class="col-6">
       <div class="card border border-3 border-dark border-opacity-50">
         <div class="card-body">
-          <h5 class="card-title my-3">新增寵物</h5>
+          <!-- <h5 class="card-title my-3">新增寵物</h5> -->
           <form name="form1" onsubmit="sendData(event)">
             <div class="mb-3">
               <div class="mb-3">
@@ -52,16 +53,16 @@ $pageName = "pet_add";
                 <div class="form-text"></div>
               </div> -->
               <div class="mb-3">
-                <label for="personality_type" class="form-label me-3">性格類型</label>
-                <input type="radio" class="btn-check" name="personality_type" id="personality_type1" autocomplete="off" checked>
+                <label for="personality_type" class="form-label me-3 lh-lg">性格類型</label>
+                <input type="radio" class="btn-check" name="personality_type" id="personality_type1" value="1" autocomplete="off" checked>
                 <label class="btn btn-outline-secondary" for="personality_type1">敏感型</label>
-                <input type="radio" class="btn-check" name="personality_type" id="personality_type2" autocomplete="off">
+                <input type="radio" class="btn-check" name="personality_type" id="personality_type2" value="樂天型" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="personality_type2">樂天型</label>
-                <input type="radio" class="btn-check" name="personality_type" id="personality_type3" autocomplete="off">
+                <input type="radio" class="btn-check" name="personality_type" id="personality_type3" value="獨立型" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="personality_type3">獨立型</label>
-                <input type="radio" class="btn-check" name="personality_type" id="personality_type4" autocomplete="off">
+                <input type="radio" class="btn-check" name="personality_type" id="personality_type4" value="自信型" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="personality_type4">自信型</label>
-                <input type="radio" class="btn-check" name="personality_type" id="personality_type5" autocomplete="off">
+                <input type="radio" class="btn-check" name="personality_type" id="personality_type5" value="適應型" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="personality_type5">適應型</label>
                 <div class="form-text"></div>
               </div>
@@ -76,27 +77,27 @@ $pageName = "pet_add";
                 <div class="form-text"></div>
               </div> -->
               <div class="mb-3">
-                <label for="type" class="form-label me-3">種類</label>
-                <input type="radio" class="btn-check" name="type" id="typedog" autocomplete="off" checked>
-                <label class="btn btn-outline-secondary" for="typedog">狗狗</label>
-                <input type="radio" class="btn-check" name="type" id="typecat" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="typecat">貓貓</label>
+                <label for="type" class="form-label me-3 lh-lg">種類</label>
+                <input type="radio" class="btn-check" name="type" id="type-dog" value="1" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="type-dog">狗狗</label>
+                <input type="radio" class="btn-check" name="type" id="type-cat" value="貓" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="type-cat">貓貓</label>
                 <div class="form-text"></div>
               </div>
               <div class="mb-3">
-                <label for="sex" class="form-label me-3">性別</label>
-                <input type="radio" class="btn-check" name="sex" id="sexboy" autocomplete="off" checked>
-                <label class="btn btn-outline-secondary" for="sexboy">男生</label>
-                <input type="radio" class="btn-check" name="sex" id="sexgirl" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="sexgirl">女生</label>
+                <label for="sex" class="form-label me-3 lh-lg">性別</label>
+                <input type="radio" class="btn-check" name="sex" id="sex-boy" value="1" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="sex-boy">男生</label>
+                <input type="radio" class="btn-check" name="sex" id="sex-girl" value="母" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="sex-girl">女生</label>
                 <div class="form-text"></div>
               </div>
               <div class="mb-3">
-                <label for="adopted" class="form-label me-3">是否被領養</label>
-                <input type="radio" class="btn-check" name="adopted" id="adoptedTrue" autocomplete="off" checked>
-                <label class="btn btn-outline-secondary" for="adoptedTrue">是</label>
-                <input type="radio" class="btn-check" name="adopted" id="adoptedFalse" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="adoptedFalse">否</label>
+                <label for="adopted" class="form-label me-3 lh-lg">是否被領養</label>
+                <input type="radio" class="btn-check" name="adopted" id="adopted-True" value="1" autocomplete="off" checked>
+                <label class="btn btn-outline-secondary" for="adopted-True">是</label>
+                <input type="radio" class="btn-check" name="adopted" id="adopted-False" value="否" autocomplete="off">
+                <label class="btn btn-outline-secondary" for="adopted-False">否</label>
                 <div class="form-text"></div>
               </div>
               <!-- <label for="adopted" class="form-label me-3">是否被領養</label>
@@ -106,8 +107,20 @@ $pageName = "pet_add";
                 <input type="radio" class="btn-check" name="adopted" id="adoptedFalse" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="adoptedFalse">否</label>
               </div> -->
+              <div class="input-group mb-3">
+                <label for="file" class="form-label me-3 lh-lg">上傳寵物照片</label>
+                <!-- <label class="input-group-text" for="inputGroupFile01"></label> -->
+                <input type="file" class="form-control" id="inputGroupFile01">
+              </div>
+              <!-- <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div> -->
             </div>
-            <button type="submit" class="btn btn-dark d-flex just">Submit</button>
+            <div class="d-flex justify-content-end mt-5">
+              <button type="reset" class="btn btn-secondary w-25 mx-4">CANCEL</button>
+              <button type="submit" class="btn btn-dark w-25 mx-4">SUBMIT</button>
+            </div>
           </form>
         </div>
       </div>
@@ -124,11 +137,11 @@ $pageName = "pet_add";
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="alert alert-success" role="alert">資料新增成功</div>
+        <div class="alert alert-success" role="alert"><i class="fa-regular fa-circle-check me-2"></i>資料新增成功</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-        <a type="button" href="./list.php" class="btn btn-primary">回列表頁</a>
+        <a type="button" href="./pet_list.php" class="btn btn-dark">回列表頁</a>
       </div>
     </div>
   </div>
@@ -141,11 +154,11 @@ $pageName = "pet_add";
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="alert alert-danger" role="alert">資料新增失敗</div>
+        <div class="alert alert-danger" role="alert"><i class="fa-regular fa-circle-xmark me-2"></i>資料新增失敗</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-        <a type="button" href="./list.php" class="btn btn-primary">回列表頁</a>
+        <a type="button" href="./pet_list.php" class="btn btn-dark">回列表頁</a>
       </div>
     </div>
   </div>
@@ -156,6 +169,7 @@ $pageName = "pet_add";
 <script>
   const {
     name: nameField,
+    tag: tagField,
     age: ageFiled,
   } = document.form1;
 
@@ -163,6 +177,8 @@ $pageName = "pet_add";
     // 欄位外觀要回復原來狀態
     nameField.style.border = "1px solid #ccc";
     nameField.nextElementSibling.innerHTML = "";
+    tagField.style.border = "1px solid #ccc";
+    tagField.nextElementSibling.innerHTML = "";
     ageFiled.style.border = "1px solid #ccc";
     ageFiled.nextElementSibling.innerHTML = "";
 
@@ -179,8 +195,14 @@ $pageName = "pet_add";
       nameField.nextElementSibling.innerHTML = "請輸入正確姓名";
     }
 
-    // 年齡 30以下
-    if(ageFiled.value > 30) {
+    if (tagField.value.length < 2) {
+      isPass = false;
+      tagField.style.border = "2px solid red";
+      tagField.nextElementSibling.innerHTML = "請輸入hashtag";
+    }
+
+    // 年齡 0~30
+    if (ageFiled.value > 30 || ageFiled.value <= 0) {
       isPass = false;
       ageFiled.style.border = "2px solid red";
       ageFiled.nextElementSibling.innerHTML = "請輸入正確年齡";
@@ -196,7 +218,7 @@ $pageName = "pet_add";
       //     console.log(i);
       // }
 
-      fetch("pet-api.php", {
+      fetch("pet_add-api.php", {
           method: "POST",
           body: fd
         })
@@ -211,7 +233,7 @@ $pageName = "pet_add";
             if (result.error) {
               failureInfo.innerHTML = result.error;
             } else {
-              failureInfo.innerHTML = "資料新增失敗";
+              failureInfo.innerHTML = `<i class="fa-regular fa-circle-xmark me-2"></i>"資料新增失敗"`;
             }
             failureModal.show();
           }
@@ -219,7 +241,7 @@ $pageName = "pet_add";
         .catch(ex => {
           console.log(ex);
           // alert("資料新增發生錯誤"+ex);
-          failureInfo.innerHTML = "資料新增失敗" + ex;
+          failureInfo.innerHTML = `<i class="fa-regular fa-circle-xmark me-2"></i>"資料新增失敗"` + ex;
           failureModal.show();
         })
 
