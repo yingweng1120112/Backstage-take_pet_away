@@ -22,52 +22,91 @@ $title = '新增產品';
                 </div>
                 <div class="card-body">
                     <form name="form1" onsubmit="sendData(event)" enctype="multipart/form-data">
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-4">
                             <input class="form-control" id="name" type="text" name="name" placeholder="name" />
                             <div class="form-text"></div>
                             <label for="name">產品名稱</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-4">
                             <input class="form-control" id="brand_name" type="text" name="brand_name" placeholder="brand_name" />
                             <div class="form-text"></div>
                             <label for="brand_name">品牌名稱</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating ">
                             <input class="form-control" id="price" type="text" name="price" placeholder="price" />
                             <div class="form-text"></div>
                             <label for="price">產品價格</label>
                         </div>
-                        <div class="mb-3" style="display: flex;">
-                            <label for="type"></label>
-                            <select class="form-select form-select-sm me-lg-4" aria-label="Small select example" id="type" name="type">
-                                <option selected value="產品種類" >產品種類</option>
-                                <option value="寵物飼料">寵物飼料</option>
-                                <option value="寵物罐頭">寵物罐頭</option>
-                                <option value="寵物零食">寵物零食</option>
-                                <option value="寵物用品">寵物用品</option>
-                                <option value="保健食品">保健食品</option>
-                            </select>
-                            <div class="form-text"></div>
-                            <label for="species"></label>
-                            <select class="form-select form-select-sm" aria-label="Small select example" id="species" name="species">
-                                <option selected value="適用物種">適用物種</option>
-                                <option value="狗寶貝">狗寶貝</option>
-                                <option value="貓寶貝">貓寶貝</option>
-                            </select>
-                            <div class="form-text"></div>
-                        </div>
-                        
-                        <div class="mb-3">
+
+                        <label for="type"></label>
+                        <select class="form-select form-select-sm me-lg-4" aria-label="Small select example" id="type" name="type">
+                            <option selected value="產品種類">產品種類</option>
+                            <option value="寵物飼料">寵物飼料</option>
+                            <option value="寵物罐頭">寵物罐頭</option>
+                            <option value="寵物零食">寵物零食</option>
+                            <option value="寵物用品">寵物用品</option>
+                            <option value="保健食品">保健食品</option>
+                        </select>
+                        <div class="form-text"></div>
+                        <label for="species"></label>
+                        <select class="form-select form-select-sm" aria-label="Small select example" id="species" name="species">
+                            <option selected value="適用物種">適用物種</option>
+                            <option value="狗寶貝">狗寶貝</option>
+                            <option value="貓寶貝">貓寶貝</option>
+                        </select>
+                        <div class="form-text"></div>
+
+
+                        <div class="mb-3 mt-3">
                             <label for="pic" class="form-label">產品圖片</label>
                             <input class="form-control" type="file" id="pic" name="photo" multiple>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />確認無誤
                         </div>
                         <button type="submit" class="btn btn-primary">新增</button>
                     </form>
                 </div>
                 <div class="card-footer text-center py-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">商品狀態</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success" role="alert">
+                        商品新增成功
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
+                    <a href="shop.php" class="btn btn-primary">前往產品列表</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="failureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">商品狀態</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert">
+                        商品新增失敗
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
+                    <a href="shop.php" class="btn btn-primary">前往產品列表</a>
                 </div>
             </div>
         </div>
@@ -145,13 +184,28 @@ $title = '新增產品';
                 .then(r => r.json())
                 .then(result => {
                     console.log(result);
+                    if (result.success) {
+                        successModal.show();
+                    } else {
+                        if(result.error){
+                            failureInfo.innerHTML = result.erroe
+                        } else {
+                            failureInfo.innerHTML = '產品新增失敗'
+                        }
+                        failureModal.show();
+                    }
                 })
                 .catch(ex => {
                     console.log(ex);
+                    failureInfo.innerHTML = '產品新增錯誤' + ex;
+                    failureModal.show();
                 })
         }
 
 
     }
+    const successModal = new bootstrap.Modal('#successModal');
+    const failureModal = new bootstrap.Modal('#failureModal');
+    const failureInfo =document.querySelector('#failureModal .alert-danger');
 </script>
 <?php include __DIR__ . '/parts/6_foot.php' ?>
