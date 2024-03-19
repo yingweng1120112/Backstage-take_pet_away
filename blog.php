@@ -107,7 +107,9 @@ if ($totalRows > 0) {
             <td><?= $r['blog_id'] ?></td>
             <td><?= $r['pet_id'] ?></td>
             <td><?= $r['content'] ?></td>
-            <td id="a"><?= $r['pic'] ?></td>
+            <td>
+              <div class="pic-show-short"><?= $r['pic'] ?></div>
+            </td>
             <td><?= $r['time'] ?></td>
             <td>
               <a href="blog_edit.php?blog_id=<?= $r['blog_id'] ?>">
