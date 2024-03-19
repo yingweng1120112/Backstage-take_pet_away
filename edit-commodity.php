@@ -1,9 +1,21 @@
 <?php
 require __DIR__ . '/parts/pdo-connect.php';  #獲取資料庫連線資料
 
-$title = '新增產品';
+$title = '編輯產品';
+
+$commodity_id = isset($_GET['commodity_id']) ? intval($_GET['commodity_id']) : 0;
+if (empty($commodity_id)) {
+    header('Location: edit-shop.php');
+    exit;
+}
+
+$r = $pdo->query("SELECT * FROM commodity WHERE commodity_id=commodity_id")->fetch();
+if (empty($r)) {
+    header('Location: edit-shop.php');
+    exit;
+}
 ?>
-<!-- 123 -->
+
 <!-- 所有頁面的拼接順序 每一頁都主要是換掉section的部分 -->
 <?php include __DIR__ . '/parts/1_head.php' ?>
 <style>
@@ -18,41 +30,55 @@ $title = '新增產品';
         <div class="col-lg-5">
             <div class="card shadow-lg border-0 rounded-lg mt-5">
                 <div class="card-header">
-                    <h3 class="text-center font-weight-light my-4">新增商品</h3>
+                    <h3 class="text-center font-weight-light my-4">編輯產品</h3>
                 </div>
                 <div class="card-body">
                     <form name="form1" onsubmit="sendData(event)" enctype="multipart/form-data">
+                        <input type="hidden" name="commodity_id" value="<?= $r['commodity_id'] ?>">
                         <div class="form-floating mb-4">
-                            <input class="form-control" id="name" type="text" name="name" placeholder="name" />
+                            <input class="form-control" id="commodity_id" type="text" name="commodity_id" placeholder="commodity_id" value="<?= $r['commodity_id'] ?>" disabled />
+                            <div class="form-text"></div>
+                            <label for="name">產品編號</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input class="form-control" id="name" type="text" name="name" placeholder="name" value="<?= $r['name'] ?>" />
                             <div class="form-text"></div>
                             <label for="name">產品名稱</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input class="form-control" id="brand_name" type="text" name="brand_name" placeholder="brand_name" />
+                            <input class="form-control" id="brand_name" type="text" name="brand_name" placeholder="brand_name" value="<?= $r['brand_name'] ?>" />
                             <div class="form-text"></div>
                             <label for="brand_name">品牌名稱</label>
                         </div>
                         <div class="form-floating ">
-                            <input class="form-control" id="price" type="text" name="price" placeholder="price" />
+                            <input class="form-control" id="price" type="text" name="price" placeholder="price" value="<?= $r['price'] ?>" />
                             <div class="form-text"></div>
                             <label for="price">產品價格</label>
                         </div>
-
+                        <div class="form-text"></div>
                         <label for="type">產品種類</label>
                         <select class="form-select form-select-sm me-lg-4" aria-label="Small select example" id="type" name="type">
-                            <option selected value="產品種類">請選擇產品種類</option>
-                            <option value="寵物飼料">寵物飼料</option>
-                            <option value="寵物罐頭">寵物罐頭</option>
-                            <option value="寵物零食">寵物零食</option>
-                            <option value="寵物用品">寵物用品</option>
-                            <option value="保健食品">保健食品</option>
+                            <option value="">請選擇產品種類</option>
+                            <?php
+                            $options = array("寵物飼料", "寵物罐頭", "寵物零食", "寵物用品", "保健食品");
+                            foreach ($options as $option) {
+                                $selected = ($option == $r['type']) ? 'selected' : '';
+                                echo "<option value='$option' $selected>$option</option>";
+                            }
+                            ?>
                         </select>
                         <div class="form-text"></div>
                         <label for="species">適用物種</label>
                         <select class="form-select form-select-sm" aria-label="Small select example" id="species" name="species">
-                            <option selected value="適用物種">請選擇適用物種</option>
-                            <option value="狗寶貝">狗寶貝</option>
-                            <option value="貓寶貝">貓寶貝</option>
+                            <option value="">請選擇適用物種</option>
+                            <?php
+                            // 從資料庫中檢索到了適用物種的選項，並存在 $species_animal 陣列中
+                            $species_animal = array("狗寶貝", "貓寶貝");
+                            foreach ($species_animal as $animal) {
+                                $selected = ($animal == $r['species']) ? 'selected' : '';
+                                echo "<option value='$animal' $selected>$animal</option>";
+                            }
+                            ?>
                         </select>
                         <div class="form-text"></div>
 
@@ -61,13 +87,15 @@ $title = '新增產品';
                             <label for="pic" class="form-label">產品圖片</label>
                             <input class="form-control" type="file" id="pic" name="photo" multiple>
                         </div>
-
                         <div class="mb-3">
                             <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
                             <br />
                             <img id="show_image" src="" />
                         </div>
-                        <button type="submit" class="btn btn-primary">新增</button>
+
+                        <button type="submit" class="btn btn-primary">修改</button>
+
+
                     </form>
                 </div>
                 <div class="card-footer text-center py-3">
@@ -87,7 +115,7 @@ $title = '新增產品';
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-success" role="alert">
-                        商品新增成功
+                        商品修改成功
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -102,16 +130,16 @@ $title = '新增產品';
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">新增狀況</h1>
+                    <h1 class="modal-title fs-5">修改狀況</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-danger" role="alert">
-                        商品新增失敗
+                        商品修改失敗
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">重新修改</button>
                     <a href="shop.php" class="btn btn-primary">前往產品列表</a>
                 </div>
             </div>
@@ -184,7 +212,7 @@ $title = '新增產品';
         if (isPass) {
             const fd = new FormData(document.form1);
 
-            fetch('add-shop-api.php', {
+            fetch('edit-commodity-api.php', {
                     method: 'POST',
                     body: fd,
                 })
@@ -197,44 +225,44 @@ $title = '新增產品';
                         if (result.error) {
                             failureInfo.innerHTML = result.error
                         } else {
-                            failureInfo.innerHTML = '產品新增失敗'
+                            failureInfo.innerHTML = '產品沒有修改'
                         }
                         failureModal.show();
                     }
                 })
                 .catch(ex => {
                     console.log(ex);
-                    failureInfo.innerHTML = '產品新增錯誤' + ex;
+                    failureInfo.innerHTML = '產品修改失敗' + ex;
                     failureModal.show();
                 })
         }
 
 
     }
-    var imageProc = function(input) {
-        if (input.files && input.files[0]) {
-            // 建立一個 FileReader 物件
-            var reader = new FileReader();
-            // 當檔案讀取完後，所要進行的動作
-            reader.onload = function(e) {
-                // 顯示圖片
-                $("#show_image")
-                    .attr("src", e.target.result)
-                    .css("height", "100px")
-                    .css("width", "100px");
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    };
-
-    $(document).ready(function() {
-        // 綁定事件
-        $("#previewImage").change(function() {
-            imageProc(this);
-        });
-    });
     const successModal = new bootstrap.Modal('#successModal');
     const failureModal = new bootstrap.Modal('#failureModal');
     const failureInfo = document.querySelector('#failureModal .alert-danger');
+    var imageProc = function(input) {
+    if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
+      var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
+      reader.onload = function(e) {
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("height", "100px")
+          .css("width", "100px");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $(document).ready(function() {
+    // 綁定事件
+    $("#previewImage").change(function() {
+      imageProc(this);
+    });
+  });
 </script>
 <?php include __DIR__ . '/parts/6_foot.php' ?>

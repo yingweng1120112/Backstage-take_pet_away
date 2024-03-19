@@ -1,7 +1,8 @@
 <?php
+
 require __DIR__ . '/parts/pdo-connect.php'; #獲取資料庫連線資料
 
-$title = '商城產品';
+$title = '產品編輯';
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 if ($page < 1) {
@@ -51,10 +52,10 @@ $rows = $pdo->query($sql)->fetchAll();
 
 <section>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">商城產品</h1>
+        <h1 class="mt-4">產品編輯</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
-            <li class="breadcrumb-item active">商城產品</li>
+            <li class="breadcrumb-item active">產品編輯</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header">
@@ -73,6 +74,8 @@ $rows = $pdo->query($sql)->fetchAll();
                                 <th scope="col">產品價格</th>
                                 <th scope="col">產品種類</th>
                                 <th scope="col">適用物種</th>
+                                <th scope="col">修改</th>
+                                <th scope="col">刪除</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,6 +89,16 @@ $rows = $pdo->query($sql)->fetchAll();
                                     <td><?= $r['price'] ?></td>
                                     <td><?= $r['type'] ?></td>
                                     <td><?= $r['species'] ?></td>
+                                    <td>
+                                        <a href="edit-commodity.php?commodity_id=<?= $r['commodity_id'] ?>">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript: deleteOne(<?= $r['commodity_id'] ?>)">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             <?php endforeach ?>
                         </tbody>
@@ -94,11 +107,11 @@ $rows = $pdo->query($sql)->fetchAll();
                         <div class="col">
                             <nav aria-label="Page navigation example ">
                                 <ul class="pagination" style="justify-content: center;">
-                                    <li class="page-item <?= $page==1 ? 'disabled' : '' ?>">
+                                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
                                         <a class="page-link" href="?page= 1"><i class="fa-solid fa-angles-left"></i></a>
                                     </li>
-                                    <li class="page-item <?= $page==1 ? 'disabled' : '' ?>">
-                                        <a class="page-link" href="?page=<?= $page -1 ?>"><i class="fa-solid fa-angle-left"></i></a>
+                                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+                                        <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="fa-solid fa-angle-left"></i></a>
                                     </li>
                                     <?php for ($i = $page - 3; $i <= $page + 3; $i++) : ?>
                                         <?php if ($i >= 1 and $i <= $totalPages) : ?>
@@ -108,7 +121,7 @@ $rows = $pdo->query($sql)->fetchAll();
                                         <?php endif ?>
                                     <?php endfor ?>
                                     <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
-                                        <a class="page-link" href="?page=<?= $page +1 ?>"><i class="fa-solid fa-angle-right"></i></a>
+                                        <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="fa-solid fa-angle-right"></i></a>
                                     </li>
                                     <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
                                         <a class="page-link" href="?page=<?= $totalPages ?>"><i class="fa-solid fa-angles-right"></i></a>
@@ -127,4 +140,13 @@ $rows = $pdo->query($sql)->fetchAll();
 
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
+<script>
+    const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
+
+    function deleteOne(commodity_id) {
+        if (confirm(`確定要移除編號為 ${commodity_id} 的商品嗎?`)) {
+            location.href = `delete-commodity.php?commodity_id=${commodity_id}`;
+        }
+    }
+</script>
 <?php include __DIR__ . '/parts/6_foot.php' ?>
