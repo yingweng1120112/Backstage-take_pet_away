@@ -144,7 +144,7 @@ $pageName = 'question_add'
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-                    <a href="list.php" class="btn btn-primary">跳到列表頁</a>
+                    <a href="hearttest_question.php" class="btn btn-primary">跳到列表頁</a>
                 </div>
             </div>
         </div>
