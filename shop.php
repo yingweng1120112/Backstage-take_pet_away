@@ -52,6 +52,7 @@ $rows = $pdo->query($sql)->fetchAll();
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
+                                <!-- 水平垂直置中 -->
                                 <th class="align-middle" scope="col">產品編號</th>
                                 <th class="align-middle" scope="col">產品圖片</th>
                                 <th class="align-middle" class="align-middle" scope="col">產品名稱</th>
