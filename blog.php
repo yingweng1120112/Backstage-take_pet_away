@@ -108,7 +108,7 @@ if ($totalRows > 0) {
             <td><?= $r['pet_id'] ?></td>
             <td><?= $r['content'] ?></td>
             <td>
-              <div class="pic-show-short"><?= $r['pic'] ?></div>
+              <div><?= $r['pic'] ?></div>
             </td>
             <td><?= $r['time'] ?></td>
             <td>

@@ -29,7 +29,11 @@ $pageName = 'add';
               <textarea class="form-control" name="content" id="content" cols="30" rows="3"></textarea>
               <div class="form-text"></div>
             </div>
-
+            <div class="mb-3">
+              <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
+              <br />
+              <img id="show_image" src="" />
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
 
@@ -80,6 +84,7 @@ $pageName = 'add';
 </div>
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   const {
     pet_id: pet_idField,
@@ -135,6 +140,28 @@ $pageName = 'add';
         })
     }
   }
+  var imageProc = function(input) {
+    if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
+      var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
+      reader.onload = function(e) {
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("height", "100px")
+          .css("width", "100px");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $(document).ready(function() {
+    // 綁定事件
+    $("#previewImage").change(function() {
+      imageProc(this);
+    });
+  });
   const successModal = new bootstrap.Modal('#successModal');
   const failureModal = new bootstrap.Modal('#failureModal');
   const failureInfo = document.querySelector('#failureModal .alert-danger');
