@@ -60,10 +60,25 @@
             </div>
             產品資訊
           </a>
-          <a class="nav-link" href="#">
-            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#order" aria-expanded="false" aria-controls="order">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
             訂單紀錄
+            <div class="sb-sidenav-collapse-arrow">
+              <i class="fas fa-angle-down"></i>
+            </div>
           </a>
+          <div class="collapse" id="order" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav accordion" id="orderContentPages">
+              <a class="nav-link collapsed" href="order_history.php">
+                歷史訂單
+              </a>
+              <a class="nav-link collapsed" href="order_history_detail.php">
+                訂單詳情
+              </a>
+            </nav>
+          </div>
           <div class="sb-sidenav-menu-heading">其他資訊</div>
           <a class="nav-link" href="#">
             <div class="sb-nav-link-icon">
