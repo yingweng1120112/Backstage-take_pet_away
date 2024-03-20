@@ -15,7 +15,7 @@ $pageName = 'user list add';
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">新增會員列表</h5>
-          <form name="list_add" onsubmit="sendData(event)">
+          <form name="form1" onsubmit="sendData(event)">
             <div class="mb-3">
               <label for="name" class="form-label">姓名</label>
               <input type="text" class="form-control" id="name" name="name">
@@ -97,7 +97,7 @@ $pageName = 'user list add';
     name: nameField,
     email: emailField,
     account: accountField
-  } = document.list_add;
+  } = document.form1;
 
   function validateEmail(email) {
     const re =
@@ -152,7 +152,7 @@ $pageName = 'user list add';
 
     // 如果欄位都有通過檢查, 才要發 AJAX
     if (isPass) {
-      const fd = new FormData(document.list_add); // 看成沒有外觀的表單
+      const fd = new FormData(document.form1); // 看成沒有外觀的表單
 
       fetch('user_list_add-api.php', {
           method: 'POST',

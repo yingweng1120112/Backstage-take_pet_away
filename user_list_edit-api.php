@@ -39,21 +39,22 @@ if (!empty($_POST['user_id']) and !empty($_POST['name'])) {
 
   if ($isPass) {
     # 避免 SQL injection
-    $sql = "UPDATE `address_book` SET 
+    $sql = "UPDATE `user` SET 
+      `user_id`=?,
       `name`=?,
+      `account`=?,
       `email`=?,
-      `mobile`=?,
-      `birthday`=?,
-      `address`=?
+      `pic`=?,
+      `address_detail`=?
     WHERE `sid`=?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
+      $_POST['user_id'],
       $_POST['name'],
+      $_POST['account'],
       $_POST['email'],
-      $_POST['mobile'],
-      $birthday,
-      $_POST['address'],
-      $_POST['sid'],
+      $_POST['pic'],
+      $_POST['address_detail'],
     ]);
 
     $output['success'] = boolval($stmt->rowCount());
