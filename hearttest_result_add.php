@@ -26,7 +26,10 @@ $pageName = 'question_result_add'
             <div class="form-text"></div>
 
             <label for="pic" class="form-label ">上傳圖片</label>
-            <input type="text" class="form-control mb-3" id="pic" name="pic" placeholder="最多輸入 3 個字" maxlength="3">
+            <input class="form-control" type="file" id="previewImage" name="pic" accept="image/jpeg,image/png" />
+            <div class="form-text"></div>
+            <br />
+            <img id="show_image" src="" />
 
             <label for="typeContent" class="form-label">個性說明</label>
             <textarea class="form-control" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"></textarea>
@@ -121,7 +124,11 @@ $pageName = 'question_result_add'
       typeContent.style.border = "2px solid red"
       typeContent.nextElementSibling.innerHTML = '此欄為必填';
     }
-    
+    if (!previewImage.value) {
+      isPass = false;
+      previewImage.nextElementSibling.innerHTML = '此欄為必填';
+    }
+
 
 
 
@@ -158,6 +165,29 @@ $pageName = 'question_result_add'
     }
 
   }
+  var imageProc = function(input) {
+    if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
+      var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
+      reader.onload = function(e) {
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("width", "50%");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $(document).ready(function() {
+    // 綁定事件
+    $("#previewImage").change(function() {
+      imageProc(this);
+    });
+    
+  });
+  
   const successModal = new bootstrap.Modal('#successModal');
   const failureModal = new bootstrap.Modal('#failureModal');
   const failureInfo = document.querySelector('#failureModal .alert-danger');

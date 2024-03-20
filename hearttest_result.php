@@ -16,7 +16,7 @@ $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
 
 //2-1.取得分頁資料
 $sql = sprintf("SELECT * FROM 
-  psycological_test_result ");
+  psycological_test_result");
 //2.讀取資料表
 $rows = $pdo->query($sql)->fetchAll();
 
@@ -50,7 +50,7 @@ $rows = $pdo->query($sql)->fetchAll();
               <th class="text-nowrap">圖片</th>
               <th class="text-nowrap">個性說明</th>
               <th>
-              <a href="hearttest_result_add.php?result_id=" class="btn btn-primary btn-sm text-nowrap">新增類別</a>
+                <a href="hearttest_result_add.php?result_id=" class="btn btn-primary btn-sm text-nowrap">新增類別</a>
               </th>
             </tr>
           </thead>
@@ -66,7 +66,7 @@ $rows = $pdo->query($sql)->fetchAll();
                 </td>
                 <td><?= $r['result_id'] ?></td>
                 <td><?= $r['personality_type'] ?></td>
-                <td><?= $r['pic'] ?></td>
+                <td><img src="uploads/<?= $r["pic"] ?>" alt="" style="width:90%"></td>
                 <td><?= $r['type__content'] ?></td>
                 <!-- 13-2.符號設定 -->
                 <td>

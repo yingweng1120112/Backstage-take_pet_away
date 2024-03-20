@@ -44,16 +44,17 @@ if (empty($r)) {
       <div class="card">
         <div class="card-body container">
           <form name="form1" onsubmit="sendData(event)" class="mb-1">
-          <div class="row me-0">
-            <h5 class="card-title col-md-10">編輯結果類型</h5>
-            <input class="col-md-2 btn btn-info disabled" name="result_id" value="<?= $r['result_id'] ?>" readonly>
-          </div>
+            <div class="row me-0">
+              <h5 class="card-title col-md-10">編輯結果類型</h5>
+              <input class="col-md-2 btn btn-info disabled" name="result_id" value="<?= $r['result_id'] ?>" readonly>
+            </div>
             <label for="personalityType" class="form-label ">個性種類</label>
-            <input type="text" class="form-control" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3" value="<?= $r['personality_type'] ?>">
+            <input type="text" class="form-control mb-3" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3" value="<?= $r['personality_type'] ?>">
             <div class="form-text"></div>
+            <input type="hidden" id="originalPic" name="original_pic" value="<?= $r['pic'] ?>">
+            <input type="file" id="previewImage" name="pic" accept="image/jpeg,image/png" class="mb-2">
+            <img id="imgEdit" src="uploads/<?= $r['pic'] ?>" alt="" style="width: 100%" class="mb-3">
 
-            <label for="pic" class="form-label">上傳圖片</label>
-            <input type="text" class="form-control mb-3" id="pic" name="pic" placeholder="最多輸入 3 個字" maxlength="3" value="<?= $r['pic'] ?>">
 
             <label for="typeContent" class="form-label">個性說明</label>
             <textarea class="form-control" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"><?= $r['type__content'] ?></textarea>
@@ -188,6 +189,13 @@ if (empty($r)) {
   const successModal = new bootstrap.Modal('#successModal');
   const failureModal = new bootstrap.Modal('#failureModal');
   const failureInfo = document.querySelector('#failureModal .alert-danger');
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const originalPic = document.getElementById('originalPic').value;
+    const showImage = document.getElementById('show_image');
+    showImage.src = `uploads/${originalPic}`;
+  });
+  
 </script>
 
 <?php include __DIR__ . '/parts/6_foot.php' ?>
