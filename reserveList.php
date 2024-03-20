@@ -10,10 +10,10 @@ if ($page < 1) {
 }
 
 # 每一頁有幾筆
-$perPage = 25;
+$perPage = 10;
 
 # 計算總筆數
-$t_sql = "SELECT COUNT(1) FROM reserve_system";
+$t_sql = "SELECT * FROM reserve_system";
 $t_stmt = $pdo->query($t_sql);
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
 $totalPages = ceil($totalRows / $perPage); # 總頁數
@@ -32,15 +32,33 @@ if ($totalRows > 0) {
 
 ?>
 <?php include __DIR__ . '/parts/1_head.php' ?>
+<style>
+  .page-color {
+    --bs-pagination-color: #6c757d;
+    --bs-pagination-active-bg: #6c757d;
+  --bs-pagination-disabled-color: #6c757d;
+
+    
+    position: relative;
+    display: block;
+    padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+    font-size: var(--bs-pagination-font-size);
+    color: var(--bs-pagination-color);
+    text-decoration: none;
+    background-color: var(--bs-pagination-bg);
+    border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+</style>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 <div class="container">
   <div class="row ">
-  <h3 class="text-center mt-3 fw-bold lh-lg">線上預約紀錄</h3>
+    <h3 class="text-center mt-5 fw-bold lh-lg text-secondary fs-2">線上預約紀錄</h3>
     <div class="col table-striped table-hover ">
-      <table class="table table-striped table-hover my-2">
-        <thead >
-          <tr class="text-center">
+      <table class="table table-striped table-hover mt-2 border border-3 border-secondary">
+        <thead>
+          <tr class="text-center text-secondary fs-4">
             <th>預約#</th>
             <th>使用者ID</th>
             <th>寵物ID</th>
@@ -56,18 +74,18 @@ if ($totalRows > 0) {
           <?php foreach ($rows as $r) : ?>
             <tr class="text-center">
               <td class="d-flex justify-content-center"><?= $r['reservation_id'] ?></td>
-              <td ><?= $r['user_id'] ?></td>
-              <td ><?= $r['pet_id'] ?></td>
+              <td><?= $r['user_id'] ?></td>
+              <td><?= $r['pet_id'] ?></td>
               <td class="d-flex justify-content-center"><?= $r['time'] ?></td>
               <td>
                 <a href="reserveEdit.php?sid=<?= $r['reservation_id'] ?>" class="color-primary">
                   <i class="fa-solid fa-file-pen text-secondary d-flex justify-content-center  "></i>
-                  <td>
-                    <a href="javascript: deleteOne(<?= $r['reservation_id'] ?>)" class="color-primary">
-                      <i class="fa-solid fa-trash text-secondary d-flex justify-content-center"></i>
-                    </a>
-                  </td>
+              <td>
+                <a href="javascript: deleteOne(<?= $r['reservation_id'] ?>)" class="color-primary">
+                  <i class="fa-solid fa-trash text-secondary d-flex justify-content-center"></i>
                 </a>
+              </td>
+              </a>
               </td>
             </tr>
           <?php endforeach ?>
@@ -78,10 +96,10 @@ if ($totalRows > 0) {
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-5">
     <div class="col d-flex justify-content-center">
-      <nav aria-label="Page navigation example center">
-        <ul class="pagination">
+      <nav aria-label="Page navigation example center ">
+        <ul class="pagination ">
           <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
             <a class="page-link" href="?page=1">
               <i class="fa-solid fa-angles-left"></i>
@@ -120,7 +138,7 @@ if ($totalRows > 0) {
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
   // console.log(myRows);
 
-  function deleteOne(reservation_id ) {
+  function deleteOne(reservation_id) {
     if (confirm(`是否要刪除編號為 ${reservation_id } 的項目?`)) {
       location.href = `reverveDelete.php?reservation_id=${reservation_id }`;
     }
