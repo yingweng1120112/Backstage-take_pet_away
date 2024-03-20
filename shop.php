@@ -80,7 +80,7 @@ $rows = $pdo->query($sql)->fetchAll();
                                 <tr>
                                     <!-- $r[裡面要改成表單的欄位名稱] -->
                                     <th class="align-middle"><?= $r['commodity_id'] ?></th>
-                                    <td class="align-middle"><img style="width: 50%;" src="<?= $r['pic'] ?>" alt="">
+                                    <td class="align-middle"><img style="width: 50%;" src="\project-take_pet_away\uploads/<?= $r['pic'] ?>" alt="">
                                     </td>
                                     <td class="align-middle"><?= $r['name'] ?></td>
                                     <td class="align-middle"><?= $r['brand_name'] ?></td>
