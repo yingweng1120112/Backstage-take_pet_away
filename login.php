@@ -1,28 +1,28 @@
+<!-- login -->
 <?php
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '登入';
 $pageName = 'login';
 
-if (isset($_SESSION['admin'])) {
-  header('Location: index_.php');
+if (isset($_SESSION['user'])) {
+  header('Location: user_list.php');
   exit;
 }
 
 ?>
-<?php include __DIR__ . '/parts/html-head.php' ?>
-<?php include __DIR__ . '/parts/navbar.php' ?>
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <div class="card">
+<?php include __DIR__ . '/parts/1_head.php' ?>
+<?php include __DIR__ . '/parts/2_nav.php' ?>
+<?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
+<div id="container">
+  <div class="row justify-content-center">
+    <div class="col-6 col-lg-5 mx-auto my-auto">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-body">
-          <h5 class="card-title">登入管理員</h5>
-
+          <h5 class="text-center font-weight-light my-4">登入</h5>
           <form name="form1" onsubmit="sendData(event)">
-
             <div class="mb-3">
-              <label for="email" class="form-label">電郵</label>
+              <label for="email" class="form-label">電子郵件</label>
               <input type="text" class="form-control" id="email" name="email">
               <div class="form-text"></div>
             </div>
@@ -31,15 +31,15 @@ if (isset($_SESSION['admin'])) {
               <input type="password" class="form-control" id="password" name="password">
               <div class="form-text"></div>
             </div>
-            <button type="submit" class="btn btn-primary">登入</button>
+            <div class="text-center mb-3">還沒有帳號？&nbsp<a href="register.php" class="goRegister">註冊</a></div>
+            <button type="submit" class="mx-auto d-block col-3 btn btn-primary">登入</button>
           </form>
-
         </div>
       </div>
     </div>
   </div>
 </div>
-
+</div>
 
 <div class="modal fade" id="failureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -59,8 +59,9 @@ if (isset($_SESSION['admin'])) {
     </div>
   </div>
 </div>
+<?php include __DIR__ . '/parts/4_footer.php' ?>
 
-<?php include __DIR__ . '/parts/scripts.php' ?>
+<?php include __DIR__ . '/parts/5_script.php' ?>
 <script>
   const {
     email: emailField,
@@ -72,7 +73,6 @@ if (isset($_SESSION['admin'])) {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   }
-
 
 
   function sendData(e) {
@@ -91,12 +91,9 @@ if (isset($_SESSION['admin'])) {
       emailField.nextElementSibling.innerHTML = '請輸入正確的 Email';
     }
 
-
-
     // 如果欄位都有通過檢查, 才要發 AJAX
     if (isPass) {
-      const fd = new FormData(document.form1); // 看成沒有外觀的表單
-
+      const fd = new FormData(document.form1);
       fetch('login-api.php', {
           method: 'POST',
           body: fd
@@ -105,7 +102,7 @@ if (isset($_SESSION['admin'])) {
         .then(result => {
           console.log(result);
           if (result.success) {
-            location.href = 'index_.php';
+            location.href = 'user_list.php';
           } else {
             failureModal.show();
           }
@@ -114,9 +111,8 @@ if (isset($_SESSION['admin'])) {
           console.log(ex);
         })
     }
-
-
   }
   const failureModal = new bootstrap.Modal('#failureModal');
 </script>
-<?php include __DIR__ . '/parts/html-foot.php' ?>
+
+<?php include __DIR__ . '/parts/6_foot.php' ?>
