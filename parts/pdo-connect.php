@@ -1,6 +1,6 @@
 <!-- 先連上課範例資料庫 ( 參考用 暫放) -->
 <?php
-
+/*改回來了*/
 $db_host = "localhost";
 $db_user = 'root';
 $db_pass = '';

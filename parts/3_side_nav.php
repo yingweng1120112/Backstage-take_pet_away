@@ -20,7 +20,7 @@
                 <a class="nav-link collapsed" href="login.php">
                   登入/註冊
                 </a>
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="user_list.php">
                   更改會員資料
                 </a>
                 <a class="nav-link collapsed" href="#">
@@ -99,27 +99,12 @@
               </nav>
             </div>
             <div class="sb-sidenav-menu-heading">商城專區</div>
-            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesShop" aria-expanded="false" aria-controls="collapsePagesShop">
+            <a class="nav-link" href="#">
               <div class="sb-nav-link-icon">
-                <i class="fa-solid fa-store"></i>
+                <i class="fas fa-chart-area"></i>
               </div>
-              產品資料
-              <div class="sb-sidenav-collapse-arrow">
-                <i class="fas fa-angle-down"></i>
-              </div>
+              產品資訊
             </a>
-            <div class="collapse" id="collapsePagesShop" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav accordion" id="collapseContentShop">
-                <a class="nav-link collapsed" href="shop.php">
-                  商城產品
-                </a>
-                <a class="nav-link collapsed" href="edit-shop.php">
-                  產品編輯
-                </a>
-                <a class="nav-link collapsed" href="add-shop.php">
-                  新增商品
-                </a>
-            </div>
             <a class="nav-link" href="#">
               <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
               訂單紀錄
@@ -163,9 +148,9 @@
     <script>
       function toggleCollapse(targetId) {
         // 取得目標折疊面板的元素
-        var targetCollapse = document.getElementById(targetId);
+        const targetCollapse = document.getElementById(targetId);
         // 取得所有折疊面板的元素
-        var allCollapses = document.querySelectorAll('.collapse');
+        const allCollapses = document.querySelectorAll('.collapse');
         // 迴圈遍歷所有折疊面板，將非目標折疊面板摺疊起來
         allCollapses.forEach(function(collapse) {
           if (collapse !== targetCollapse) {
