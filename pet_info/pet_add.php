@@ -27,7 +27,7 @@ $pageName = "pet_add";
   <h1 class="my-3">新增寵物資料</h1>
   <div class="row">
     <div class="col-6">
-      <div class="card border border-3 border-dark border-opacity-50">
+      <div class="card mb-4 border border-3 border-dark border-opacity-50">
         <div class="card-body">
           <!-- <h5 class="card-title my-3">新增寵物</h5> -->
           <form name="form1" onsubmit="sendData(event)">
@@ -54,7 +54,7 @@ $pageName = "pet_add";
               </div> -->
               <div class="mb-3">
                 <label for="personality_type" class="form-label me-3 lh-lg">性格類型</label>
-                <input type="radio" class="btn-check" name="personality_type" id="personality_type1" value="1" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="personality_type" id="personality_type1" value="敏感型" autocomplete="off" checked>
                 <label class="btn btn-outline-secondary" for="personality_type1">敏感型</label>
                 <input type="radio" class="btn-check" name="personality_type" id="personality_type2" value="樂天型" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="personality_type2">樂天型</label>
@@ -64,7 +64,6 @@ $pageName = "pet_add";
                 <label class="btn btn-outline-secondary" for="personality_type4">自信型</label>
                 <input type="radio" class="btn-check" name="personality_type" id="personality_type5" value="適應型" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="personality_type5">適應型</label>
-                <div class="form-text"></div>
               </div>
               <!-- <div class="mb-3">
                 <label for="type" class="form-label">種類</label>
@@ -78,27 +77,24 @@ $pageName = "pet_add";
               </div> -->
               <div class="mb-3">
                 <label for="type" class="form-label me-3 lh-lg">種類</label>
-                <input type="radio" class="btn-check" name="type" id="type-dog" value="1" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="type" id="type-dog" value="狗" autocomplete="off" checked>
                 <label class="btn btn-outline-secondary" for="type-dog">狗狗</label>
                 <input type="radio" class="btn-check" name="type" id="type-cat" value="貓" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="type-cat">貓貓</label>
-                <div class="form-text"></div>
               </div>
               <div class="mb-3">
                 <label for="sex" class="form-label me-3 lh-lg">性別</label>
-                <input type="radio" class="btn-check" name="sex" id="sex-boy" value="1" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="sex" id="sex-boy" value="公" autocomplete="off" checked>
                 <label class="btn btn-outline-secondary" for="sex-boy">男生</label>
                 <input type="radio" class="btn-check" name="sex" id="sex-girl" value="母" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="sex-girl">女生</label>
-                <div class="form-text"></div>
               </div>
               <div class="mb-3">
                 <label for="adopted" class="form-label me-3 lh-lg">是否被領養</label>
-                <input type="radio" class="btn-check" name="adopted" id="adopted-True" value="1" autocomplete="off" checked>
+                <input type="radio" class="btn-check" name="adopted" id="adopted-True" value="是" autocomplete="off" checked>
                 <label class="btn btn-outline-secondary" for="adopted-True">是</label>
                 <input type="radio" class="btn-check" name="adopted" id="adopted-False" value="否" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="adopted-False">否</label>
-                <div class="form-text"></div>
               </div>
               <!-- <label for="adopted" class="form-label me-3">是否被領養</label>
               <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
@@ -107,10 +103,16 @@ $pageName = "pet_add";
                 <input type="radio" class="btn-check" name="adopted" id="adoptedFalse" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="adoptedFalse">否</label>
               </div> -->
-              <div class="input-group mb-3">
+              <!-- <div class="input-group mb-3">
                 <label for="file" class="form-label me-3 lh-lg">上傳寵物照片</label>
-                <!-- <label class="input-group-text" for="inputGroupFile01"></label> -->
-                <input type="file" class="form-control" id="inputGroupFile01">
+                <input type="file" class="form-control" id="photos" name="photos[]" accept="image/*" onchange="uploadFile()">
+              </div> -->
+              <div class="mb-3">
+                <label for="file" class="form-label me-3 lh-lg">上傳寵物照片</label>
+                <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png">
+                <div class="mt-3 d-flex justify-content-center">
+                  <img class="" id="show_image" src="">
+                </div>
               </div>
               <!-- <div class="input-group mb-3">
                 <input type="file" class="form-control" id="inputGroupFile02">
@@ -127,7 +129,6 @@ $pageName = "pet_add";
     </div>
   </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -187,7 +188,6 @@ $pageName = "pet_add";
     let isPass = true; // 有沒有通過檢查，預設為T
 
     // TODO: 檢查資料格式
-
     // 姓名 長度2以上
     if (nameField.value.length < 2) {
       isPass = false;
@@ -244,10 +244,32 @@ $pageName = "pet_add";
           failureInfo.innerHTML = `<i class="fa-regular fa-circle-xmark me-2"></i>"資料新增失敗"` + ex;
           failureModal.show();
         })
-
     }
-
   }
+
+  // TODO: 照片上傳
+  var imageProc = function(input) {
+    if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
+      var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
+      reader.onload = function(e) {
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("width", "50%")
+          .css("hight", "auto");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $(document).ready(function() {
+    // 綁定事件
+    $("#previewImage").change(function() {
+      imageProc(this);
+    });
+  });
 
   const successModal = new bootstrap.Modal('#successModal');
   const failureModal = new bootstrap.Modal('#failureModal');
