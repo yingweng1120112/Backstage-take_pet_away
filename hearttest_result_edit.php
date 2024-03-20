@@ -4,7 +4,7 @@ require __DIR__ . '/parts/pdo-connect.php';
 $title = '編輯測驗結果';
 $pageName = 'content_add';
 
-$personalityType = isset($_GET["personality_type"]) ? $_GET["personality_type"] : '';
+$personalityType = isset($_GET["result_id"]) ? $_GET["result_id"] : '';
 
 
 if (empty($personalityType)) {
@@ -13,7 +13,7 @@ if (empty($personalityType)) {
 }
 //有拿到資料
 
-$sql = "SELECT * FROM psycological_test_result WHERE personality_type = ?";
+$sql = "SELECT * FROM psycological_test_result WHERE result_id = ?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$personalityType]);
 $r = $stmt->fetch();
@@ -42,18 +42,21 @@ if (empty($r)) {
   <div class="row">
     <div class="col-5">
       <div class="card">
-        <div class="card-body container ">
-          <h5 class="card-title">編輯結果類型</h5>
+        <div class="card-body container">
           <form name="form1" onsubmit="sendData(event)" class="mb-1">
+          <div class="row me-0">
+            <h5 class="card-title col-md-10">編輯結果類型</h5>
+            <input class="col-md-2 btn btn-info disabled" name="result_id" value="<?= $r['result_id'] ?>" readonly>
+          </div>
             <label for="personalityType" class="form-label ">個性種類</label>
-            <input type="text" class="form-control mb-3" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3" value="<?= $r['personality_type'] ?>">
+            <input type="text" class="form-control" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3" value="<?= $r['personality_type'] ?>">
             <div class="form-text"></div>
 
-            <label for="pic" class="form-label ">上傳圖片</label>
+            <label for="pic" class="form-label">上傳圖片</label>
             <input type="text" class="form-control mb-3" id="pic" name="pic" placeholder="最多輸入 3 個字" maxlength="3" value="<?= $r['pic'] ?>">
 
             <label for="typeContent" class="form-label">個性說明</label>
-            <textarea class="form-control mb-3" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"><?= $r['type__content'] ?></textarea>
+            <textarea class="form-control" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"><?= $r['type__content'] ?></textarea>
             <div class="form-text"></div>
             <button type="submit" class="btn btn-primary col-md-12">修改結果類型</button>
           </form>

@@ -23,14 +23,16 @@ $pic = ($_POST['pic'] === "") ? null : $_POST['pic'];
 
 if ($isPass) {
     $sql = "UPDATE `psycological_test_result` SET
+    `personality_type`=?,
     `pic`=?,
     `type__content`=?
-    WHERE `personality_type`=?";
+    WHERE `result_id`=?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
+        $_POST['personality_type'],
         $pic,
         $_POST['type__content'],
-        $_POST['personality_type']
+        $_POST['result_id']
     ]);
 
     $output['success'] = boolval($stmt->rowCount());

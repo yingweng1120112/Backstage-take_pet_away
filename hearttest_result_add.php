@@ -22,14 +22,14 @@ $pageName = 'question_result_add'
           <h5 class="card-title">新增結果類型</h5>
           <form name="form1" onsubmit="sendData(event)" class="mb-1">
             <label for="personalityType" class="form-label ">個性種類</label>
-            <input type="text" class="form-control mb-3" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3">
+            <input type="text" class="form-control" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3">
             <div class="form-text"></div>
 
             <label for="pic" class="form-label ">上傳圖片</label>
             <input type="text" class="form-control mb-3" id="pic" name="pic" placeholder="最多輸入 3 個字" maxlength="3">
 
             <label for="typeContent" class="form-label">個性說明</label>
-            <textarea class="form-control mb-3" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"></textarea>
+            <textarea class="form-control" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"></textarea>
             <div class="form-text"></div>
             <button type="submit" class="btn btn-primary col-md-12">新增結果類型</button>
           </form>

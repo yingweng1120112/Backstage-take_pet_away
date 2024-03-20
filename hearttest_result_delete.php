@@ -2,12 +2,12 @@
 // require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 
-$personalityType = isset($_GET["personality_type"]) ? $_GET["personality_type"] : '';
+$resultId = isset($_GET["result_id"]) ? intval ($_GET["result_id"]) : 0;
 
-if(!empty($personalityType)){
-  $sql = "DELETE FROM psycological_test_result WHERE personality_type = ?";
+if(!empty($resultId)){
+  $sql = "DELETE FROM psycological_test_result WHERE result_id = ?";
   $stmt = $pdo->prepare($sql);
-  $stmt->execute([$personalityType]);
+  $stmt->execute([$resultId]);
 }
 
 $backTo = 'hearttest_result.php';

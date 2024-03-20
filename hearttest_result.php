@@ -45,12 +45,12 @@ $rows = $pdo->query($sql)->fetchAll();
             <tr>
               <!-- 13.新增刪除編輯的功能按鈕 -->
               <th><i class="fa-solid fa-trash"></i></th>
+              <th>編號</th>
               <th class="text-nowrap">個性種類</th>
               <th class="text-nowrap">圖片</th>
               <th class="text-nowrap">個性說明</th>
               <th>
-                <!-- 完全新增一筆資料 將question_id設為空值 -->
-              <a href="hearttest_result_add.php?question_id=" class="btn btn-primary btn-sm text-nowrap">新增類別</a>
+              <a href="hearttest_result_add.php?result_id=" class="btn btn-primary btn-sm text-nowrap">新增類別</a>
               </th>
             </tr>
           </thead>
@@ -60,16 +60,17 @@ $rows = $pdo->query($sql)->fetchAll();
               <tr>
                 <td>
                   <!-- 13-1. 符號設定-->
-                  <a href="hearttest_result_delete.php?personality_type=<?= $r['personality_type'] ?>">
+                  <a href="hearttest_result_delete.php?result_id=<?= $r['result_id'] ?>">
                     <i class="fa-solid fa-trash"></i>
                   </a>
                 </td>
+                <td><?= $r['result_id'] ?></td>
                 <td><?= $r['personality_type'] ?></td>
                 <td><?= $r['pic'] ?></td>
                 <td><?= $r['type__content'] ?></td>
                 <!-- 13-2.符號設定 -->
                 <td>
-                  <a href="hearttest_result_edit.php?personality_type=<?= $r['personality_type'] ?>">
+                  <a href="hearttest_result_edit.php?result_id=<?= $r['result_id'] ?>">
                     <p class="btn btn-outline-success btn-sm">變更</p>
                   </a>
                 </td>
