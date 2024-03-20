@@ -109,6 +109,10 @@ if (empty($r)) {
   </div>
 </div>
 
+<<<<<<< Updated upstream:user/edit.php
+=======
+<?php include __DIR__ . '/parts/4_footer.php' ?>
+>>>>>>> Stashed changes:user_list_edit.php
 <?php include __DIR__ . '/parts/5_script.php' ?>
 <script>
   const {

@@ -16,6 +16,13 @@ if (isset($_SESSION['admin'])) {
     <div class="col-6">
       <div class="card">
 
+<<<<<<< Updated upstream
+=======
+<div id="container">
+  <div class="row mt-5 justify-content-center">
+    <div class="col-6 ">
+      <div class="card mx-auto">
+>>>>>>> Stashed changes
         <div class="card-body">
           <h5 class="card-title">登入管理員</h5>
 
@@ -60,7 +67,12 @@ if (isset($_SESSION['admin'])) {
   </div>
 </div>
 
+<<<<<<< Updated upstream
 <?php include __DIR__ . '/parts/scripts.php' ?>
+=======
+<?php include __DIR__ . '/parts/4_footer.php' ?>
+<?php include __DIR__ . '/parts/5_script.php' ?>
+>>>>>>> Stashed changes
 <script>
   const {
     email: emailField,
