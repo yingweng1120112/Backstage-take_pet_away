@@ -1,9 +1,9 @@
 <!-- 先連上課範例資料庫 ( 參考用 暫放) -->
 <?php
-
+/*改回來了*/
 $db_host = "localhost";
-$db_user = 'admin';
-$db_pass = 'admin';
+$db_user = 'root';
+$db_pass = '';
 $db_name = 'take_pet_away';
 
 $dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8mb4";
