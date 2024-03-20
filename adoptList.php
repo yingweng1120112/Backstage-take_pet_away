@@ -10,7 +10,7 @@ if ($page < 1) {
 }
 
 # 每一頁有幾筆
-$perPage = 25;
+$perPage = 10;
 
 # 計算總筆數
 $t_sql = "SELECT * FROM online_virtual_adoption_form";
@@ -36,11 +36,11 @@ if ($totalRows > 0) {
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 <div class="container">
   <div class="row ">
-    <h3 class="text-center mt-3 fw-bold lh-lg">線上認養紀錄</h3>
-    <div class="col">
-      <table class="table table-striped table-hover my-3">
+    <h3 class="text-center mt-5 fw-bold lh-lg text-secondary fs-2">線上認養紀錄</h3>
+    <div class="col  ">
+      <table class="table table-striped table-hover mt-2 border border-3 border-secondary">
         <thead>
-          <tr class="text-center">
+          <tr class="text-center text-secondary fs-4 ">
             <th>認養#</th>
             <th>寵物ID</th>
             <th>使用者ID</th>
@@ -58,7 +58,7 @@ if ($totalRows > 0) {
           # PHP 區塊註解
           */ ?>
           <?php foreach ($rows as $r) : ?>
-            <tr class="text-center">
+            <tr class="text-center text-secondary fs-5">
               <td class="d-flex justify-content-center"><?= $r['adopt_id'] ?></td>
               <td><?= $r['pet_id'] ?></td>
               <td><?= $r['user_id'] ?></td>
@@ -87,7 +87,7 @@ if ($totalRows > 0) {
     </div>
   </div>
 
-  <div class="row ">
+  <div class="row mt-5">
     <div class="col d-flex justify-content-center">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
