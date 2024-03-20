@@ -27,7 +27,7 @@ $pageName = "pet_add";
   <h1 class="my-3">新增寵物資料</h1>
   <div class="row">
     <div class="col-6">
-      <div class="card border border-3 border-dark border-opacity-50">
+      <div class="card mb-4 border border-3 border-dark border-opacity-50">
         <div class="card-body">
           <!-- <h5 class="card-title my-3">新增寵物</h5> -->
           <form name="form1" onsubmit="sendData(event)">
@@ -108,8 +108,11 @@ $pageName = "pet_add";
                 <input type="file" class="form-control" id="photos" name="photos[]" accept="image/*" onchange="uploadFile()">
               </div> -->
               <div class="mb-3">
-                <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png">
-                <img id="show_image" src="">
+                <label for="file" class="form-label me-3 lh-lg">上傳寵物照片</label>
+                <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png">
+                <div class="mt-3 d-flex justify-content-center">
+                  <img class="" id="show_image" src="">
+                </div>
               </div>
               <!-- <div class="input-group mb-3">
                 <input type="file" class="form-control" id="inputGroupFile02">
@@ -126,7 +129,6 @@ $pageName = "pet_add";
     </div>
   </div>
 </div>
-<!-- FIXME: 上傳照片排版 -->
 <!-- Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -255,8 +257,8 @@ $pageName = "pet_add";
         // 顯示圖片
         $("#show_image")
           .attr("src", e.target.result)
-          .css("height", "100px")
-          .css("width", "auto");
+          .css("width", "50%")
+          .css("hight", "auto");
       };
       reader.readAsDataURL(input.files[0]);
     }

@@ -25,6 +25,11 @@ if (empty($row)) {
   form .mb-3 .form-text {
     color: red;
   }
+
+  img {
+    width: 50%;
+    height: auto;
+  }
 </style>
 <div class="container">
   <nav class="my-3" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
@@ -38,7 +43,7 @@ if (empty($row)) {
   <h1 class="my-3">編輯寵物資料</h1>
   <div class="row">
     <div class="col-6">
-      <div class="card border border-3 border-dark border-opacity-50">
+      <div class="card mb-4 border border-3 border-dark border-opacity-50">
         <div class="card-body">
           <!-- <h5 class="card-title my-3">新增寵物</h5> -->
           <form name="form1" onsubmit="sendData(event)">
@@ -119,19 +124,20 @@ if (empty($row)) {
                 <input type="radio" class="btn-check" name="adopted" id="adoptedFalse" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="adoptedFalse">否</label>
               </div> -->
-              <div class="mb-3">
-                <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png">
-                <img id="show_image" src="">
-                <img id="imgEdit" src="uploads/<?= $row["pet_pic1"] ?>" alt="">
-              </div>
               <!-- <div class="input-group mb-3">
                 <input type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
               </div> -->
+              <div class="mb-3">
+                <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png">
+                <div class="mt-3 d-flex justify-content-center">
+                  <img id="show_image" src="" style="display: none;">
+                  <img id="imgEdit" src="uploads/<?= $row["pet_pic1"] ?>" alt="">
+                </div>
+              </div>
               <!-- TODO: input要不要留 -->
-              <!-- FIXME: 上傳照片排版 -->
               <div id="imgEdit" class="mb-3">
-                <input style="display: none;" name="pic" value=<?= $row["pet_pic1"] ?>>
+                <input class="form-control" style="display: none;" name="pic" value=<?= $row["pet_pic1"] ?>>
               </div>
             </div>
             <div class="d-flex justify-content-end mt-5">
@@ -263,7 +269,6 @@ if (empty($row)) {
   }
 
   // TODO: 照片上傳
-  // FIXME: 照片大小排版
   var imageProc = function(input) {
     if (input.files && input.files[0]) {
       // 建立一個 FileReader 物件
@@ -273,11 +278,12 @@ if (empty($row)) {
         // 顯示圖片
         $("#show_image")
           .attr("src", e.target.result)
-          .css("height", "100px")
-          .css("width", "auto");
+          .css("height", "auto")
+          .css("width", "50%")
+          .css("display", "block");
         $("#imgEdit")
-          .css("height", "100px")
-          .css("width", "auto")
+          //   .css("height", "auto")
+          //   .css("width", "50%")
           .css("display", "none");
       };
       reader.readAsDataURL(input.files[0]);
