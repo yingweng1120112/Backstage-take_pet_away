@@ -64,8 +64,6 @@ if ($totalPages > 0) {
       <li class="breadcrumb-item active" aria-current="page">基本資訊</li>
     </ol>
   </nav>
-  <!-- FIXME: 表格欄寬 -->
-  <!-- FIXME: 圖片大小 -->
   <h1 class="my-3">寵物基本資料</h1>
   <div class="row">
     <div class="col">
@@ -73,7 +71,7 @@ if ($totalPages > 0) {
         <thead>
           <tr class="table-dark">
             <th class="text-center"><i class="fa-solid fa-trash"></i></th>
-            <th class="text-center" scope="col">#</th>
+            <th class="text-center" scope="col">編號</th>
             <th class="text-center" scope="col">名字</th>
             <th class="text-center" scope="col">性格類型</th>
             <th class="text-center" scope="col">hashtag</th>
