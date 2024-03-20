@@ -83,14 +83,14 @@ $rows = $pdo->query($sql)->fetchAll();
                                 <tr>
                                     <!-- $r[裡面要改成表單的欄位名稱] -->
                                     <th class="align-middle"><?= $r['commodity_id'] ?></th>
-                                    <td class="align-middle"><img style="width: 50%;" src="<?= $r['pic'] ?>" alt=""></td>
+                                    <td class="align-middle"><img style="width: 50%;" src="uploads/<?= $r['pic'] ?>" alt=""></td>
                                     <td class="align-middle"><?= $r['name'] ?></td>
                                     <td class="align-middle"><?= $r['brand_name'] ?></td>
                                     <td class="align-middle"><?= $r['price'] ?></td>
                                     <td class="align-middle"><?= $r['type'] ?></td>
                                     <td class="align-middle"><?= $r['species'] ?></td>
                                     <td class="align-middle">
-                                        <a href="edit-commodity.php?commodity_id=<?= $r['commodity_id'] ?>">
+                                        <a href="shop-edit-commodity.php?commodity_id=<?= $r['commodity_id'] ?>">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </a>
                                     </td>
@@ -145,7 +145,7 @@ $rows = $pdo->query($sql)->fetchAll();
 
     function deleteOne(commodity_id) {
         if (confirm(`確定要移除編號為 ${commodity_id} 的商品嗎?`)) {
-            location.href = `delete-commodity.php?commodity_id=${commodity_id}`;
+            location.href = `shop-delete-commodity.php?commodity_id=${commodity_id}`;
         }
     }
 </script>

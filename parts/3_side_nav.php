@@ -113,10 +113,10 @@
                 <a class="nav-link collapsed" href="shop.php">
                   商城產品
                 </a>
-                <a class="nav-link collapsed" href="edit-shop.php">
+                <a class="nav-link collapsed" href="shop-edit.php">
                   產品編輯
                 </a>
-                <a class="nav-link collapsed" href="add-shop.php">
+                <a class="nav-link collapsed" href="shop-add.php">
                   新增商品
                 </a>
             </div>
