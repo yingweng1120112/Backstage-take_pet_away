@@ -68,33 +68,33 @@ $rows = $pdo->query($sql)->fetchAll();
                         <thead>
                             <tr>
                                 <th scope="col">產品編號</th>
-                                <th scope="col">產品圖片</th>
-                                <th scope="col">產品名稱</th>
-                                <th scope="col">品牌名稱</th>
-                                <th scope="col">產品價格</th>
-                                <th scope="col">產品種類</th>
-                                <th scope="col">適用物種</th>
-                                <th scope="col">修改</th>
-                                <th scope="col">刪除</th>
+                                <th scope="col" style="width: 15%;">產品圖片</th>
+                                <th class="align-middle" scope="col">產品名稱</th>
+                                <th class="align-middle" scope="col">品牌名稱</th>
+                                <th class="align-middle" scope="col">產品價格</th>
+                                <th class="align-middle" scope="col">產品種類</th>
+                                <th class="align-middle" scope="col">適用物種</th>
+                                <th class="align-middle" scope="col">修改</th>
+                                <th class="align-middle" scope="col">刪除</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($rows as $r) : ?>
                                 <tr>
                                     <!-- $r[裡面要改成表單的欄位名稱] -->
-                                    <th><?= $r['commodity_id'] ?></th>
-                                    <td><img style="width: 50%;" src="<?= $r['pic'] ?>" alt=""></td>
-                                    <td><?= $r['name'] ?></td>
-                                    <td><?= $r['brand_name'] ?></td>
-                                    <td><?= $r['price'] ?></td>
-                                    <td><?= $r['type'] ?></td>
-                                    <td><?= $r['species'] ?></td>
-                                    <td>
-                                        <a href="edit-commodity.php?commodity_id=<?= $r['commodity_id'] ?>">
+                                    <th class="align-middle"><?= $r['commodity_id'] ?></th>
+                                    <td class="align-middle"><img style="width: 100%;" src="uploads/<?= $r['pic'] ?>" alt=""></td>
+                                    <td class="align-middle"><?= $r['name'] ?></td>
+                                    <td class="align-middle"><?= $r['brand_name'] ?></td>
+                                    <td class="align-middle"><?= $r['price'] ?></td>
+                                    <td class="align-middle"><?= $r['type'] ?></td>
+                                    <td class="align-middle"><?= $r['species'] ?></td>
+                                    <td class="align-middle">
+                                        <a href="shop-edit-commodity.php?commodity_id=<?= $r['commodity_id'] ?>">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </a>
                                     </td>
-                                    <td>
+                                    <td class="align-middle">
                                         <a href="javascript: deleteOne(<?= $r['commodity_id'] ?>)">
                                             <i class="fa-solid fa-trash"></i>
                                         </a>
@@ -145,7 +145,7 @@ $rows = $pdo->query($sql)->fetchAll();
 
     function deleteOne(commodity_id) {
         if (confirm(`確定要移除編號為 ${commodity_id} 的商品嗎?`)) {
-            location.href = `delete-commodity.php?commodity_id=${commodity_id}`;
+            location.href = `shop-delete-commodity.php?commodity_id=${commodity_id}`;
         }
     }
 </script>

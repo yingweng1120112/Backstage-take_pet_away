@@ -5,13 +5,13 @@ $title = '編輯產品';
 
 $commodity_id = isset($_GET['commodity_id']) ? intval($_GET['commodity_id']) : 0;
 if (empty($commodity_id)) {
-    header('Location: edit-shop.php');
+    header('Location: shop-edit.php');
     exit;
 }
 
-$r = $pdo->query("SELECT * FROM commodity WHERE commodity_id=commodity_id")->fetch();
+$r = $pdo->query("SELECT * FROM commodity WHERE commodity_id=$commodity_id")->fetch();
 if (empty($r)) {
-    header('Location: edit-shop.php');
+    header('Location: shop-edit.php');
     exit;
 }
 ?>
@@ -55,7 +55,6 @@ if (empty($r)) {
                             <div class="form-text"></div>
                             <label for="price">產品價格</label>
                         </div>
-                        <div class="form-text"></div>
                         <label for="type">產品種類</label>
                         <select class="form-select form-select-sm me-lg-4" aria-label="Small select example" id="type" name="type">
                             <option value="">請選擇產品種類</option>
@@ -81,19 +80,17 @@ if (empty($r)) {
                             ?>
                         </select>
                         <div class="form-text"></div>
-
-
                         <div class="mb-3 mt-3">
-                            <label for="pic" class="form-label">產品圖片</label>
-                            <input class="form-control" type="file" id="pic" name="photo" multiple>
-                        </div>
-                        <div class="mb-3">
-                            <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
+                            <label for="pic" class="form-label">產品修改圖片</label>
+
+                            <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
                             <br />
                             <img id="show_image" src="" />
+                            <img id="a" style="width: 50%;" src="uploads/<?= $r['pic'] ?>" alt="">
                         </div>
-
-                        <button type="submit" class="btn btn-primary">修改</button>
+                        <label for="species">目前產品圖</label>
+                        <input class="form-control" type="text" name="pic"  value="<?= $r['pic'] ?>" readonly/>
+                        <button type="submit" class="btn btn-primary mt-3">修改</button>
 
 
                     </form>
@@ -110,7 +107,7 @@ if (empty($r)) {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5">商品狀態</h1>
+                    <h1 class="modal-title fs-5">修改狀況</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -119,8 +116,8 @@ if (empty($r)) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-                    <a href="shop.php" class="btn btn-primary">前往產品列表</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">重新修改</button>
+                    <a href="javascript: location.href=document.referrer" class="btn btn-primary">前往編輯列表</a>
                 </div>
             </div>
         </div>
@@ -140,7 +137,7 @@ if (empty($r)) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">重新修改</button>
-                    <a href="shop.php" class="btn btn-primary">前往產品列表</a>
+                    <a href="javascript: location.href=document.referrer" class="btn btn-primary">前往編輯列表</a>
                 </div>
             </div>
         </div>
@@ -212,7 +209,7 @@ if (empty($r)) {
         if (isPass) {
             const fd = new FormData(document.form1);
 
-            fetch('edit-commodity-api.php', {
+            fetch('shop-edit-commodity-api.php', {
                     method: 'POST',
                     body: fd,
                 })
@@ -243,26 +240,27 @@ if (empty($r)) {
     const failureModal = new bootstrap.Modal('#failureModal');
     const failureInfo = document.querySelector('#failureModal .alert-danger');
     var imageProc = function(input) {
-    if (input.files && input.files[0]) {
-      // 建立一個 FileReader 物件
-      var reader = new FileReader();
-      // 當檔案讀取完後，所要進行的動作
-      reader.onload = function(e) {
-        // 顯示圖片
-        $("#show_image")
-          .attr("src", e.target.result)
-          .css("height", "100px")
-          .css("width", "100px");
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  };
+        if (input.files && input.files[0]) {
+            // 建立一個 FileReader 物件
+            var reader = new FileReader();
+            // 當檔案讀取完後，所要進行的動作
+            reader.onload = function(e) {
+                // 顯示圖片
+                $("#show_image")
+                    .attr("src", e.target.result)
+                    
+                    .css("width", "50%");
+                $("#a").css("display", "none");
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
 
-  $(document).ready(function() {
-    // 綁定事件
-    $("#previewImage").change(function() {
-      imageProc(this);
+    $(document).ready(function() {
+        // 綁定事件
+        $("#previewImage").change(function() {
+            imageProc(this);
+        });
     });
-  });
 </script>
 <?php include __DIR__ . '/parts/6_foot.php' ?>

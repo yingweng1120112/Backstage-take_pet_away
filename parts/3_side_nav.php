@@ -113,6 +113,19 @@
               </div>
               產品資訊
             </a>
+            <div class="collapse" id="collapsePagesShop" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+              <nav class="sb-sidenav-menu-nested nav accordion" id="collapseContentShop">
+                <a class="nav-link collapsed" href="shop.php">
+                  商城產品
+                </a>
+                <a class="nav-link collapsed" href="shop-edit.php">
+                  產品編輯
+                </a>
+                <a class="nav-link collapsed" href="shop-add.php">
+                  新增商品
+                </a>
+            </div>
+
             <a class="nav-link" href="#">
               <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
               訂單紀錄

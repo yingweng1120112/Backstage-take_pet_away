@@ -9,7 +9,7 @@ if(!empty($commodity_id)) {
     $pdo->query($sql);
 }
 
-$backTo = 'edit-shop.php';
+$backTo = 'shop-edit.php';
 if (! empty($_SERVER['HTTP_REFERER'])) {
     $backTo = $_SERVER['HTTP_REFERER'];
 }

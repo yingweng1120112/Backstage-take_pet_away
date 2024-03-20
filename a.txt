@@ -1,0 +1,23 @@
+<select class="form-select form-select-sm me-lg-4" aria-label="Small select example" id="type" name="type">
+                            <option value="">請選擇產品種類</option>
+                            <?php
+                            $options = array("寵物飼料", "寵物罐頭", "寵物零食", "寵物用品", "保健食品");
+                            foreach ($options as $option) {
+                                $selected = ($option == $r['type']) ? 'selected' : '';
+                                echo "<option value='$option' $selected>$option</option>";
+                            }
+                            ?>
+                        </select>
+                        <div class="form-text"></div>
+                        <label for="species">適用物種</label>
+                        <select class="form-select form-select-sm" aria-label="Small select example" id="species" name="species">
+                            <option value="">請選擇適用物種</option>
+                            <?php
+                            // 從資料庫中檢索到了適用物種的選項，並存在 $species_animal 陣列中
+                            $species_animal = array("狗寶貝", "貓寶貝");
+                            foreach ($species_animal as $animal) {
+                                $selected = ($animal == $r['species']) ? 'selected' : '';
+                                echo "<option value='$animal' $selected>$animal</option>";
+                            }
+                            ?>
+                        </select>

@@ -15,6 +15,7 @@ $exts = [   # 檔案類型的篩選
   'image/png' =>  '.png',
   'image/webp' => '.webp',
 ];
+
 # 確保有上傳檔案，並且有 avatar 欄位，並且沒有錯誤
 if (!empty($_FILES) and !empty($_FILES['avatar']) and $_FILES['avatar']['error'] == 0) {
     # 如果類型有對應到副檔名
@@ -45,9 +46,9 @@ if (!empty($_POST['name'])) {
     }
 
     if ($isPass) {
-        $sql = "INSERT INTO `commodity`(`name`, `brand_name`, `price`,`pic`, `type`, `species`
+        $sql = "INSERT INTO `commodity`(`name`, `brand_name`, `price`, `pic`, `type`, `species`
         ) VALUES (
-            ?, ?, ?, ?, ?,?
+            ?, ?, ?, ?, ?, ?
         )";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
