@@ -35,7 +35,7 @@ if (!empty($_POST["user_id"])) {
         $stmt->execute([
             $_POST['user_id'],
             $_POST['pet_id'],
-            $time,
+            $time
         ]);
 
         $output["success"] = boolval($stmt->rowCount());
