@@ -55,8 +55,7 @@ if (empty($r)) {
                             <div class="form-text"></div>
                             <label for="price">產品價格</label>
                         </div>
-                        <div class="form-text"></div>
-                        <label for="type">產品種類</label>
+                        <label for="type" class="mt-3">產品種類</label>
                         <select class="form-select form-select-sm me-lg-4" aria-label="Small select example" id="type" name="type">
                             <option value="">請選擇產品種類</option>
                             <?php
@@ -67,8 +66,7 @@ if (empty($r)) {
                             }
                             ?>
                         </select>
-                        <div class="form-text"></div>
-                        <label for="species">適用物種</label>
+                        <label for="species" class="mt-3">適用物種</label>
                         <select class="form-select form-select-sm" aria-label="Small select example" id="species" name="species">
                             <option value="">請選擇適用物種</option>
                             <?php
@@ -80,16 +78,17 @@ if (empty($r)) {
                             }
                             ?>
                         </select>
-                        <div class="form-text"></div>
-
                         <div class="mb-3 mt-3">
-                            <label for="pic" class="form-label">產品圖片</label>
+                            <label for="pic" class="form-label">產品修改圖片</label>
+
                             <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
                             <br />
                             <img id="show_image" src="" />
+                            <img id="a" style="width: 50%;" src="uploads/<?= $r['pic'] ?>" alt="">
                         </div>
-
-                        <button type="submit" class="btn btn-primary">修改</button>
+                        <label for="species">目前產品圖</label>
+                        <input class="form-control" type="text" name="pic"  value="<?= $r['pic'] ?>" readonly/>
+                        <button type="submit" class="btn btn-primary mt-3">修改</button>
 
 
                     </form>
@@ -116,7 +115,7 @@ if (empty($r)) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">重新修改</button>
-                    <a href="shop-edit.php" class="btn btn-primary">前往編輯列表</a>
+                    <a href="javascript: location.href=document.referrer" class="btn btn-primary">前往編輯列表</a>
                 </div>
             </div>
         </div>
@@ -136,7 +135,7 @@ if (empty($r)) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">重新修改</button>
-                    <a href="shop-edit.php" class="btn btn-primary">前往編輯列表</a>
+                    <a href="javascript: location.href=document.referrer" class="btn btn-primary">前往編輯列表</a>
                 </div>
             </div>
         </div>
@@ -239,26 +238,27 @@ if (empty($r)) {
     const failureModal = new bootstrap.Modal('#failureModal');
     const failureInfo = document.querySelector('#failureModal .alert-danger');
     var imageProc = function(input) {
-    if (input.files && input.files[0]) {
-      // 建立一個 FileReader 物件
-      var reader = new FileReader();
-      // 當檔案讀取完後，所要進行的動作
-      reader.onload = function(e) {
-        // 顯示圖片
-        $("#show_image")
-          .attr("src", e.target.result)
-          .css("height", "100px")
-          .css("width", "100px");
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  };
+        if (input.files && input.files[0]) {
+            // 建立一個 FileReader 物件
+            var reader = new FileReader();
+            // 當檔案讀取完後，所要進行的動作
+            reader.onload = function(e) {
+                // 顯示圖片
+                $("#show_image")
+                    .attr("src", e.target.result)
+                    
+                    .css("width", "50%");
+                $("#a").css("display", "none");
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
 
-  $(document).ready(function() {
-    // 綁定事件
-    $("#previewImage").change(function() {
-      imageProc(this);
+    $(document).ready(function() {
+        // 綁定事件
+        $("#previewImage").change(function() {
+            imageProc(this);
+        });
     });
-  });
 </script>
 <?php include __DIR__ . '/parts/6_foot.php' ?>
