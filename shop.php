@@ -78,7 +78,7 @@ $rows = $pdo->query($sql)->fetchAll();
                         <tbody>
                             <?php foreach ($rows as $r) : ?>
                                 <tr>
-                                    <!-- $r[裡面要改成表單的欄位名稱] -->
+                                    <!-- $r[裡面要改成表單的欄位名稱1] -->
                                     <th class="align-middle"><?= $r['commodity_id'] ?></th>
                                     <td class="align-middle"><img style="width: 50%;" src="\project-take_pet_away\uploads/<?= $r['pic'] ?>" alt="">
                                     </td>
