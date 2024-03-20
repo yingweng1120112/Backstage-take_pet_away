@@ -55,7 +55,7 @@ if (empty($r)) {
                             <div class="form-text"></div>
                             <label for="price">產品價格</label>
                         </div>
-                        <label for="type" class="mt-3">產品種類</label>
+                        <label for="type">產品種類</label>
                         <select class="form-select form-select-sm me-lg-4" aria-label="Small select example" id="type" name="type">
                             <option value="">請選擇產品種類</option>
                             <?php
@@ -66,7 +66,8 @@ if (empty($r)) {
                             }
                             ?>
                         </select>
-                        <label for="species" class="mt-3">適用物種</label>
+                        <div class="form-text"></div>
+                        <label for="species">適用物種</label>
                         <select class="form-select form-select-sm" aria-label="Small select example" id="species" name="species">
                             <option value="">請選擇適用物種</option>
                             <?php
@@ -78,6 +79,7 @@ if (empty($r)) {
                             }
                             ?>
                         </select>
+                        <div class="form-text"></div>
                         <div class="mb-3 mt-3">
                             <label for="pic" class="form-label">產品修改圖片</label>
 
