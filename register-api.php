@@ -1,66 +1,51 @@
-<!-- login+register -->
 <?php
+$dir = __DIR__ . '/uploads/'; # 存放檔案的資料夾
 require __DIR__ . '/parts/pdo-connect.php';
-$title = '註冊';
-$pageName = 'register';
 
-if (isset($_SESSION['user'])) {
-  header('Location: login.php');
-  exit;
+$output = [
+    'success' => false,
+    'postData' => $_POST, # 除錯用
+    'error' => '',
+    'code' => 0, # 除錯或追踪程式碼
+    'file' => ''
+];
+
+$exts = [   # 檔案類型的篩選
+    'image/jpeg' => '.jpg',
+    'image/png' =>  '.png',
+    'image/webp' => '.webp',
+];
+
+# 確保有上傳檔案，並且有 avatar 欄位，並且沒有錯誤
+if (!empty($_FILES) and !empty($_FILES['avatar']) and $_FILES['avatar']['error'] == 0) {
+    # 如果類型有對應到副檔名
+    $type = $_FILES['avatar']['type'];
+    if (!empty($exts[$type])) {
+        $ext = $exts[$type]; # 副檔名
+        $f = sha1($_FILES['avatar']['name'] . uniqid()); # 隨機的主檔名
+        if (move_uploaded_file($_FILES['avatar']['tmp_name'], $dir . $f . $ext)) {
+            $output['file'] = $f . $ext;
+        }
+    }
 }
 
-?>
-<?php include __DIR__ . '/parts/1_head.php' ?>
-<?php include __DIR__ . '/parts/2_nav.php' ?>
-<?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
-<div id="signup">
-  <div class=" row justify-content-center">
-    <div class="col-6 col-lg-5 mx-auto my-auto">
-      <div class="card shadow-lg border-0 rounded-lg mt-5">
-        <div class="card-body">
-          <h5 class="text-center font-weight-light my-4">註冊</h5>
-          <form name="form2" onsubmit="sendData(event)">
-            <div class="mb-3">
-              <label for="name" class="form-label">姓名</label>
-              <input type="text" class="form-control" id="name" name="name">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="account" class="form-label">電話</label>
-              <input type="text" class="form-control" id="account" name="account">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">電子信箱</label>
-              <input type="text" class="form-control" id="email" name="email">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">密碼</label>
-              <input type="password" class="form-control" id="password" name="password">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="confirm_password" class="form-label">確認密碼</label>
-              <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="address_detail" class="form-label">通訊地址</label>
-              <input type="text" class="form-control" id="address_detail" name="address_detail">
-              <div class="form-text"></div>
-            </div>
-            <div>已有帳號？&nbsp<a href="login.php" class="goLogin">登入</a></div>
-            <button type="submit" class="mx-auto d-block col-3 btn btn-primary">註冊</button>
-          </form>
-          <!-- <div class="text-center mt-3">
-            <button type="button" class="col-3 btn btn-secondary" onclick="show_hide()">登入帳號</button>
-          </div> -->
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <?php include __DIR__ . '/parts/5_script.php' ?>
-  <?php include __DIR__ . '/parts/6_foot.php' ?>
+$sql = "INSERT INTO `user`(
+    `name`,`account`,`password`,`email`,`pic`
+    ) VALUES(
+  )";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([
+    $_POST['name'],
+    $_POST['account'],
+    $_POST['password'],
+    $_POST['email'],
+    $output['file']
+]);
+
+$output['success'] = boolval($stmt->rowCount());
+
+
+header('Content-Type: application/json');
+echo json_encode($output, JSON_UNESCAPED_UNICODE);
