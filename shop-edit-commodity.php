@@ -22,6 +22,16 @@ if (empty($r)) {
     .form-text {
         color: red;
     }
+    /* header 側nav */
+    :root {
+        --bs-dark-rgb: 83, 46, 28;
+    }
+    .sb-sidenav-dark {
+        background-color: #8E806A;
+    }
+    .sb-sidenav-dark .sb-sidenav-footer {
+    background-color: #8E806A;
+    }
 </style>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
