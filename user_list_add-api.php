@@ -28,21 +28,21 @@ if (!empty($_POST['name'])) {
     $output['error'] = 'Email 請符合格式';
   }
 
-  $birthday = null;
-  if (!empty($_POST['birthday'])) {
-    $t = strtotime($_POST['birthday']); # 取得 timestamp
-    if ($t !== false) {
-      $birthday = date('Y-m-d', $t);
-    }
-  }
+  // $birthday = null;
+  // if (!empty($_POST['birthday'])) {
+  //   $t = strtotime($_POST['birthday']); # 取得 timestamp
+  //   if ($t !== false) {
+  //     $birthday = date('Y-m-d', $t);
+  //   }
+  // }
 
 
 
   if ($isPass) {
     # 避免 SQL injection
-    $sql = "INSERT INTO `address_book`(
-    `name`, `email`, `mobile`, 
-    `birthday`, `address`, `created_at`
+    $sql = "INSERT INTO `user`(
+    `name`, `account`, `email`, 
+    `pic`, `address_detail`, `created_at`
     ) VALUES (
       ?, ?, ?,
       ?, ?, NOW()
@@ -50,10 +50,10 @@ if (!empty($_POST['name'])) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
       $_POST['name'],
+      $_POST['account'],
       $_POST['email'],
-      $_POST['mobile'],
-      $birthday,
-      $_POST['address'],
+      $_POST['pic'],
+      $_POST['address_detail'],
     ]);
 
     $output['success'] = boolval($stmt->rowCount());

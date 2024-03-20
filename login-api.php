@@ -24,9 +24,10 @@ if (!empty($_POST['email']) and !empty($_POST['password'])) {
     # 帳號是對的
     if (password_verify($_POST['password'], $row['password'])) {
       # 密碼是對的
-      $_SESSION['admin'] = [
+      $_SESSION['user'] = [
+        'user_id' => $row['user_id'],
         'email' => $row['email'],
-        'password' => $row['password'],
+        'name' => $row['name'],
       ];
       $output['success'] = true;
       $output['error'] = '';

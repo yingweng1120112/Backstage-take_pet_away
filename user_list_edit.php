@@ -2,15 +2,15 @@
 require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '編輯會員列表';
-$pageName = 'user edit';
+$pageName = 'user list edit';
 
-$sid = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
-if (empty($sid)) {
+$user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+if (empty($user_id)) {
   header('Location: user_list.php');
   exit;
 }
 
-$r = $pdo->query("SELECT * FROM user WHERE user_id = $sid")->fetch();
+$r = $pdo->query("SELECT * FROM user WHERE user_id = $user_id")->fetch();
 if (empty($r)) {
   header('Location: user_list.php');
   exit;
@@ -28,8 +28,8 @@ if (empty($r)) {
         <div class="card-body">
           <h5 class="card-title">編輯會員列表</h5>
 
-          <form name="form1" onsubmit="sendData(event)">
-            <input type="hidden" name="sid" value="<?= $r['user_id'] ?>">
+          <form name="user_list_edit" onsubmit="sendData(event)">
+            <input type="hidden" name="user_id" value="<?= $r['user_id'] ?>">
             <div class="mb-3">
               <label for="id" class="form-label">編號</label>
               <input type="text" class="form-control" value="<?= $r['user_id'] ?>" disabled>
@@ -40,22 +40,22 @@ if (empty($r)) {
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="mobile" class="form-label">手機</label>
-              <input type="text" class="form-control" id="mobile" name="mobile" value="<?= $r['account'] ?>">
+              <label for="account" class="form-label">手機</label>
+              <input type="text" class="form-control" id="account" name="account" value="<?= $r['account'] ?>">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">電子郵件</label>
-              <input type="text" class="form-control" id="email" name="email" value="<?= $r['email'] ?>"> 
+              <input type="text" class="form-control" id="email" name="email" value="<?= $r['email'] ?>">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="birthday" class="form-label">照片</label>
-              <input type="date" class="form-control" id="birthday" name="birthday" value="<?= $r['pic'] ?>">
+              <label for="pic" class="form-label">照片</label>
+              <input type="image" class="form-control" id="pic" name="pic" value="<?= $r['pic'] ?>">
             </div>
             <div class="mb-3">
-              <label for="address" class="form-label">地址</label>
-              <textarea class="form-control" name="address" id="address" cols="30" rows="3"><?= $r['address'] ?></textarea>
+              <label for="address_detail" class="form-label">地址</label>
+              <textarea class="form-control" name="address_detail" id="address_detail" cols="30" rows="3"><?= $r['address_detail'] ?></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">修改</button>
@@ -109,13 +109,13 @@ if (empty($r)) {
   </div>
 </div>
 
-<?php include __DIR__ . '/parts/scripts.php' ?>
+<?php include __DIR__ . '/parts/5_script.php' ?
 <script>
   const {
     name: nameField,
     email: emailField,
-    mobile: mobileField
-  } = document.form1;
+    account: accountField
+  } = document.user_list_edit;
 
   function validateEmail(email) {
     const re =
@@ -123,9 +123,9 @@ if (empty($r)) {
     return re.test(email);
   }
 
-  function validateMobile(mobile) {
+  function validateAccount(account) {
     const pattern = /^09\d{2}-?\d{3}-?\d{3}$/;
-    return pattern.test(mobile);
+    return pattern.test(account);
   }
 
 
@@ -135,8 +135,8 @@ if (empty($r)) {
     nameField.nextElementSibling.innerHTML = '';
     emailField.style.border = "1px solid #CCC";
     emailField.nextElementSibling.innerHTML = '';
-    mobileField.style.border = "1px solid #CCC";
-    mobileField.nextElementSibling.innerHTML = '';
+    accountField.style.border = "1px solid #CCC";
+    accountField.nextElementSibling.innerHTML = '';
 
 
     e.preventDefault(); // 不要讓有外觀的表單以傳統的方式送出
@@ -160,16 +160,16 @@ if (empty($r)) {
         }
     */
     // mobile 若有填才檢查格式, 沒填不檢查格式
-    if (mobileField.value && !validateMobile(mobileField.value)) {
+    if (accountField.value && !validateAccount(accountField.value)) {
       isPass = false;
-      mobileField.style.border = "2px solid red";
-      mobileField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
+      accountField.style.border = "2px solid red";
+      accountField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
     }
     // 如果欄位都有通過檢查, 才要發 AJAX
     if (isPass) {
-      const fd = new FormData(document.form1); // 看成沒有外觀的表單
+      const fd = new FormData(document.user_list_edit); // 看成沒有外觀的表單
 
-      fetch('edit-api.php', {
+      fetch('user_list_edit-api.php', {
           method: 'POST',
           body: fd
         })

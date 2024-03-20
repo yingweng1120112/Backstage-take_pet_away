@@ -1,49 +1,48 @@
 <?php
 require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
-$title = '新增通訊錄';
-$pageName = 'add';
+$title = '新增會員列表';
+$pageName = 'user list add';
 
 
 ?>
-<?php include __DIR__ . '/parts/html-head.php' ?>
-<?php include __DIR__ . '/parts/navbar.php' ?>
+<?php include __DIR__ . '/parts/1_head.php' ?>
+<?php include __DIR__ . '/parts/2_nav.php' ?>
+<?php include __DIR__ . '/parts/3_side_nav.php' ?>
 <div class="container">
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">新增通訊錄</h5>
-          <form name="form1" onsubmit="sendData(event)">
+          <h5 class="card-title">新增會員列表</h5>
+          <form name="list_add" onsubmit="sendData(event)">
             <div class="mb-3">
               <label for="name" class="form-label">姓名</label>
               <input type="text" class="form-control" id="name" name="name">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">電郵</label>
+              <label for="account" class="form-label">手機</label>
+              <input type="text" class="form-control" id="account" name="account">
+              <div class="form-text"></div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">電子郵件</label>
               <input type="text" class="form-control" id="email" name="email">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="mobile" class="form-label">手機</label>
-              <input type="text" class="form-control" id="mobile" name="mobile">
+              <label for="pic" class="form-label">照片</label>
+              <input type="image" class="form-control" id="pic" name="pic">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="birthday" class="form-label">生日</label>
-              <input type="date" class="form-control" id="birthday" name="birthday">
+              <label for="address_detail" class="form-label">地址</label>
+              <textarea class="form-control" name="address_detail" id="address_detail" cols="30" rows="3"></textarea>
               <div class="form-text"></div>
             </div>
-            <div class="mb-3">
-              <label for="address" class="form-label">地址</label>
-              <textarea class="form-control" name="address" id="address" cols="30" rows="3"></textarea>
-              <div class="form-text"></div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">確認新增</button>
           </form>
-
         </div>
       </div>
     </div>
@@ -66,7 +65,7 @@ $pageName = 'add';
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-        <a href="list.php" class="btn btn-primary">跳到列表頁</a>
+        <a href="user_list.php" class="btn btn-primary">跳到列表頁</a>
       </div>
     </div>
   </div>
@@ -86,19 +85,19 @@ $pageName = 'add';
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-        <a href="list.php" class="btn btn-primary">跳到列表頁</a>
+        <a href="user_list.php" class="btn btn-primary">跳到列表頁</a>
       </div>
     </div>
   </div>
 </div>
 
-<?php include __DIR__ . '/parts/scripts.php' ?>
+<?php include __DIR__ . '/parts/5_script.php' ?>
 <script>
   const {
     name: nameField,
     email: emailField,
-    mobile: mobileField
-  } = document.form1;
+    account: accountField
+  } = document.list_add;
 
   function validateEmail(email) {
     const re =
@@ -106,9 +105,9 @@ $pageName = 'add';
     return re.test(email);
   }
 
-  function validateMobile(mobile) {
+  function validateAccount(account) {
     const pattern = /^09\d{2}-?\d{3}-?\d{3}$/;
-    return pattern.test(mobile);
+    return pattern.test(account);
   }
 
 
@@ -118,8 +117,8 @@ $pageName = 'add';
     nameField.nextElementSibling.innerHTML = '';
     emailField.style.border = "1px solid #CCC";
     emailField.nextElementSibling.innerHTML = '';
-    mobileField.style.border = "1px solid #CCC";
-    mobileField.nextElementSibling.innerHTML = '';
+    accountField.style.border = "1px solid #CCC";
+    accountField.nextElementSibling.innerHTML = '';
 
 
     e.preventDefault(); // 不要讓有外觀的表單以傳統的方式送出
@@ -142,20 +141,20 @@ $pageName = 'add';
       emailField.nextElementSibling.innerHTML = '請輸入正確的 Email';
     }
 
-    // mobile 若有填才檢查格式, 沒填不檢查格式
-    if (mobileField.value && !validateMobile(mobileField.value)) {
+    // account 若有填才檢查格式, 沒填不檢查格式
+    if (accountField.value && !validateAccount(accountField.value)) {
       isPass = false;
-      mobileField.style.border = "2px solid red";
-      mobileField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
+      accountField.style.border = "2px solid red";
+      accountField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
     }
 
 
 
     // 如果欄位都有通過檢查, 才要發 AJAX
     if (isPass) {
-      const fd = new FormData(document.form1); // 看成沒有外觀的表單
+      const fd = new FormData(document.list_add); // 看成沒有外觀的表單
 
-      fetch('add-api.php', {
+      fetch('user_list_add-api.php', {
           method: 'POST',
           body: fd
         })
@@ -163,10 +162,10 @@ $pageName = 'add';
         .then(result => {
           console.log(result);
           if (result.success) {
-            // alert('資料新增成功')
+            alert('資料新增成功')
             successModal.show();
           } else {
-            // alert('資料新增失敗')
+            alert('資料新增失敗')
             if (result.error) {
               failureInfo.innerHTML = result.error;
             } else {
@@ -188,4 +187,4 @@ $pageName = 'add';
   const failureModal = new bootstrap.Modal('#failureModal');
   const failureInfo = document.querySelector('#failureModal .alert-danger');
 </script>
-<?php include __DIR__ . '/parts/html-foot.php' ?>
+<?php include __DIR__ . '/parts/6_foot.php' ?>

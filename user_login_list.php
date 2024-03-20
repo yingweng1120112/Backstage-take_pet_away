@@ -93,7 +93,7 @@ if ($totalRows > 0) {
           <?php foreach ($rows as $r) : ?>
             <tr>
               <td>
-                <a href="javascript: deleteOne(<?= $r['sid'] ?>)">
+                <a href="javascript: deleteOne(<?= $r['user_id'] ?>)">
                   <i class="fa-solid fa-trash"></i>
                 </a>
               </td>
@@ -102,11 +102,12 @@ if ($totalRows > 0) {
                   <i class="fa-solid fa-file-pen"></i>
                 </a>
               </td>
+              <td><?= $r['user_id'] ?></td>
               <td><?= $r['name'] ?></td>
               <td><?= $r['account'] ?></td>
               <td><?= $r['email'] ?></td>
               <td><?= $r['pic'] ?></td>
-              <td><?= htmlentities($r['address']) ?></td>
+              <td><?= htmlentities($r['address_detail']) ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -123,8 +124,8 @@ if ($totalRows > 0) {
   // console.log(myRows);
 
   function deleteOne(sid) {
-    if (confirm(`是否要刪除編號為 ${sid} 的項目?`)) {
-      location.href = `user_list_delete.php?sid=${sid}`;
+    if (confirm(`是否要刪除編號為 ${user_id} 的項目?`)) {
+      location.href = `user_list_delete.php?sid=${user_id}`;
     }
   }
 </script>
