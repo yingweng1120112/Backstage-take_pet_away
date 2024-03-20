@@ -30,10 +30,32 @@ if ($totalPages > 0) {
   $rows = $pdo->query($sql)->fetchAll();
 }
 ?>
-
 <?php include __DIR__ . "/parts/1_head.php" ?>
 <?php include __DIR__ . "/parts/2_nav.php" ?>
 <?php include __DIR__ . "/parts/3_side_nav.php" ?>
+
+<style>
+  td {
+    height: 80px;
+    width: 10%;
+    line-height: 80px;
+    justify-content: center;
+  }
+
+  td:nth-child(1) {
+    width: 5%;
+  }
+
+  td:last-child {
+    width: 5%;
+  }
+
+  td>img {
+    height: 100%;
+    width: auto;
+  }
+</style>
+
 <div class="container">
   <nav class="my-3" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -42,6 +64,8 @@ if ($totalPages > 0) {
       <li class="breadcrumb-item active" aria-current="page">基本資訊</li>
     </ol>
   </nav>
+  <!-- FIXME: 表格欄寬 -->
+  <!-- FIXME: 圖片大小 -->
   <h1 class="my-3">寵物基本資料</h1>
   <div class="row">
     <div class="col">
@@ -58,6 +82,7 @@ if ($totalPages > 0) {
             <th class="text-center" scope="col">性別</th>
             <!-- <th scope="col">品種</th> -->
             <th class="text-center" scope="col">是否被領養</th>
+            <th class="text-center" scope="col">寵物圖片</th>
             <th class="text-center"><i class="fa-solid fa-pen-to-square"></i></th>
           </tr>
         </thead>
@@ -75,9 +100,13 @@ if ($totalPages > 0) {
               <td class="text-center"><?= $r["type"] ?></td>
               <td class="text-center"><?= $r["sex"] ?></td>
               <td class="text-center"><?= $r["adopted"] ?></td>
+              <?php if ($r["pet_pic1"] === null || $r["pet_pic1"] === "") : ?>
+                <td class="text-center">無</td>
+              <?php else : ?>
+                <td class="text-center"><img src="uploads/<?= $r["pet_pic1"] ?>" alt=""></td>
+              <?php endif ?>
               <td class="text-center"><a href="pet_edit.php?pet_id=<?= $r["pet_id"] ?>"><i class="fa-solid fa-pen-to-square text-secondary"></a></i></td>
             </tr>
-
           <?php endforeach ?>
         </tbody>
       </table>
