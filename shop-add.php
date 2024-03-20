@@ -38,7 +38,7 @@ $title = '新增產品';
                             <label for="price">產品價格</label>
                         </div>
 
-                        <label for="type">產品種類</label>
+                        <label for="type" class="mt-3">產品種類</label>
                         <select class="form-select form-select-sm me-lg-4" aria-label="Small select example" id="type" name="type">
                             <option selected value="產品種類">請選擇產品種類</option>
                             <option value="寵物飼料">寵物飼料</option>
@@ -47,19 +47,19 @@ $title = '新增產品';
                             <option value="寵物用品">寵物用品</option>
                             <option value="保健食品">保健食品</option>
                         </select>
-                        <div class="form-text"></div>
-                        <label for="species">適用物種</label>
+                        
+                        <label for="species" class="mt-3">適用物種</label>
                         <select class="form-select form-select-sm" aria-label="Small select example" id="species" name="species">
                             <option selected value="適用物種">請選擇適用物種</option>
                             <option value="狗寶貝">狗寶貝</option>
                             <option value="貓寶貝">貓寶貝</option>
                         </select>
-                        <div class="form-text"></div>
+                        
 
 
                         <div class="mb-3  mt-3">
                             <label for="pic" class="form-label">產品圖片</label>
-                            <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
+                            <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png"/>
                             <br />
                             <img id="show_image" src="" />
                         </div>
@@ -216,8 +216,7 @@ $title = '新增產品';
                 // 顯示圖片
                 $("#show_image")
                     .attr("src", e.target.result)
-                    .css("height", "100px")
-                    .css("width", "100px");
+                    .css("width", "50%");
             };
             reader.readAsDataURL(input.files[0]);
         }
