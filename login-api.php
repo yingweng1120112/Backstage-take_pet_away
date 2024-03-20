@@ -8,13 +8,15 @@ $output = [
   'postData' => $_POST, # 除錯用
   'error' => '欄位資料不足',
   'code' => 0, # 除錯或追踪程式碼
+  'a' => "",
+  'b' => ""
 ];
 
 
 if (!empty($_POST['email']) and !empty($_POST['password'])) {
 
   # 確認帳號對不對
-  $sql = "SELECT * FROM members WHERE email=?";
+  $sql = "SELECT * FROM user WHERE email=?";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
     $_POST['email']
@@ -22,12 +24,12 @@ if (!empty($_POST['email']) and !empty($_POST['password'])) {
   $row = $stmt->fetch();
   if (!empty($row)) {
     # 帳號是對的
-    if(password_verify($_POST['password'], $row['password'])){
+    if ($_POST['password'] == $row['password']) {
       # 密碼是對的
-      $_SESSION['admin'] = [
-        'id' => $row['id'],
+      $_SESSION['user'] = [
+        'user_id' => $row['user_id'],
         'email' => $row['email'],
-        'nickname' => $row['nickname'],
+        'name' => $row['name'],
       ];
       $output['success'] = true;
       $output['error'] = '';

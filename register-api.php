@@ -1,5 +1,5 @@
 <?php
-$dir = __DIR__ . '/uploads'; # 存放檔案的資料夾
+$dir = __DIR__ . '/uploads/'; # 存放檔案的資料夾
 require __DIR__ . '/parts/pdo-connect.php';
 
 $output = [

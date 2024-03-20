@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['user'])) {
   header('Location: index_.php');
   exit;
 }

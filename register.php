@@ -14,7 +14,7 @@ if (isset($_SESSION['user'])) {
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-6">
             <div class="card">
 
