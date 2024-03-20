@@ -67,7 +67,7 @@ $rows = $pdo->query($sql)->fetchAll();
                         <thead>
                             <tr>
                                 <th class="align-middle" scope="col">產品編號</th>
-                                <th class="align-middle" scope="col">產品圖片</th>
+                                <th style="width: 15%;" class="align-middle" scope="col">產品圖片</th>
                                 <th class="align-middle" scope="col">產品名稱</th>
                                 <th class="align-middle" scope="col">品牌名稱</th>
                                 <th class="align-middle" scope="col">產品價格</th>
@@ -80,7 +80,7 @@ $rows = $pdo->query($sql)->fetchAll();
                                 <tr>
                                     <!-- $r[裡面要改成表單的欄位名稱123] -->
                                     <th class="align-middle"><?= $r['commodity_id'] ?></th>
-                                    <td class="align-middle"><img style="width: 50%;" src="uploads/<?= $r['pic'] ?>" alt="">
+                                    <td class="align-middle"><img style="width: 100%;" src="uploads/<?= $r['pic'] ?>" alt="">
                                     </td>
                                     <td class="align-middle"><?= $r['name'] ?></td>
                                     <td class="align-middle"><?= $r['brand_name'] ?></td>
