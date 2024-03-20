@@ -62,6 +62,13 @@
               </nav>
             </div>
 
+            注意事項
+          </a>
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-book-open"></i>
+
+
 
             <!-- 收容動物下拉式選單 -->
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesAnimal" aria-expanded="false" aria-controls="collapsePagesAnimal" onclick="toggleCollapse('collapsePagesAnimal')">
@@ -97,6 +104,7 @@
                   個人收藏
                 </a>
               </nav>
+
             </div>
             <div class="sb-sidenav-menu-heading">商城專區</div>
             <a class="nav-link" href="#">

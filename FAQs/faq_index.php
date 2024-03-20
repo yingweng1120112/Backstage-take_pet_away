@@ -22,7 +22,7 @@ $faqs = $statement->fetchAll();
 
 <!-- show all FAQs in a panel -->
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-	<a href="add_faq.php" class="btn btn-info mt-3 ml-3">新增</a>
+	<a href="faq_add.php" class="btn btn-info mt-3 ml-3">回到新增頁面</a>
 	<div class="row">
 		<div class="col-md-12 accordion_one">
 		    <div class="panel-group">
