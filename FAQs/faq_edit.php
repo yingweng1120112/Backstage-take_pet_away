@@ -49,7 +49,7 @@ if (isset($_POST["submit"])) {
         <div class="offset-md-3 col-md-6">
             <h1 class="text-center">修改 FAQ</h1>
             <!-- form to edit FAQ -->
-            <form action="edit_faq.php" method="POST">
+            <form action="faq_edit.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $faq['question_id']; ?>" required />
                 <!-- question auto-pop -->
                 <div class="form-group">
@@ -63,7 +63,7 @@ if (isset($_POST["submit"])) {
                 </div>
                 <!-- 提交按紐 -->
                 <input type="submit" name="submit" class="btn btn-warning" value="確認編輯" />
-                <a href="add_faq.php" class="btn btn-info ml-3">返回</a>
+                <a href="faq_add.php" class="btn btn-info ml-3">回到新增頁面</a>
             </form>
         </div>
     </div>
