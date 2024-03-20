@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/parts/pdo-connect.php';
+require __DIR__ . '/../parts/pdo-connect.php';
 
 $output = [
   'success' => false,
