@@ -71,7 +71,7 @@
             </div>
             注意事項
           </a>
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse">
+          <a class="nav-link collapsed" href="/FAQs/faq_add.php" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse">
             <div class="sb-nav-link-icon">
               <i class="fas fa-book-open"></i>
             </div>
