@@ -23,7 +23,7 @@ if (isset($_SESSION['user'])) {
 
                     <form name="form1" onsubmit="sendData(event)">
                         <div class="mb-3">
-                            <label for="name" class="form-label">name</label>
+                            <label for="name" class="form-label">姓名</label>
                             <input type="text" class="form-control" id="name" name="name">
                             <div class="form-text"></div>
                         </div>

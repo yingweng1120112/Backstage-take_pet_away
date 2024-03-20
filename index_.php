@@ -3,10 +3,6 @@ require __DIR__ . '/parts/pdo-connect.php';
 $title = '首頁';
 $pageName = 'index';
 
-if (isset($_SESSION['user'])) {
-  header('Location: index_.php');
-  exit;
-}
 
 session_start();
 

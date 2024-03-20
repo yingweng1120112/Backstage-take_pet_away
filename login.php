@@ -5,7 +5,7 @@ $title = '登入';
 $pageName = 'login';
 
 if (isset($_SESSION['user'])) {
-  header('Location: index_.php');
+  header('Location: user_list.php');
   exit;
 }
 
@@ -59,7 +59,7 @@ if (isset($_SESSION['user'])) {
     </div>
   </div>
 </div>
-
+<?php include __DIR__ . '/parts/4_footer.php' ?>
 
 <?php include __DIR__ . '/parts/5_script.php' ?>
 <script>
@@ -102,7 +102,7 @@ if (isset($_SESSION['user'])) {
         .then(result => {
           console.log(result);
           if (result.success) {
-            location.href = 'index_.php';
+            location.href = 'user_list.php';
           } else {
             failureModal.show();
           }

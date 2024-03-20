@@ -33,7 +33,7 @@ if (!empty($_FILES) and !empty($_FILES['avatar']) and $_FILES['avatar']['error']
 
 $sql = "INSERT INTO `user`(
     `name`,`account`,`password`,`email`,`pic`
-    ) VALUES(
+    ) VALUES(?,?,?,?,?
   )";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
