@@ -73,6 +73,9 @@ $rows = $pdo->query($sql)->fetchAll();
     .sb-sidenav-dark .sb-sidenav-footer {
     background-color: #8E806A;
     }
+    .row {
+        --bs-gutter-x: 0rem;
+    }
     
 </style>
 

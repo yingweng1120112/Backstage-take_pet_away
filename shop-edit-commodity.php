@@ -60,6 +60,9 @@ if (empty($r)) {
     --bs-btn-border-color: #b99549;
     --bs-btn-hover-bg: #a16a38;
     }
+    .row {
+        --bs-gutter-x: 0rem;
+    }
 </style>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
