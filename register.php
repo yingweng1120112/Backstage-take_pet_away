@@ -51,7 +51,7 @@ if (isset($_SESSION['user'])) {
                             <div class="form-text"></div>
                         </div>
                         <div class="text-center mb-3">已有帳號？&nbsp<a href="login.php" class="goLogin">登入</a></div>
-                        <button type="submit" class="mx-auto d-block col-3 btn btn-primary">註冊1</butto>
+                        <button type="submit" class="mx-auto d-block col-3 btn btn-primary">註冊</butto>
                     </form>
                 </div>
             </div>

@@ -10,7 +10,7 @@
               <div class="sb-nav-link-icon">
                 <i class="fas fa-book-open"></i>
               </div>
-              會員管理
+              會員專區
               <div class="sb-sidenav-collapse-arrow">
                 <i class="fas fa-angle-down"></i>
               </div>
@@ -41,6 +41,7 @@
               </nav>
             </div>
 
+
             <!-- 布告欄下拉式選單 -->
             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesBulletin" aria-expanded="false" aria-controls="collapsePagesBulletin" onclick="toggleCollapse('collapsePagesBulletin')">
               <div class="sb-nav-link-icon">
@@ -62,14 +63,12 @@
               </nav>
             </div>
 
-            注意事項
+            <div class="sb-sidenav-menu-heading">注意事項</div>
+
           </a>
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse">
             <div class="sb-nav-link-icon">
               <i class="fas fa-book-open"></i>
-
-
-
               <!-- 收容動物下拉式選單 -->
               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesAnimal" aria-expanded="false" aria-controls="collapsePagesAnimal" onclick="toggleCollapse('collapsePagesAnimal')">
                 <div class="sb-nav-link-icon">
