@@ -26,7 +26,7 @@ CREATE TABLE Notice_Adoptinfo (
                 question_adopt_id INT auto_increment NOT NULL,
                 main_question VARCHAR(60) NOT NULL,
                 small_question VARCHAR(60) NOT NULL,
-                faq_answer VARCHAR(60) NOT NULL,
+                faq_answer TEXT NOT NULL,
                 PRIMARY KEY (question_adopt_id)
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE Faq_Shopinfo (
                 question_id INT auto_increment NOT NULL,
                 main_question VARCHAR(60) NOT NULL,
                 small_question VARCHAR(60) NOT NULL,
-                faq_answer VARCHAR(60) NOT NULL,
+                faq_answer TEXT NOT NULL,
                 PRIMARY KEY (question_id)
 );
 
