@@ -171,6 +171,18 @@
                 </nav>
 
               </div>
+
+              產品資訊
+            </a>
+            <a class="nav-link" href="#">
+              <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+              訂單紀錄
+            </a>
+            <div class="sb-sidenav-menu-heading">其他資訊</div>
+            <a class="nav-link" href="faq_add.php">
+              <div class="sb-nav-link-icon">
+                <i class="fas fa-chart-area"></i>
+
               <div class="sb-sidenav-menu-heading">商城專區</div>
               <a class="nav-link" href="#">
                 <div class="sb-nav-link-icon">
@@ -189,6 +201,7 @@
                   <a class="nav-link collapsed" href="shop-add.php">
                     新增商品
                   </a>
+
               </div>
 
               <a class="nav-link" href="#">
