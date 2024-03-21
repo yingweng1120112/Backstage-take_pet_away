@@ -118,7 +118,7 @@
               訂單紀錄
             </a>
             <div class="sb-sidenav-menu-heading">其他資訊</div>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="faq_add.php">
               <div class="sb-nav-link-icon">
                 <i class="fas fa-chart-area"></i>
               </div>
