@@ -14,13 +14,11 @@ if (isset($_SESSION['user'])) {
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row mt-3 justify-content-center">
         <div class="col-6">
             <div class="card">
-
                 <div class="card-body">
                     <h5 class="card-title">註冊</h5>
-
                     <form name="form1" onsubmit="sendData(event)">
                         <div class="mb-3">
                             <label for="name" class="form-label">姓名</label>
@@ -53,9 +51,8 @@ if (isset($_SESSION['user'])) {
                             <div class="form-text"></div>
                         </div>
                         <div class="text-center mb-3">已有帳號？&nbsp<a href="login.php" class="goLogin">登入</a></div>
-                        <button type="submit" class="mx-auto d-block col-3 btn btn-primary">註冊1</butto>
+                        <button type="submit" class="mx-auto d-block col-3 btn btn-primary">註冊</butto>
                     </form>
-
                 </div>
             </div>
         </div>
