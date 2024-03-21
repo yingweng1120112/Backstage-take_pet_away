@@ -1,10 +1,10 @@
 <?php
-// require __DIR__ . '/parts/admin-required.php'; 等連接
+require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '編輯訂單狀態';
 $pageName = 'order_history';
 
-$orderId = isset($_GET["order_id"]) ? $_GET["order_id"] : '';
+$orderId = isset($_GET["order_id"]) ? intval($_GET["order_id"]) : 0;
 
 
 if (empty($orderId)) {
@@ -13,10 +13,9 @@ if (empty($orderId)) {
 }
 //有拿到資料
 
+$r = $pdo->query("SELECT * FROM order_history WHERE order_id=$orderId")->fetch();
 $sql = "SELECT * FROM order_history WHERE order_id = ?";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([$orderId]);
-$r = $stmt->fetch();
+
 
 if (empty($r)) {
   header('Location: order_history.php');
@@ -43,10 +42,10 @@ $select = $r['status'];
     <div class="col-12">
       <div class="card">
         <div class="card-body container">
-          <form name="form1" onsubmit="sendData(event)" class="mb-1">
+          <form name="form1" onsubmit="sendData(event)" class="mb-1" method="POST">
             <div class="row me-0">
               <h5 class="card-title col-md-10">編輯訂單狀態</h5>
-              <input class="col-md-2 btn btn-info disabled" name="order_id" value="<?= $r['order_id'] ?>" readonly>
+              <input class="col-md-2 btn btn-info disabled" name="order_id" id="orderId" value="<?= $r['order_id'] ?>" readonly>
             </div>
             <div class="row mb-4">
               <div class="col-6">
@@ -72,15 +71,15 @@ $select = $r['status'];
                 <input type="text" class="form-control input-style mb-3" id="recipientAddressDetail" name="recipient_address_detail" value="<?= $r['recipient_address_detail'] ?>" readonly>
                 <label for="status" class="form-label">訂單狀態</label>
                 <select class="form-select mb-3" aria-label="Default select example" name="status" id="status" value="<?= $r['status'] ?>">
-                  <option value="1" <?php if (!empty($selectA) && $selectA == '1')  echo 'selected = "selected"'; ?>>未出貨</option>
-                  <option value="2" <?php if (!empty($selectA) && $selectA == '2')  echo 'selected = "selected"'; ?>>已出貨</option>
-                  <option value="3" <?php if (!empty($selectA) && $selectA == '3')  echo 'selected = "selected"'; ?>>運送中</option>
-                  <option value="4" <?php if (!empty($selectA) && $selectA == '4')  echo 'selected = "selected"'; ?>>已送達</option>
-                  <option value="4" <?php if (!empty($selectA) && $selectA == '4')  echo 'selected = "selected"'; ?>>訂單取消</option>
+                  <option value="未出貨" <?php if (!empty($select) && $select == '未出貨')  echo 'selected = "selected"'; ?>>未出貨</option>
+                  <option value="已出貨" <?php if (!empty($select) && $select == '已出貨')  echo 'selected = "selected"'; ?>>已出貨</option>
+                  <option value="運送中" <?php if (!empty($select) && $select == '運送中')  echo 'selected = "selected"'; ?>>運送中</option>
+                  <option value="已送達" <?php if (!empty($select) && $select == '已送達')  echo 'selected = "selected"'; ?>>已送達</option>
+                  <option value="訂單取消" <?php if (!empty($select) && $select == '訂單取消')  echo 'selected = "selected"'; ?>>訂單取消</option>
                 </select>
                 <label for="InvoiceNo" class="form-label">電子條碼</label>
                 <input type="text" class="form-control input-style mb-5" id="InvoiceNo" name="Invoice_no" value="<?= $r['Invoice_no'] ?>" readonly>
-                <button type="submit" class="btn btn-primary col-md-12">修改結果類型</button>
+                <button type="submit" class="btn btn-primary col-md-12" >修改結果類型</button>
               </div>
             </div>
           </form>
@@ -105,7 +104,7 @@ $select = $r['status'];
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續修改</button>
-            <a href="hearttest_result.php" class="btn btn-primary">跳到列表頁</a>
+            <a href="order_history.php" class="btn btn-primary">跳到列表頁</a>
           </div>
         </div>
       </div>
@@ -126,7 +125,7 @@ $select = $r['status'];
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續修改</button>
-          <a href="hearttest_result.php" class="btn btn-primary">跳到列表頁</a>
+          <a href="order_history.php" class="btn btn-primary">跳到列表頁</a>
         </div>
       </div>
     </div>
@@ -142,18 +141,11 @@ $select = $r['status'];
 <?php include __DIR__ . '/parts/5_script.php' ?>
 
 <script>
-  let orderId$orderId = document.getElementById('orderId');
-  let typeContent = document.getElementById('typeContent');
+  let orderId = document.getElementById('orderId');
+
 
 
   function sendData(e) {
-    //格式沒問題欄位的外觀要回復原來的狀態
-    orderId$orderId.style.border = "1px solid #CCC";
-    orderId$orderId.nextElementSibling.innerHTML = '';
-    typeContent.style.border = "1px solid #CCC";
-    typeContent.nextElementSibling.innerHTML = '';
-
-
 
     e.preventDefault(); //不要讓表單以傳統的方式送出
     //建立檢查設定
@@ -161,23 +153,11 @@ $select = $r['status'];
 
     //TODO:檢查資料的格式(前後端都要檢查)
 
-    //欄位都必填
-    if (orderId.value.length < 1) {
-      isPass = false;
-      orderId.style.border = "2px solid red"
-      orderId.nextElementSibling.innerHTML = '此欄為必填';
-    }
-
-
-
-
-
-
     //欄位都有通過檢查 發AJAX取得值
     if (isPass) {
       const fd = new FormData(document.form1); //FormData看成沒有外觀的表單 主要功能是透過ajax傳送給後端
 
-      fetch('hearttest_result_edit-api.php', {
+      fetch('order_history_edit-api.php', {
           method: 'POST',
           body: fd
         })
