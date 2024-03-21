@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7db923f7906caff4b61c1adc6ec6036d461f7722
 <?php
 
 require __DIR__ . '/parts/pdo-connect.php'; #獲取資料庫連線資料
@@ -186,6 +189,7 @@ $rows = $pdo->query($sql)->fetchAll();
         }
     }
 </script>
+<<<<<<< HEAD
 =======
 <?php
 
@@ -375,4 +379,6 @@ $rows = $pdo->query($sql)->fetchAll();
     }
 </script>
 >>>>>>> a5fa27008e5e3f4e2de316572d208b98c04e9b29
+=======
+>>>>>>> 7db923f7906caff4b61c1adc6ec6036d461f7722
 <?php include __DIR__ . '/parts/6_foot.php' ?>
