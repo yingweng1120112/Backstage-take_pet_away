@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '會員列表';
-$pageName = 'user list';
+$pageName = 'userlist';
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 if ($page < 1) {
@@ -13,7 +13,7 @@ if ($page < 1) {
 $perPage = 25;
 
 # 計算總筆數
-$t_sql = "SELECT COUNT(1) FROM user";
+$t_sql = "SELECT COUNT(1) FROM address_book";
 $t_stmt = $pdo->query($t_sql);
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
 $totalPages = ceil($totalRows / $perPage); # 總頁數
@@ -26,17 +26,15 @@ if ($totalRows > 0) {
   }
 
   # 取得分頁的資料
-  $sql = sprintf("SELECT * FROM user ORDER BY user_id DESC LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
+  $sql = sprintf("SELECT * FROM address_book ORDER BY sid DESC LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
   $rows = $pdo->query($sql)->fetchAll();
 }
 
 ?>
 <?php include __DIR__ . '/parts/1_head.php' ?>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
-<?php include __DIR__ . '/parts/3_side_nav.php' ?>
-
 <div class="container">
-  <div class="row mt-3">
+  <div class="row">
     <div class="col">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -76,14 +74,10 @@ if ($totalRows > 0) {
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
-            <th><i class="fa-solid fa-trash"></i></th>
-            <th><i class="fa-solid fa-file-pen"></i></th>
-            <th>編號</th>
+            <th>#</th>
             <th>姓名</th>
             <th>手機</th>
             <th>Email</th>
-            <th>照片</th>
-            <th>地址</th>
           </tr>
         </thead>
         <tbody>
@@ -92,26 +86,16 @@ if ($totalRows > 0) {
           */ ?>
           <?php foreach ($rows as $r) : ?>
             <tr>
-              <td>
-                <a href="javascript: deleteOne(<?= $r['user_id'] ?>)">
-                  <i class="fa-solid fa-trash"></i>
-                </a>
-              </td>
-              <td>
-                <a href="user_list_edit.php?user_id=<?= $r['user_id'] ?>">
-                  <i class="fa-solid fa-file-pen"></i>
-                </a>
-              </td>
-              <td><?= $r['user_id'] ?></td>
+              <td><?= $r['sid'] ?></td>
               <td><?= $r['name'] ?></td>
-              <td><?= $r['account'] ?></td>
+              <td><?= $r['mobile'] ?></td>
               <td><?= $r['email'] ?></td>
-              <td><?= $r['pic'] ?></td>
-              <td><?= htmlentities($r['address_detail']) ?></td>
             </tr>
           <?php endforeach ?>
+
         </tbody>
       </table>
+
     </div>
   </div>
 
@@ -122,9 +106,9 @@ if ($totalRows > 0) {
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
   // console.log(myRows);
 
-  function deleteOne(user_id) {
-    if (confirm(`是否要刪除編號為 ${user_id} 的項目?`)) {
-      location.href = `user_list_delete.php?user_id=${user_id}`;
+  function deleteOne(sid) {
+    if (confirm(`是否要刪除編號為 ${sid} 的項目?`)) {
+      location.href = `delete.php?sid=${sid}`;
     }
   }
 </script>

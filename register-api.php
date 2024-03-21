@@ -30,18 +30,17 @@ if (!empty($_FILES) and !empty($_FILES['avatar']) and $_FILES['avatar']['error']
 }
 
 
-
 $sql = "INSERT INTO `user`(
-    `name`,`account`,`password`,`email`,`pic`
-    ) VALUES(?,?,?,?,?
-  )";
+    `name`,`account`,`password`,`email`,`pic`,`address_detail`
+    ) VALUES(?,?,?,?,?,?)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
     $_POST['name'],
     $_POST['account'],
     $_POST['password'],
     $_POST['email'],
-    $output['file']
+    $output['file'],
+    $_POST['address_detail']
 ]);
 
 $output['success'] = boolval($stmt->rowCount());

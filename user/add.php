@@ -1,65 +1,46 @@
 <?php
 require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
-$title = '編輯會員列表';
-$pageName = 'user list edit';
-
-$user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
-if (empty($user_id)) {
-  header('Location: user_list.php');
-  exit;
-}
-
-$r = $pdo->query("SELECT * FROM user WHERE user_id = $user_id")->fetch();
-if (empty($r)) {
-  header('Location: user_list.php');
-  exit;
-}
+$title = '新增會員紀錄';
+$pageName = 'add user';
 
 
 ?>
 <?php include __DIR__ . '/parts/1_head.php' ?>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
-<?php include __DIR__ . '/parts/3_side_nav.php' ?>
 <div class="container">
-  <div class="row mt-3">
+  <div class="row">
     <div class="col-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">修改會員列表</h5>
+          <h5 class="card-title">新增會員紀錄</h5>
           <form name="form1" onsubmit="sendData(event)">
-            <input type="hidden" class="form-control" name="user_id" value="<?= $r['user_id'] ?>">
-            <div class="mb-3">
-              <label for="user_id" class="form-label">會員編號</label>
-              <input type="text" class="form-control" id="user_id" name="user_id" value="<?= $r['user_id'] ?>" disabled>
-            </div>
             <div class="mb-3">
               <label for="name" class="form-label">姓名</label>
-              <input type="text" class="form-control" id="name" name="name" value="<?= $r['name'] ?>">
-              <div class="form-text"></div>
-            </div>
-            <div class="mb-3">
-              <label for="account" class="form-label">手機</label>
-              <input type="text" class="form-control" id="account" name="account" value="<?= $r['account'] ?>">
+              <input type="text" class="form-control" id="name" name="name">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">電子郵件</label>
-              <input type="text" class="form-control" id="email" name="email" value="<?= $r['email'] ?>">
+              <input type="text" class="form-control" id="email" name="email">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="pic" class="form-label">照片</label>
-              <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
-              <br />
-              <img id="show_image" src="" />
-              <img id="a" src="uploads/<?= $r['pic'] ?>" alt="">
+              <label for="mobile" class="form-label">手機</label>
+              <input type="text" class="form-control" id="mobile" name="mobile">
+              <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="address_detail" class="form-label">地址</label>
-              <textarea class="form-control" name="address_detail" id="address_detail" cols="30" rows="3"><?= $r['address_detail'] ?></textarea>
+              <label for="birthday" class="form-label">生日</label>
+              <input type="date" class="form-control" id="birthday" name="birthday">
+              <div class="form-text"></div>
             </div>
-            <button type="submit" class="btn btn-primary">修改</button>
+            <div class="mb-3">
+              <label for="address" class="form-label">地址</label>
+              <textarea class="form-control" name="address" id="address" cols="30" rows="3"></textarea>
+              <div class="form-text"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
       </div>
@@ -73,17 +54,17 @@ if (empty($r)) {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">資料修改結果</h1>
+        <h1 class="modal-title fs-5">資料新增結果</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="alert alert-success" role="alert">
-          資料修改成功
+          資料新增成功
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續修改</button>
-        <a href="javascript: location.href=document.referrer" class="btn btn-primary">跳到列表頁</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
+        <a href="list.php" class="btn btn-primary">跳到列表頁</a>
       </div>
     </div>
   </div>
@@ -93,17 +74,17 @@ if (empty($r)) {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">資料沒有修改</h1>
+        <h1 class="modal-title fs-5">資料沒有新增</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="alert alert-danger" role="alert">
-          資料沒有修改成功
+          資料新增沒有成功
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續修改</button>
-        <a href="javascript: location.href=document.referrer" class="btn btn-primary">跳到列表頁</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
+        <a href="list.php" class="btn btn-primary">跳到列表頁</a>
       </div>
     </div>
   </div>
@@ -111,12 +92,11 @@ if (empty($r)) {
 
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   const {
     name: nameField,
     email: emailField,
-    account: accountField
+    mobile: mobileField
   } = document.form1;
 
   function validateEmail(email) {
@@ -125,9 +105,9 @@ if (empty($r)) {
     return re.test(email);
   }
 
-  function validateAccount(account) {
+  function validateMobile(mobile) {
     const pattern = /^09\d{2}-?\d{3}-?\d{3}$/;
-    return pattern.test(account);
+    return pattern.test(mobile);
   }
 
 
@@ -137,36 +117,44 @@ if (empty($r)) {
     nameField.nextElementSibling.innerHTML = '';
     emailField.style.border = "1px solid #CCC";
     emailField.nextElementSibling.innerHTML = '';
-    accountField.style.border = "1px solid #CCC";
-    accountField.nextElementSibling.innerHTML = '';
+    mobileField.style.border = "1px solid #CCC";
+    mobileField.nextElementSibling.innerHTML = '';
 
-    e.preventDefault();
-    let isPass = true;
 
-    // 檢查資料的格式
+    e.preventDefault(); // 不要讓有外觀的表單以傳統的方式送出
+
+    let isPass = true; // 有沒有通過檢查, 預設值為 true
+
+    // TODO: 檢查資料的格式
+
     // 姓名是必填, 長度要 2 以上
     if (nameField.value.length < 2) {
       isPass = false;
       nameField.style.border = "2px solid red";
       nameField.nextElementSibling.innerHTML = '請輸入正確的名字';
     }
+
     // email 若有填才檢查格式, 沒填不檢查格式
     if (emailField.value && !validateEmail(emailField.value)) {
       isPass = false;
       emailField.style.border = "2px solid red";
       emailField.nextElementSibling.innerHTML = '請輸入正確的 Email';
     }
+
     // mobile 若有填才檢查格式, 沒填不檢查格式
-    if (accountField.value && !validateAccount(accountField.value)) {
+    if (mobileField.value && !validateMobile(mobileField.value)) {
       isPass = false;
-      accountField.style.border = "2px solid red";
-      accountField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
+      mobileField.style.border = "2px solid red";
+      mobileField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
     }
+
+
+
     // 如果欄位都有通過檢查, 才要發 AJAX
     if (isPass) {
       const fd = new FormData(document.form1); // 看成沒有外觀的表單
 
-      fetch('user_list_edit-api.php', {
+      fetch('add-api.php', {
           method: 'POST',
           body: fd
         })
@@ -174,47 +162,29 @@ if (empty($r)) {
         .then(result => {
           console.log(result);
           if (result.success) {
+            // alert('資料新增成功')
             successModal.show();
           } else {
+            // alert('資料新增失敗')
             if (result.error) {
               failureInfo.innerHTML = result.error;
             } else {
-              failureInfo.innerHTML = '資料沒有修改成功';
+              failureInfo.innerHTML = '資料新增沒有成功';
             }
             failureModal.show();
           }
         })
         .catch(ex => {
           console.log(ex);
-          failureInfo.innerHTML = '資料修改發生錯誤' + ex;
+          // alert('資料新增發生錯誤' + ex)
+          failureInfo.innerHTML = '資料新增發生錯誤' + ex;
           failureModal.show();
         })
     }
+
+
   }
 
-  var imageProc = function(input) {
-    if (input.files && input.files[0]) {
-      // 建立一個 FileReader 物件
-      var reader = new FileReader();
-      // 當檔案讀取完後，所要進行的動作
-      reader.onload = function(e) {
-        // 顯示圖片
-        $("#show_image")
-          .attr("src", e.target.result)
-          .css("height", "100px")
-          .css("width", "100px");
-        $("#a").css("display", "none");
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  };
-
-  $(document).ready(function() {
-    // 綁定事件
-    $("#previewImage").change(function() {
-      imageProc(this);
-    });
-  });
 
   const successModal = new bootstrap.Modal('#successModal');
   const failureModal = new bootstrap.Modal('#failureModal');
