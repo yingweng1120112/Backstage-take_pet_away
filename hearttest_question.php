@@ -1,45 +1,24 @@
-<!-- 心理測驗題目 暫連上課資料庫(參考用)-->
-
-<!-- 以下註解是筆記 懶得刪 請忽略 -->
-<!-- 1.取需要的資料 -->
+<!-- 設定筆數上限 -->
 <?php
 require __DIR__ . '/parts/pdo-connect.php';
-$title = '通訊錄列表';
+$title = '心理測驗';
 $pageName = 'list';
-$pageName = 'list';
-$pageName = 'list123';
-//7-1.分頁功能
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-//10-1.限制 $page 在合理範圍內(讓使用者在輸入非數字的頁數時會跳轉到第一頁)
-if ($page < 1) {
-  header('Location: ?page=1');
-  exit; //跳轉後結束 不繼續執行
-}
-//6-1.計算每頁有幾筆
-$perPage = 20;
+
 
 //5.計算資料總筆數
-$t_sql = "SELECT COUNT(1) FROM address_book";
+$t_sql = "SELECT COUNT(1) FROM psycological_test";
 $t_stmt = $pdo->query($t_sql);
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
-//ceil 無條件進位
-$totalPages = ceil($totalRows / $perPage); //6-2.計算總頁數
 
-//10-2.讓使用者在輸入超過的頁數時會跳轉到最後頁
-$rows = []; //預設為空陣列
-if ($totalRows > 0) {
-  //有資料時 再往下進行
-  if ($page > $totalPages) {
-    header('Location: ?page=' . $totalPages);
-    exit;
-  }
 
-  //2-1.取得分頁資料//7-2.更改分頁筆數排序
-  $sql = sprintf("SELECT * FROM address_book order by sid DESC  LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
-  //2.讀取資料表
-  $rows = $pdo->query($sql)->fetchAll();
-}
+
+//2-1.取得分頁資料//7-2.更改分頁筆數排序
+$sql = sprintf("SELECT * FROM 
+  psycological_test ");
+//2.讀取資料表
+$rows = $pdo->query($sql)->fetchAll();
+
 
 ?>
 
@@ -59,96 +38,58 @@ if ($totalRows > 0) {
         <i class="fas fa-table me-1"></i>
         題目與對應分數
       </div>
-      <div class="card-body">
+      <div class="card-body table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
               <!-- 13.新增刪除編輯的功能按鈕 -->
               <th><i class="fa-solid fa-trash"></i></th>
-              <th>#</th>
-              <th>姓名</th>
-              <th>手機</th>
-              <th>Email</th>
-              <th>生日</th>
-              <th>地址</th>
-              <th><i class="fa-solid a-file-pen"></i></th>
+              <th>編號</th>
+              <th>題目</th>
+              <th>選項A</th>
+              <th>選項B</th>
+              <th>選項C</th>
+              <th>選項D</th>
+              <th class="text-nowrap">A 配分</th>
+              <th class="text-nowrap">B 配分</th>
+              <th class="text-nowrap">C 配分</th>
+              <th class="text-nowrap">D 配分</th>
+              <th>
+                <!-- 完全新增一筆資料 將question_id設為空值 -->
+              <a href="hearttest_question_add.php?question_id=" class="btn btn-primary btn-sm text-nowrap">新增題目</a>
+              </th>
             </tr>
           </thead>
           <tbody>
-            <?php /*
-          //php區塊註解  (若用<!--  --> html註解 php部分還是會執行)
-          */ ?>
+            <!-- 4.用表格輸出資料 -->
             <?php foreach ($rows as $r) : ?>
               <tr>
                 <td>
                   <!-- 13-1. 符號設定-->
-                  <a href="delete.php?sid=<?= $r['sid'] ?>">
+                  <a href="hearttest_question_delete.php?question_id=<?= $r['question_id'] ?>">
                     <i class="fa-solid fa-trash"></i>
                   </a>
                 </td>
-                <td><?= $r['sid'] ?></td>
-                <td><?= $r['name'] ?></td>
-                <td><?= $r['mobile'] ?></td>
-                <td><?= $r['email'] ?></td>
-                <td><?= $r['birthday'] ?></td>
-                <td><?= htmlentities($r['address']) ?></td>
-                <!--跳脫 避免XSS攻擊(惡意輸入JS程式碼)  較建議-->
-                <!--<td><?= strip_tags($r['address']) ?></td> 去除標籤-->
-                <!-- 13-2. -->
+                <td><?= $r['question_id'] ?></td>
+                <td><?= $r['question_content'] ?></td>
+                <td><?= $r['option_a'] ?></td>
+                <td><?= $r['option_b'] ?></td>
+                <td><?= $r['option_c'] ?></td>
+                <td><?= $r['option_d'] ?></td>
+                <td><?= $r['option_value_a'] ?></td>
+                <td><?= $r['option_value_b'] ?></td>
+                <td><?= $r['option_value_c'] ?></td>
+                <td><?= $r['option_value_d'] ?></td>
+                <!-- 13-2.符號設定 -->
                 <td>
-                  <a href="edit.php?sid=<?= $r['sid'] ?>">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                  <a href="hearttest_question_edit.php?question_id=<?= $r['question_id'] ?>">
+                    <p class="btn btn-outline-success btn-sm">變更</p>
                   </a>
                 </td>
               </tr>
             <?php endforeach ?>
           </tbody>
         </table>
-        <!-- 6-3.分頁按鈕 -->
-        <div class="col">
-          <!-- https://getbootstrap.com/docs/5.3/components/pagination/ -->
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <!-- 12.按鈕功能(往下一頁、跳到最後頁) -->
-              <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
-                <!-- 11.跳頁按鈕的外觀 -->
-                <!-- https://fontawesome.com/search?q=angle&o=r&m=free -->
-                <a class="page-link" href="?page=1">
-                  <i class="fa-solid fa-angles-left"></i>
-                </a>
-              </li>
-
-              <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
-                <a class="page-link" href="?page=<?= $page - 1 ?>">
-                  <i class="fa-solid fa-angle-left"></i>
-                </a>
-              </li>
-              <!-- 9.最多 11 個頁碼按鈕 -->
-              <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
-                <?php if ($i >= 1 and $i <= $totalPages) : ?>
-                  <!-- 8.當前頁碼的提示修改 -->
-                  <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                    <!-- href 是省略資源檔(因為前面都相同) ?page=10#abc -->
-                    <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                  </li>
-                <?php endif ?>
-              <?php endfor ?>
-
-              <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
-                <a class="page-link" href="?page=<?= $page + 1 ?>">
-                  <i class="fa-solid fa-angle-right"></i>
-                </a>
-              </li>
-
-              <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
-                <a class="page-link" href="?page=<?= $totalPages ?>">
-                  <i class="fa-solid fa-angles-right"></i>
-                </a>
-              </li>
-
-            </ul>
-          </nav>
-        </div>
       </div>
     </div>
   </div>

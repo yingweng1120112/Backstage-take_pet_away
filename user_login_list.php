@@ -77,13 +77,13 @@ if ($totalRows > 0) {
         <thead>
           <tr>
             <th><i class="fa-solid fa-trash"></i></th>
+            <th><i class="fa-solid fa-file-pen"></i></th>
             <th>編號</th>
             <th>姓名</th>
             <th>手機</th>
             <th>Email</th>
             <th>照片</th>
             <th>地址</th>
-            <th><i class="fa-solid fa-file-pen"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -98,7 +98,7 @@ if ($totalRows > 0) {
                 </a>
               </td>
               <td>
-                <a href="edit.php?user_id=<?= $r['user_id'] ?>">
+                <a href="user_list_edit.php?user_id=<?= $r['user_id'] ?>">
                   <i class="fa-solid fa-file-pen"></i>
                 </a>
               </td>
@@ -112,7 +112,6 @@ if ($totalRows > 0) {
           <?php endforeach ?>
         </tbody>
       </table>
-
     </div>
   </div>
 
@@ -123,9 +122,9 @@ if ($totalRows > 0) {
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
   // console.log(myRows);
 
-  function deleteOne(sid) {
+  function deleteOne(user_id) {
     if (confirm(`是否要刪除編號為 ${user_id} 的項目?`)) {
-      location.href = `user_list_delete.php?sid=${user_id}`;
+      location.href = `user_list_delete.php?user_id=${user_id}`;
     }
   }
 </script>
