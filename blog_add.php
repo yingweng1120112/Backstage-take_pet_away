@@ -84,7 +84,6 @@ $pageName = 'add';
 </div>
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   const {
     pet_id: pet_idField,
