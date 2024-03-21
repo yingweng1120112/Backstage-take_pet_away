@@ -46,87 +46,92 @@ if ($totalRows > 0) {
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
 
-<!-- 按鈕顯示 -->
-<div class="row">
-  <div class="col">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
-          <a class="page-link" href="?page=1">
-            <i class="fa-solid fa-angles-left"></i>
-          </a>
-        </li>
-        <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
-          <a class="page-link" href="?page=<?= $page - 1 ?>">
-            <i class="fa-solid fa-angle-left"></i>
-          </a>
-        </li>
-        <!-- page +-5 的按鈕 -->
-        <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
-          <!-- page >=1 或 <= 總頁數 才會有該數字的按鈕 -->
-          <?php if ($i >= 1 and $i <= $totalPages) : ?>
-            <!-- page 的按鈕反白 -->
-            <li class="page-item <?= $i != $page ?: 'active' ?>">
-              <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-            </li>
-          <?php endif ?>
-        <?php endfor ?>
-        <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
-          <a class="page-link" href="?page=<?= $page + 1 ?>">
-            <i class="fa-solid fa-angle-right"></i>
-          </a>
-        </li>
-        <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
-          <a class="page-link" href="?page=<?= $totalPages ?>">
-            <i class="fa-solid fa-angles-right"></i>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</div>
+
+
 
 <!-- 資料表顯示 -->
-<div class="row">
-  <div class="col">
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>blog_id</th>
-          <th>pet_id</th>
-          <th>content</th>
-          <th>picture</th>
-          <th>time</th>
-          <th><i class="fa-solid fa-file-pen"></i></th>
-          <th><i class="fa-solid fa-trash"></i></th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($rows as $r) : ?>
-          <tr>
-            <td><?= $r['blog_id'] ?></td>
-            <td><?= $r['pet_id'] ?></td>
-            <td><?= $r['content'] ?></td>
-            <td>
-              <div><?= $r['pic'] ?></div>
-            </td>
-            <td><?= $r['time'] ?></td>
-            <td>
-              <a href="blog_edit.php?blog_id=<?= $r['blog_id'] ?>">
-                <i class="fa-solid fa-file-pen"></i>
-              </a>
-            </td>
-            <td>
-              <a href="javascript: deleteOne(<?= $r['blog_id'] ?>)">
-                <i class="fa-solid fa-trash"></i>
-              </a>
-            </td>
+<div class="container">
+  <div class="row">
+    <h3 class="text-center mt-5 fw-bold lh-lg text-secondary fs-2">線上認養紀錄</h3>
+    <div class="col">
+      <table class="table table-striped table-hover mt-2 border border-3 border-secondary">
+        <thead>
+          <tr class="text-center">
+            <th>blog_id</th>
+            <th>pet_id</th>
+            <th>content</th>
+            <th>picture</th>
+            <th>time</th>
+            <th><i></i></th>
+            <th><i></i></th>
           </tr>
-        <?php endforeach ?>
+        </thead>
+        <tbody class="table-group-divider">
+          <?php /*
+          # PHP 區塊註解
+          */ ?>
+          <?php foreach ($rows as $r) : ?>
+            <tr class="text-center">
+              <td><?= $r['blog_id'] ?></td>
+              <td><?= $r['pet_id'] ?></td>
+              <td><?= $r['content'] ?></td>
+              <td>
+                <div><img style="width: 50px;" src="uploads/<?= $r['pic'] ?>" alt=""> </div>
+              </td>
+              <td><?= $r['time'] ?></td>
+              <td>
+                <a href="blog_edit.php?blog_id=<?= $r['blog_id'] ?>">
+                  <i class="fa-solid fa-file-pen"></i>
+                </a>
+              </td>
+              <td>
+                <a href="javascript: deleteOne(<?= $r['blog_id'] ?>)">
+                  <i class="fa-solid fa-trash"></i>
+                </a>
+              </td>
+            </tr>
+          <?php endforeach ?>
 
-      </tbody>
-    </table>
+        </tbody>
+      </table>
 
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col d-flex justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+            <a class="page-link" href="?page=1">
+              <i class="fa-solid fa-angles-left"></i>
+            </a>
+          </li>
+          <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+            <a class="page-link" href="?page=<?= $page - 1 ?>">
+              <i class="fa-solid fa-angle-left"></i>
+            </a>
+          </li>
+          <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
+            <?php if ($i >= 1 and $i <= $totalPages) : ?>
+              <li class="page-item  <?= $i != $page ?: 'active' ?>">
+                <a class="page-link bd-secondary" href="?page=<?= $i ?>"><?= $i ?></a>
+              </li>
+            <?php endif ?>
+          <?php endfor ?>
+          <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
+            <a class="page-link" href="?page=<?= $page + 1 ?>">
+              <i class="fa-solid fa-angle-right"></i>
+            </a>
+          </li>
+          <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
+            <a class="page-link" href="?page=<?= $totalPages ?>">
+              <i class="fa-solid fa-angles-right"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </div>
 <a href="blog_add.php">+</a>

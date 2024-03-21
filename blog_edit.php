@@ -31,16 +31,24 @@ if (empty($r)) {
           <h5 class="card-title">編輯</h5>
 
           <form name="form1" onsubmit="sendData(event)">
-            <input name="blog_id" value="<?= $r['blog_id'] ?>">
+            <input type="text" style="display: none;" class="form-control" name="blog_id" value="<?= $r['blog_id'] ?>">
             <div class="mb-3">
-              <label for="pet_id" class="form-label">pet_id</label>
-              <input type="text" class="form-control" id="pet_id" name="pet_id" value="<?= $r['pet_id'] ?>">
+              <input type="text" style="display: none;" class=" form-control" id="pet_id" name="pet_id" value="<?= $r['pet_id'] ?>">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
               <label for="content" class="form-label">content</label>
               <textarea class="form-control" name="content" id="content" cols="30" rows="3"><?= $r['content'] ?></textarea>
               <div class="form-text"></div>
+            </div>
+            <input style="display: none;" type="text" name="pic" value="<?= $r['pic'] ?>">
+            <div class="mb-3">
+              <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
+              <br />
+              <img id="show_image" src="" />
+            </div>
+            <div id="a">
+              <p>當前檔案</p> <img src="uploads/<?= $r['pic'] ?>" alt="">
             </div>
             <button type="submit" class="btn btn-primary">修改</button>
           </form>
@@ -90,6 +98,7 @@ if (empty($r)) {
 </div>
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   const {
     pet_id: pet_idField,
@@ -145,6 +154,29 @@ if (empty($r)) {
         })
     }
   }
+  var imageProc = function(input) {
+    if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
+      var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
+      reader.onload = function(e) {
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("height", "100px")
+          .css("width", "100px");
+        $("#a").css("display", "none");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $(document).ready(function() {
+    // 綁定事件
+    $("#previewImage").change(function() {
+      imageProc(this);
+    });
+  });
   const successModal = new bootstrap.Modal('#successModal');
   const failureModal = new bootstrap.Modal('#failureModal');
   const failureInfo = document.querySelector('#failureModal .alert-danger');
