@@ -7,10 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>後臺介面</title>
-  <link href="css/styles.css" rel="stylesheet" />
-  <title><?= empty($title) ? "TAKE PET AWAY" : "$title - TAKE PET AWAY" ?></title>
-  <!-- <title>後臺介面</title> -->
+  <title><?= empty($title) ? "無名網頁" : "$title" ?></title>
   <link href="css/styles.css" rel="stylesheet" />
 </head>
 

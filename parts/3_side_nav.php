@@ -3,43 +3,20 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
       <div class="sb-sidenav-menu">
         <div class="nav">
-          <a class="nav-link collapsed" href="#" aria-expanded="false" aria-controls="collapsePagesUser">
-            <div class="sb-sidenav-menu-heading">會員專區</div>
-            <!-- 會員下拉式選單 -->
-            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesUser" aria-expanded="false" aria-controls="collapsePagesUser" onclick="toggleCollapse('collapsePagesUser')">
-              <div class="sb-nav-link-icon">
-                <i class="fas fa-book-open"></i>
-              </div>
-              會員管理
-              <div class="sb-sidenav-collapse-arrow">
-                <i class="fas fa-angle-down"></i>
-              </div>
-            </a>
-            <div class="collapse" id="collapsePagesUser" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav accordion" id="collapsePagesUser">
-                <a class="nav-link collapsed" href="login.php">
-                  登入/註冊
-                </a>
-                <a class="nav-link collapsed" href="user_list.php">
-                  修改會員資料
-                </a>
-                <a class="nav-link collapsed" href="user_list_add.php">
-                  新增會員資料
-                </a>
-                <a class="nav-link collapsed" href="#">
-                  線上認養紀錄
-                </a>
-                <a class="nav-link collapsed" href="#">
-                  預約紀錄
-                </a>
-                <a class="nav-link collapsed" href="#">
-                  收藏
-                </a>
-                <a class="nav-link collapsed" href="logout.php">
-                  登出
-                </a>
-              </nav>
+          <div class="sb-sidenav-menu-heading">會員專區</div>
+          <a class="nav-link" href="#">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-tachometer-alt"></i>
             </div>
+            會員管理
+          </a>
+          <div class="sb-sidenav-menu-heading">領養專區</div>
+          <a class="nav-link" href="#">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-chart-area"></i>
+            </div>
+            布告欄
+          </a>
 
           <!-- 下拉式選單 -->
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesAnimal" aria-expanded="false" aria-controls="collapsePagesAnimal">
@@ -53,11 +30,8 @@
           </a>
           <div class="collapse" id="collapsePagesAnimal" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav accordion" id="collapseContentAnimal">
-              <a class="nav-link collapsed" href="pet_list.php">
+              <a class="nav-link collapsed" href="#">
                 基本資訊
-              </a>
-              <a class="nav-link collapsed" href="pet_add.php">
-                增加寵物
               </a>
               <a class="nav-link collapsed" href="#">
                 動作與技能
@@ -86,49 +60,16 @@
             </div>
             產品資訊
           </a>
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#order" aria-expanded="false" aria-controls="order">
-            <div class="sb-nav-link-icon">
-              <i class="fas fa-book-open"></i>
-            </div>
+          <a class="nav-link" href="#">
+            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
             訂單紀錄
-            <div class="sb-sidenav-collapse-arrow">
-              <i class="fas fa-angle-down"></i>
-            </div>
           </a>
-          <div class="collapse" id="order" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-            <nav class="sb-sidenav-menu-nested nav accordion" id="orderContentPages">
-              <a class="nav-link collapsed" href="order_history.php">
-                歷史訂單
-              </a>
-              <a class="nav-link collapsed" href="order_history_detail.php">
-                訂單詳情
-              </a>
-            </nav>
-          </div>
           <div class="sb-sidenav-menu-heading">其他資訊</div>
           <a class="nav-link" href="#">
             <div class="sb-nav-link-icon">
               <i class="fas fa-chart-area"></i>
-            <!-- 布告欄下拉式選單 -->
-            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesBulletin" aria-expanded="false" aria-controls="collapsePagesBulletin" onclick="toggleCollapse('collapsePagesBulletin')">
-              <div class="sb-nav-link-icon">
-                <i class="fas fa-book-open"></i>
-              </div>
-              布告欄
-              <div class="sb-sidenav-collapse-arrow">
-                <i class="fas fa-angle-down"></i>
-              </div>
-            </a>
-            <div class="collapse" id="collapsePagesBulletin" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav accordion" id="collapseContentBulletin">
-                <a class="nav-link collapsed" href="#">
-                  公告事項
-                </a>
-                <a class="nav-link collapsed" href="#">
-                  活動訊息
-                </a>
-              </nav>
             </div>
+<<<<<<< HEAD
 
 
               <!-- 收容動物下拉式選單 -->
@@ -230,14 +171,38 @@
                   </a>
                 </nav>
               </div>
+=======
+            注意事項
+          </a>
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-book-open"></i>
+>>>>>>> 9bdb91e5b9661eb76421da4f22d0f3e14c5a1ac2
             </div>
+            心理測驗
+            <div class="sb-sidenav-collapse-arrow">
+              <i class="fas fa-angle-down"></i>
+            </div>
+          </a>
+          <div class="collapse" id="heartContentCollapse" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav accordion" id="heartContentPages">
+              <a class="nav-link collapsed" href="hearttest_question.php">
+                測驗題目
+              </a>
+              <a class="nav-link collapsed" href="hearttest_result.php">
+                測驗結果
+              </a>
+            </nav>
+          </div>
         </div>
-        <div class="sb-sidenav-footer">
-          <div class="small">專題製作</div>
-          Take Pet Away
-        </div>
+      </div>
+      <div class="sb-sidenav-footer">
+        <div class="small">專題製作</div>
+        Take Pet Away
+      </div>
     </nav>
   </div>
+<<<<<<< HEAD
   <div id="layoutSidenav_content">
 
     <script>
@@ -254,3 +219,6 @@
         });
       }
     </script>
+=======
+  <div id="layoutSidenav_content">
+>>>>>>> 9bdb91e5b9661eb76421da4f22d0f3e14c5a1ac2
