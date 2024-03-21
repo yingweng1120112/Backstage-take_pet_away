@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/parts/admin-required.php';
+// require __DIR__ . '/parts/admin-required.php';
 $dir = __DIR__ . '/uploads/';
 require __DIR__ . '/parts/pdo-connect.php';
 header("Content-Type: application/json");

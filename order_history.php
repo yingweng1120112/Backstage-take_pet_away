@@ -1,40 +1,24 @@
 <?php
-require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '訂單紀錄';
 $pageName = 'order';
 
 
-$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+//6-1.計算每頁有幾筆
+// $perPage = 12;
 
-//讓使用者在輸入非數字的頁數時會跳轉到第一頁
-if ($page < 1) {
-  header('Location: ?page=1');
-  exit; //跳轉後結束 不繼續執行
-}
-//每頁有幾筆
-$perPage = 8;
-
-//計算總筆數
+//5.計算資料總筆數
 $t_sql = "SELECT COUNT(1) FROM order_history";
 $t_stmt = $pdo->query($t_sql);
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
-//ceil 無條件進位
-$totalPages = ceil($totalRows / $perPage); //總頁數
 
-//讓使用者在輸入超過的頁數時會跳轉到最後頁
-$rows = []; //預設為空陣列
-if ($totalRows > 0) {
-  //有資料時 再往下進行
-  if ($page > $totalPages) {
-    header('Location: ?page=' . $totalPages);
-    exit;
-  }
 
-  //取得分頁資料
-  $sql = sprintf("SELECT * FROM order_history order by order_id DESC  LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
-  $rows = $pdo->query($sql)->fetchAll();
-}
+
+//2-1.取得分頁資料
+$sql = sprintf("SELECT * FROM 
+  order_history");
+//2.讀取資料表
+$rows = $pdo->query($sql)->fetchAll();
 
 
 ?>
@@ -89,7 +73,7 @@ if ($totalRows > 0) {
                 <td><?= $r['recipient_name'] ?></td>
                 <td><?= $r['recipient_phone'] ?></td>
                 <td><?= $r['order_date'] ?></td>
-                <td><?= htmlentities($r['order_remark']) ?></td>
+                <td><?= $r['order_remark'] ?></td>
                 <td><?= $r['delivery_method'] ?></td>
                 <td><?= $r['payment_method'] ?></td>
                 <td><?= $r['recipient_address_detail'] ?></td>
@@ -100,42 +84,6 @@ if ($totalRows > 0) {
             <?php endforeach ?>
           </tbody>
         </table>
-        <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=1">
-              <i class="fa-solid fa-angles-left"></i>
-            </a>
-          </li>
-
-          <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $page - 1 ?>">
-              <i class="fa-solid fa-angle-left"></i>
-            </a>
-          </li>
-
-          <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
-            <?php if ($i >= 1 and $i <= $totalPages) : ?>
-              <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-              </li>
-            <?php endif ?>
-          <?php endfor ?>
-
-          <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $page + 1 ?>">
-              <i class="fa-solid fa-angle-right"></i>
-            </a>
-          </li>
-
-          <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $totalPages ?>">
-              <i class="fa-solid fa-angles-right"></i>
-            </a>
-          </li>
-
-        </ul>
-      </nav>
       </div>
     </div>
   </div>
