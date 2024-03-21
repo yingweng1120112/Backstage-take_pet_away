@@ -26,13 +26,12 @@ if (empty($r)) {
     <div class="col-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">編輯會員列表</h5>
-
-          <form name="user_list_edit" onsubmit="sendData(event)">
-            <input type="hidden" name="user_id" value="<?= $r['user_id'] ?>">
+          <h5 class="card-title">修改會員列表</h5>
+          <form name="form1" onsubmit="sendData(event)">
+            <input type="hidden" class="form-control" name="user_id" value="<?= $r['user_id'] ?>">
             <div class="mb-3">
-              <label for="id" class="form-label">編號</label>
-              <input type="text" class="form-control" value="<?= $r['user_id'] ?>" disabled>
+              <label for="user_id" class="form-label">會員編號</label>
+              <input type="text" class="form-control" id="user_id" name="user_id" value="<?= $r['user_id'] ?>" disabled>
             </div>
             <div class="mb-3">
               <label for="name" class="form-label">姓名</label>
@@ -51,7 +50,10 @@ if (empty($r)) {
             </div>
             <div class="mb-3">
               <label for="pic" class="form-label">照片</label>
-              <input type="image" class="form-control" id="pic" name="pic" value="<?= $r['pic'] ?>">
+              <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
+              <br />
+              <img id="show_image" src="" />
+              <img id="a" src="uploads/<?= $r['pic'] ?>" alt="">
             </div>
             <div class="mb-3">
               <label for="address_detail" class="form-label">地址</label>
@@ -107,13 +109,15 @@ if (empty($r)) {
   </div>
 </div>
 
+<?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   const {
     name: nameField,
     email: emailField,
     account: accountField
-  } = document.user_list_edit;
+  } = document.form1;
 
   function validateEmail(email) {
     const re =
@@ -136,27 +140,22 @@ if (empty($r)) {
     accountField.style.border = "1px solid #CCC";
     accountField.nextElementSibling.innerHTML = '';
 
+    e.preventDefault();
+    let isPass = true;
 
-    e.preventDefault(); // 不要讓有外觀的表單以傳統的方式送出
-
-    let isPass = true; // 有沒有通過檢查, 預設值為 true
-
-    // TODO: 檢查資料的格式
-
+    // 檢查資料的格式
     // 姓名是必填, 長度要 2 以上
     if (nameField.value.length < 2) {
       isPass = false;
       nameField.style.border = "2px solid red";
       nameField.nextElementSibling.innerHTML = '請輸入正確的名字';
     }
-    /*
-        // email 若有填才檢查格式, 沒填不檢查格式
-        if (emailField.value && !validateEmail(emailField.value)) {
-          isPass = false;
-          emailField.style.border = "2px solid red";
-          emailField.nextElementSibling.innerHTML = '請輸入正確的 Email';
-        }
-    */
+    // email 若有填才檢查格式, 沒填不檢查格式
+    if (emailField.value && !validateEmail(emailField.value)) {
+      isPass = false;
+      emailField.style.border = "2px solid red";
+      emailField.nextElementSibling.innerHTML = '請輸入正確的 Email';
+    }
     // mobile 若有填才檢查格式, 沒填不檢查格式
     if (accountField.value && !validateAccount(accountField.value)) {
       isPass = false;
@@ -165,7 +164,7 @@ if (empty($r)) {
     }
     // 如果欄位都有通過檢查, 才要發 AJAX
     if (isPass) {
-      const fd = new FormData(document.user_list_edit); // 看成沒有外觀的表單
+      const fd = new FormData(document.form1); // 看成沒有外觀的表單
 
       fetch('user_list_edit-api.php', {
           method: 'POST',
@@ -187,13 +186,35 @@ if (empty($r)) {
         })
         .catch(ex => {
           console.log(ex);
-          // alert('資料新增發生錯誤' + ex)
           failureInfo.innerHTML = '資料修改發生錯誤' + ex;
           failureModal.show();
         })
     }
   }
 
+  var imageProc = function(input) {
+    if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
+      var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
+      reader.onload = function(e) {
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("height", "100px")
+          .css("width", "100px");
+        $("#a").css("display", "none");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $(document).ready(function() {
+    // 綁定事件
+    $("#previewImage").change(function() {
+      imageProc(this);
+    });
+  });
 
   const successModal = new bootstrap.Modal('#successModal');
   const failureModal = new bootstrap.Modal('#failureModal');

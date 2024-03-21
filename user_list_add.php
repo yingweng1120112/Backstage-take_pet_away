@@ -33,8 +33,9 @@ $pageName = 'user list add';
             </div>
             <div class="mb-3">
               <label for="pic" class="form-label">照片</label>
-              <input type="image" class="form-control" id="pic" name="pic">
-              <div class="form-text"></div>
+              <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
+              <br />
+              <img id="show_image" src="" />
             </div>
             <div class="mb-3">
               <label for="address_detail" class="form-label">地址</label>
@@ -91,7 +92,9 @@ $pageName = 'user list add';
   </div>
 </div>
 
+<?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
   const {
     name: nameField,
@@ -110,9 +113,7 @@ $pageName = 'user list add';
     return pattern.test(account);
   }
 
-
   function sendData(e) {
-    // 欄位的外觀要回復原來的狀態
     nameField.style.border = "1px solid #CCC";
     nameField.nextElementSibling.innerHTML = '';
     emailField.style.border = "1px solid #CCC";
@@ -121,11 +122,12 @@ $pageName = 'user list add';
     accountField.nextElementSibling.innerHTML = '';
 
 
-    e.preventDefault(); // 不要讓有外觀的表單以傳統的方式送出
+    e.preventDefault();
 
-    let isPass = true; // 有沒有通過檢查, 預設值為 true
+    let isPass = true;
 
-    // TODO: 檢查資料的格式
+
+    // 檢查資料的格式
 
     // 姓名是必填, 長度要 2 以上
     if (nameField.value.length < 2) {
@@ -152,7 +154,7 @@ $pageName = 'user list add';
 
     // 如果欄位都有通過檢查, 才要發 AJAX
     if (isPass) {
-      const fd = new FormData(document.form1); // 看成沒有外觀的表單
+      const fd = new FormData(document.form1);
 
       fetch('user_list_add-api.php', {
           method: 'POST',
@@ -162,10 +164,10 @@ $pageName = 'user list add';
         .then(result => {
           console.log(result);
           if (result.success) {
-            alert('資料新增成功')
+            //alert('資料新增成功')
             successModal.show();
           } else {
-            alert('資料新增失敗')
+            //alert('資料新增失敗')
             if (result.error) {
               failureInfo.innerHTML = result.error;
             } else {
@@ -182,6 +184,29 @@ $pageName = 'user list add';
         })
     }
   }
+
+  var imageProc = function(input) {
+    if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
+      var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
+      reader.onload = function(e) {
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("height", "100px")
+          .css("width", "100px");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
+
+  $(document).ready(function() {
+    // 綁定事件
+    $("#previewImage").change(function() {
+      imageProc(this);
+    });
+  });
 
   const successModal = new bootstrap.Modal('#successModal');
   const failureModal = new bootstrap.Modal('#failureModal');
