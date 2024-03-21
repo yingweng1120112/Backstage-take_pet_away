@@ -64,6 +64,9 @@ $rows = $pdo->query($sql)->fetchAll();
         --bs-link-hover-color: #967E76;
         --bs-dark-rgb: #967E76;
     }
+    a:hover {
+        color: brown;
+    }
     /* header 側nav */
     :root {
         --bs-dark-rgb: 83, 46, 28;
