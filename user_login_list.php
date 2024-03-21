@@ -77,13 +77,13 @@ if ($totalRows > 0) {
         <thead>
           <tr>
             <th><i class="fa-solid fa-trash"></i></th>
+            <th><i class="fa-solid fa-file-pen"></i></th>
             <th>編號</th>
             <th>姓名</th>
             <th>手機</th>
             <th>Email</th>
             <th>照片</th>
             <th>地址</th>
-            <th><i class="fa-solid fa-file-pen"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -93,25 +93,25 @@ if ($totalRows > 0) {
           <?php foreach ($rows as $r) : ?>
             <tr>
               <td>
-                <a href="javascript: deleteOne(<?= $r['sid'] ?>)">
+                <a href="javascript: deleteOne(<?= $r['user_id'] ?>)">
                   <i class="fa-solid fa-trash"></i>
                 </a>
               </td>
               <td>
-                <a href="edit.php?user_id=<?= $r['user_id'] ?>">
+                <a href="user_list_edit.php?user_id=<?= $r['user_id'] ?>">
                   <i class="fa-solid fa-file-pen"></i>
                 </a>
               </td>
+              <td><?= $r['user_id'] ?></td>
               <td><?= $r['name'] ?></td>
               <td><?= $r['account'] ?></td>
               <td><?= $r['email'] ?></td>
               <td><?= $r['pic'] ?></td>
-              <td><?= htmlentities($r['address']) ?></td>
+              <td><?= htmlentities($r['address_detail']) ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>
       </table>
-
     </div>
   </div>
 
@@ -122,9 +122,9 @@ if ($totalRows > 0) {
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
   // console.log(myRows);
 
-  function deleteOne(sid) {
-    if (confirm(`是否要刪除編號為 ${sid} 的項目?`)) {
-      location.href = `user_list_delete.php?sid=${sid}`;
+  function deleteOne(user_id) {
+    if (confirm(`是否要刪除編號為 ${user_id} 的項目?`)) {
+      location.href = `user_list_delete.php?user_id=${user_id}`;
     }
   }
 </script>
