@@ -1,5 +1,5 @@
 <?php
-// require __DIR__ . '/parts/admin-required.php'; 等連接
+require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '新增測驗結果';
 $pageName = 'question_result_add'
@@ -94,6 +94,9 @@ $pageName = 'question_result_add'
 <?php include __DIR__ . '/parts/5_script.php' ?>
 
 <script>
+  const successModal = new bootstrap.Modal('#successModal');
+  const failureModal = new bootstrap.Modal('#failureModal');
+  const failureInfo = document.querySelector('#failureModal .alert-danger');
   let personalityType = document.getElementById('personalityType');
   let typeContent = document.getElementById('typeContent');
 
@@ -104,6 +107,7 @@ $pageName = 'question_result_add'
     personalityType.nextElementSibling.innerHTML = '';
     typeContent.style.border = "1px solid #CCC";
     typeContent.nextElementSibling.innerHTML = '';
+    previewImage.nextElementSibling.innerHTML = '';
 
 
 
@@ -185,12 +189,8 @@ $pageName = 'question_result_add'
     $("#previewImage").change(function() {
       imageProc(this);
     });
-    
+
   });
-  
-  const successModal = new bootstrap.Modal('#successModal');
-  const failureModal = new bootstrap.Modal('#failureModal');
-  const failureInfo = document.querySelector('#failureModal .alert-danger');
 </script>
 
 <?php include __DIR__ . '/parts/6_foot.php' ?>
