@@ -78,7 +78,6 @@ if ($totalPages > 0) {
             <th class="text-center" scope="col">年齡</th>
             <th class="text-center" scope="col">種類</th>
             <th class="text-center" scope="col">性別</th>
-            <!-- <th scope="col">品種</th> -->
             <th class="text-center" scope="col">是否被領養</th>
             <th class="text-center" scope="col">寵物圖片</th>
             <th class="text-center"><i class="fa-solid fa-pen-to-square"></i></th>
@@ -98,6 +97,7 @@ if ($totalPages > 0) {
               <td class="text-center"><?= $r["type"] ?></td>
               <td class="text-center"><?= $r["sex"] ?></td>
               <td class="text-center"><?= $r["adopted"] ?></td>
+              <!-- TODO: 抓不到值的樣式 -->
               <?php if ($r["pet_pic1"] === null || $r["pet_pic1"] === "") : ?>
                 <td class="text-center">無</td>
               <?php else : ?>
@@ -141,7 +141,6 @@ if ($totalPages > 0) {
 <?php include __DIR__ . "/parts/5_script.php" ?>
 <script>
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
-  // console.log(myRows);
 
   function deleteOne(pet_id) {
     if (confirm(`是否要刪除編號為 ${pet_id} 的項目?`)) {

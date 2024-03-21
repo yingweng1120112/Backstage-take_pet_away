@@ -29,7 +29,6 @@ $pageName = "pet_add";
     <div class="col-6">
       <div class="card mb-4 border border-3 border-dark border-opacity-50">
         <div class="card-body">
-          <!-- <h5 class="card-title my-3">新增寵物</h5> -->
           <form name="form1" onsubmit="sendData(event)">
             <div class="mb-3">
               <div class="mb-3">
@@ -47,11 +46,6 @@ $pageName = "pet_add";
                 <input type="number" class="form-control" id="age" name="age">
                 <div class="form-text"></div>
               </div>
-              <!-- <div class="mb-3">
-                <label for="personality_type" class="form-label">性格類型</label>
-                <input type="text" class="form-control" id="personality_type" name="personality_type">
-                <div class="form-text"></div>
-              </div> -->
               <div class="mb-3">
                 <label for="personality_type" class="form-label me-3 lh-lg">性格類型</label>
                 <input type="radio" class="btn-check" name="personality_type" id="personality_type1" value="敏感型" autocomplete="off" checked>
@@ -65,16 +59,6 @@ $pageName = "pet_add";
                 <input type="radio" class="btn-check" name="personality_type" id="personality_type5" value="適應型" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="personality_type5">適應型</label>
               </div>
-              <!-- <div class="mb-3">
-                <label for="type" class="form-label">種類</label>
-                <input type="text" class="form-control" id="type" name="type">
-                <div class="form-text"></div>
-              </div> -->
-              <!-- <div class="mb-3">
-                <label for="sex" class="form-label">性別</label>
-                <input type="text" class="form-control" id="sex" name="sex">
-                <div class="form-text"></div>
-              </div> -->
               <div class="mb-3">
                 <label for="type" class="form-label me-3 lh-lg">種類</label>
                 <input type="radio" class="btn-check" name="type" id="type-dog" value="狗" autocomplete="off" checked>
@@ -96,17 +80,6 @@ $pageName = "pet_add";
                 <input type="radio" class="btn-check" name="adopted" id="adopted-False" value="否" autocomplete="off">
                 <label class="btn btn-outline-secondary" for="adopted-False">否</label>
               </div>
-              <!-- <label for="adopted" class="form-label me-3">是否被領養</label>
-              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="adopted" id="adoptedTrue" autocomplete="off" checked>
-                <label class="btn btn-outline-secondary" for="adoptedTrue">是</label>
-                <input type="radio" class="btn-check" name="adopted" id="adoptedFalse" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="adoptedFalse">否</label>
-              </div> -->
-              <!-- <div class="input-group mb-3">
-                <label for="file" class="form-label me-3 lh-lg">上傳寵物照片</label>
-                <input type="file" class="form-control" id="photos" name="photos[]" accept="image/*" onchange="uploadFile()">
-              </div> -->
               <div class="mb-3">
                 <label for="file" class="form-label me-3 lh-lg">上傳寵物照片</label>
                 <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png">
@@ -114,12 +87,10 @@ $pageName = "pet_add";
                   <img class="" id="show_image" src="">
                 </div>
               </div>
-              <!-- <div class="input-group mb-3">
-                <input type="file" class="form-control" id="inputGroupFile02">
-                <label class="input-group-text" for="inputGroupFile02">Upload</label>
-              </div> -->
             </div>
             <div class="d-flex justify-content-end mt-5">
+              <!-- <input type="radio" class="btn-check" id="wrongBtn" value="wrongBtn" autocomplete="off">
+              <label class="btn btn-outline-danger me-5" for="wrongBtn">錯誤按鈕</label> -->
               <button type="reset" class="btn btn-secondary w-25 mx-4">CANCEL</button>
               <button type="submit" class="btn btn-dark w-25 mx-4">SUBMIT</button>
             </div>
@@ -129,7 +100,6 @@ $pageName = "pet_add";
     </div>
   </div>
 </div>
-<!-- Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -211,12 +181,6 @@ $pageName = "pet_add";
     // 如果欄位都有通過檢查，才發ajax
     if (isPass) {
       const fd = new FormData(document.form1); // 看成沒有外觀的表單
-
-      // console.log(fd);
-
-      // for (let i of fd.entries()){
-      //     console.log(i);
-      // }
 
       fetch("pet_add-api.php", {
           method: "POST",
