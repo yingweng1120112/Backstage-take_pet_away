@@ -33,9 +33,6 @@
               <a class="nav-link collapsed" href="#">
                 基本資訊
               </a>
-              <a class="nav-link collapsed" href="pet_add.php">
-                增加寵物
-              </a>
               <a class="nav-link collapsed" href="#">
                 動作與技能
               </a>
