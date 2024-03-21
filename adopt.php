@@ -15,7 +15,6 @@ $pageName = 'adopt';
                 <div class="card-body ">
                     <h3 class="card-title text-center fw-bold mb-3">線上認養</h3>
                     <form name="form1" onsubmit="sendData(event)" class="vstack">
-                        <input type="hidden" name="adopt_id" value="<?= $r['adopt_id'] ?>">
                         <div class="mb-3">
                             <label for="pet_id" class="form-label fw-bold">寵物ID</label>
                             <input type="text" class="form-control text-center fw-bold" id="pet_id" name="pet_id">
