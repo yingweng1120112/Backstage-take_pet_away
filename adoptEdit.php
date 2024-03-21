@@ -30,7 +30,7 @@ $address = $r['donate_address'];
             <input type="hidden" name="adopt_id" value="<?= $r['adopt_id'] ?>">
             <div class="mb-3">
               <label for="name" class="form-label text-center fw-bold">#</label>
-              <input type="text" class="form-control text-center fw-bold" value="<?= $r['adopt_id'] ?>">
+              <input type="text" class="form-control text-center fw-bold" value="<?= $r['adopt_id'] ?>" disabled>
             </div>
 
             <div class="mb-3">
