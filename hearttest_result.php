@@ -1,21 +1,22 @@
-<!-- 設定筆數上限 -->
 <?php
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '心理測驗';
 $pageName = 'list';
 
 
+//6-1.計算每頁有幾筆
+// $perPage = 12;
 
 //5.計算資料總筆數
-$t_sql = "SELECT COUNT(1) FROM psycological_test";
+$t_sql = "SELECT COUNT(1) FROM psycological_test_result";
 $t_stmt = $pdo->query($t_sql);
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
 
 
 
-//2-1.取得分頁資料//7-2.更改分頁筆數排序
+//2-1.取得分頁資料
 $sql = sprintf("SELECT * FROM 
-  psycological_test ");
+  psycological_test_result");
 //2.讀取資料表
 $rows = $pdo->query($sql)->fetchAll();
 
@@ -28,15 +29,15 @@ $rows = $pdo->query($sql)->fetchAll();
 
 <section>
   <div class="container-fluid px-4">
-    <h1 class="mt-4">測驗題目</h1>
+    <h1 class="mt-4">測驗結果</h1>
     <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item"><a href="index_.php">首頁</a></li>
-      <li class="breadcrumb-item active">測驗題目</li>
+      <li class="breadcrumb-item active">測驗結果</li>
     </ol>
     <div class="card mb-4">
       <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        題目與對應分數
+        結果類別
       </div>
       <div class="card-body table-responsive">
         <table class="table table-striped">
@@ -45,18 +46,11 @@ $rows = $pdo->query($sql)->fetchAll();
               <!-- 13.新增刪除編輯的功能按鈕 -->
               <th><i class="fa-solid fa-trash"></i></th>
               <th>編號</th>
-              <th>題目</th>
-              <th>選項A</th>
-              <th>選項B</th>
-              <th>選項C</th>
-              <th>選項D</th>
-              <th class="text-nowrap">A 配分</th>
-              <th class="text-nowrap">B 配分</th>
-              <th class="text-nowrap">C 配分</th>
-              <th class="text-nowrap">D 配分</th>
+              <th class="text-nowrap">個性種類</th>
+              <th class="text-nowrap">圖片</th>
+              <th class="text-nowrap">個性說明</th>
               <th>
-                <!-- 完全新增一筆資料 將question_id設為空值 -->
-              <a href="hearttest_question_add.php?question_id=" class="btn btn-primary btn-sm text-nowrap">新增題目</a>
+                <a href="hearttest_result_add.php?result_id=" class="btn btn-primary btn-sm text-nowrap">新增類別</a>
               </th>
             </tr>
           </thead>
@@ -66,23 +60,17 @@ $rows = $pdo->query($sql)->fetchAll();
               <tr>
                 <td>
                   <!-- 13-1. 符號設定-->
-                  <a href="hearttest_question_delete.php?question_id=<?= $r['question_id'] ?>">
+                  <a href="hearttest_result_delete.php?result_id=<?= $r['result_id'] ?>">
                     <i class="fa-solid fa-trash"></i>
                   </a>
                 </td>
-                <td><?= $r['question_id'] ?></td>
-                <td><?= $r['question_content'] ?></td>
-                <td><?= $r['option_a'] ?></td>
-                <td><?= $r['option_b'] ?></td>
-                <td><?= $r['option_c'] ?></td>
-                <td><?= $r['option_d'] ?></td>
-                <td><?= $r['option_value_a'] ?></td>
-                <td><?= $r['option_value_b'] ?></td>
-                <td><?= $r['option_value_c'] ?></td>
-                <td><?= $r['option_value_d'] ?></td>
+                <td><?= $r['result_id'] ?></td>
+                <td><?= $r['personality_type'] ?></td>
+                <td><img src="uploads/<?= $r["pic"] ?>" alt="" style="width:90%"></td>
+                <td><?= $r['type__content'] ?></td>
                 <!-- 13-2.符號設定 -->
                 <td>
-                  <a href="hearttest_question_edit.php?question_id=<?= $r['question_id'] ?>">
+                  <a href="hearttest_result_edit.php?result_id=<?= $r['result_id'] ?>">
                     <p class="btn btn-outline-success btn-sm">變更</p>
                   </a>
                 </td>

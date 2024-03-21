@@ -3,7 +3,8 @@
   <a class="navbar-brand ps-3" href="index_.php">Take Pet Away</a>
 
   <!-- Navbar Search-->
-  <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
+  <!-- <fo class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></fo/rm> -->
+
   <!-- Navbar-->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
