@@ -10,6 +10,44 @@ $title = '新增產品';
     .form-text {
         color: red;
     }
+    /* header 側nav */
+    :root {
+        --bs-dark-rgb: 83, 46, 28;
+    }
+    .sb-sidenav-dark {
+        background-color: #8E806A;
+    }
+    .sb-sidenav-dark .sb-sidenav-footer {
+    background-color: #8E806A;
+    }
+    /* 編輯表單 */
+    
+    .card-header {
+        background-color: #D7C0AE;
+    }
+    .card-footer {
+        background-color: #D7C0AE;
+    }
+    .modal-header {
+        background-color: #967E76;
+        color: white;
+    }
+    /* .form-control {
+        border: 1px solid #b99549;
+    } */
+    /* .form-select {
+        border: 1px solid #b99549;
+    } */
+    
+    /* option{
+        border: 1px solid #b99549;
+        margin: 10% auto;
+    } */
+    .btn-primary {
+    --bs-btn-bg: #D7C0AE;
+    --bs-btn-border-color: #b99549;
+    --bs-btn-hover-bg: #a16a38;
+    }
 </style>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
