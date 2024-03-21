@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/parts/admin-required.php'; 
+// require __DIR__ . '/parts/admin-required.php'; 等連接
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '編輯測驗結果';
 $pageName = 'content_add';

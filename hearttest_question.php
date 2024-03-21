@@ -1,5 +1,5 @@
+<!-- 設定筆數上限 -->
 <?php
-require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '心理測驗';
 $pageName = 'list';

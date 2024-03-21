@@ -5,6 +5,6 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['user'])) {
-  header('Location: index_.php');
+  header('Location: login.php');
   exit;
 }

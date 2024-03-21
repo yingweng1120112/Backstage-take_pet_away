@@ -1,6 +1,7 @@
+<!-- 原始拆分頁面 暫放(已不需要) -->
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 123 -->
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,7 +16,7 @@
 <body class="sb-nav-fixed">
   <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="index.html">Take Pet Away</a>
+    <a class="navbar-brand ps-3" href="index.html">Take Away</a>
 
     <!-- Navbar Search-->
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
@@ -133,34 +134,79 @@
               </div>
               <div class="card-body">
                 <form>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" id="inputName" type="text" />
-                    <label for="inputEmail">預約者姓名</label>
+                  <div style="display: flex; flex-direction: row; justify-content: center; height: 110px;">
+                    <div class="form-floating mb-3 " style="padding:20px 5px;">
+                      <buttom class="form-control" id="inputType" type="buttom" style="padding: 20px;" />
+                      <label for="inputAdopt">定期定額</label>
+                    </div>
+                    <div class="form-floating mb-3" style="padding:20px 5px;">
+                      <buttom class="form-control" id="inputType" type="buttom" style="padding: 20px;" />
+                      <label for="inputAdopt">單筆捐款</label>
+                    </div>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" id="inputCellphone" type="tel" />
-                    <label for="inputCellphone">電話</label>
+                  <div style="display: flex; flex-direction: row; justify-content: center; height: 110px;">
+                    <div class="form-floating mb-3 " style="padding:20px 5px;">
+                      <buttom class="form-control" id="inputMoney" type="buttom" style="padding: 20px;" />
+                      <label for="inputNtd">NTD500</label>
+                    </div>
+                    <div class="form-floating mb-3" style="padding:20px 5px;">
+                      <buttom class="form-control" id="inputMoney" type="buttom" style="padding: 20px;" />
+                      <label for="inputNtd">NTD1000</label>
+                    </div>
+                    <div class="form-floating mb-3" style="padding:20px 5px;">
+                      <buttom class="form-control" id="inputMoney" type="buttom" style="padding: 20px;" />
+                      <label for="inputNtd ">NTD2000</label>
+                    </div>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" id="Email" type="text" />
-                    <label for="inputEmail">Email</label>
+                  <div style="display: flex; flex-direction: column;align-items: center; height: 110px;">
+                    <p>付款方式</p>
+                    <div class="checkbox-group ">
+                      <label>
+                        <input type="checkbox" value="credit-acrd" id="credit-acrd" />
+                        <span>信用卡</span>
+                      </label>
+                      <label>
+                        <input type="checkbox" value="bank" id="bank" />
+                        <span>銀行匯款</span>
+                      </label>
+                      <label>
+                        <input type="checkbox" value="supermarket" id="supermarket" />
+                        <span>超商付款</span>
+                      </label>
+                    </div>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" id="address" type="text" />
-                    <label for="inputEmail">捐贈金額</label>
+                  <div style="display: flex; flex-direction: column;align-items: center; height: 110px;">
+                    <p>捐贈方式</p>
+                    <div class="checkbox-group ">
+                      <label>
+                        <input type="checkbox" value="none" id="none" />
+                        <span>不指定</span>
+                      </label>
+                      <label>
+                        <input type="checkbox" value="emergency" id="emergency" />
+                        <span>急難救助</span>
+                      </label>
+                      <label>
+                        <input type="checkbox" value="sterilization" id="sterilization" />
+                        <span>絕育計畫</span>
+                      </label>
+                    </div>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" id="address" type="text" />
-                    <label for="inputEmail">捐贈用途</label>
+                  <div style="display: flex; flex-direction: column;align-items: center; height: 110px;">
+                    <p>捐贈證明寄送</p>
+                    <div class="checkbox-group ">
+                      <label>
+                        <input type="checkbox" value="credit-acrd" id="credit-acrd" />
+                        <span>電子郵件地址</span>
+                      </label>
+                      <label>
+                        <input type="checkbox" value="bank" id="bank" />
+                        <span>通訊地址</span>
+                      </label>
+                    </div>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" id="address" type="text" />
-                    <label for="inputEmail">捐贈證明寄送</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" id="inputPet" type="text" />
-                    <label for="inputPassword">寵物ID</label>
-                  </div>
+                  <input type="submit" id="click"></input>
+                  <div class="result"></div>
                 </form>
               </div>
               <div class="card-footer text-center py-3">
@@ -181,8 +227,32 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
-  <script src="js/scripts.js"></script>
+  <!-- <script src="js/scripts.js"></script> -->
   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script>
+
+    let checkEl = document.querySelector('#click');
+    checkEl.addEventListener('click',(e)=>{
+      e.preventDefault();
+      var list = [];
+        var chked = document.querySelectorAll("[type=checkbox]:checked");
+        for (var i = 0; i < chked.length; i++) {
+            list.push(chked[i].value);
+        }
+        document.querySelector(".result").innerHTML = list.join(', ') || "none";
+    })
+      
+    
+    // function checkResult() {
+    //     var list = [];
+    //     var chked = document.querySelectorAll("[type=submit]:checked");
+    //     for (var i = 0; i < chked.length; i++) {
+    //         list.push(chked[i].value);
+    //     }
+    //     document.querySelector(".result").innerHTML = list.join(', ') || "none";
+
+    // }
+</script>
 </body>
 
 </html>

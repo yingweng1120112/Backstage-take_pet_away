@@ -109,9 +109,9 @@ if ($totalRows > 0) {
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
   // console.log(myRows);
 
-  function deleteOne(sid) {
-    if (confirm(`是否要刪除編號為 ${sid} 的項目?`)) {
-      location.href = `user_list_delete.php?sid=${sid}`;
+  function deleteOne(user_id) {
+    if (confirm(`是否要刪除編號為 ${user_id} 的項目?`)) {
+      location.href = `user_list_delete.php?sid=${user_id}`;
     }
   }
 </script>

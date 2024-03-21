@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/parts/admin-required.php';
+// require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 $dir = __DIR__ . '/uploads/'; # 存放檔案的資料夾
 header("Content-Type: application/json");

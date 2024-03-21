@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/parts/admin-required.php';
+// require __DIR__ . '/parts/admin-required.php'; 等連接
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '編輯測驗題目';
 $pageName = 'question_add';
@@ -113,10 +113,10 @@ $selectD = $r['option_value_d'];
                 <label for="valueD" class="form-label">選項 D 分數</label>
                 <select class="form-select" aria-label="Default select example" name="option_value_d" id="valueD">
                   <option selected>選項</option>
-                  <option value="1" <?php if (!empty($selectD) && $selectD == '1')  echo 'selected = "selected"'; ?>>1</option>
-                  <option value="2" <?php if (!empty($selectD) && $selectD == '2')  echo 'selected = "selected"'; ?>>2</option>
-                  <option value="3" <?php if (!empty($selectD) && $selectD == '3')  echo 'selected = "selected"'; ?>>3</option>
-                  <option value="4" <?php if (!empty($selectD) && $selectD == '4')  echo 'selected = "selected"'; ?>>4</option>
+                  <option value="1" <?php if (!empty($select) && $select == '1')  echo 'selected = "selected"'; ?>>1</option>
+                  <option value="2" <?php if (!empty($select) && $select == '2')  echo 'selected = "selected"'; ?>>2</option>
+                  <option value="3" <?php if (!empty($select) && $select == '3')  echo 'selected = "selected"'; ?>>3</option>
+                  <option value="4" <?php if (!empty($select) && $select == '4')  echo 'selected = "selected"'; ?>>4</option>
                 </select>
                 </select>
                 <div class="form-text"></div>
