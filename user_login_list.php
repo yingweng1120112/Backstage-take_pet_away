@@ -10,7 +10,7 @@ if ($page < 1) {
 }
 
 # 每一頁有幾筆
-$perPage = 25;
+$perPage = 10;
 
 # 計算總筆數
 $t_sql = "SELECT COUNT(1) FROM user";
