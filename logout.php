@@ -1,6 +1,9 @@
 <?php
 session_start();
 
-unset($_SESSION['admin']);
+// 設定登出訊息
+// $_SESSION['logout_message'] = "您已成功登出！";
+
+unset($_SESSION['user']);
 
 header('Location: index_.php');

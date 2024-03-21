@@ -1,6 +1,5 @@
 <?php
-
-$db_host = 'localhost';
+$db_host = "localhost";
 $db_user = 'root';
 $db_pass = '';
 $db_name = 'take_pet_away';
@@ -15,6 +14,6 @@ $pdo_options = [
 
 $pdo = new PDO($dsn, $db_user, $db_pass, $pdo_options);
 
-// if (!isset($_SESSION)) {
-//   session_start();
-// }
+if (!isset($_SESSION)) {
+  session_start();
+}
