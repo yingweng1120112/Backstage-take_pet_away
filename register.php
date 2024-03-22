@@ -14,11 +14,11 @@ if (isset($_SESSION['user'])) {
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
 <div class="container">
-    <div class="row mt-3 justify-content-center">
+    <div class="row mt-5 mb-5 justify-content-center">
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">註冊</h5>
+                    <h5 class="card-title text-center">註冊</h5>
                     <form name="form1" onsubmit="sendData(event)">
                         <div class="mb-3">
                             <label for="name" class="form-label">姓名</label>
