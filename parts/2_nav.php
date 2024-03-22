@@ -1,17 +1,16 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
   <!-- Navbar Brand-->
-  <a class="navbar-brand ps-3" href="index_.php">
-
-    Take Pet Away</a>
-
+  <a class="navbar-brand ps-3" href="index_.php">Take Pet Away</a>
   <!-- Navbar Search-->
-  <!-- <fo class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></fo/rm> -->
-
+  <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <input type="text" name="query" placeholder="Enter your search term">
+    <button type="submit">Search</button>
+  </form> -->
   <!-- Navbar-->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     </ul>
-    <ul class="navbar-nav mb-2 mb-lg-0 ">
+    <ul class="navbar-nav mb-2 mb-lg-0">
       <?php if (isset($_SESSION['user'])) : ?>
         <li class="nav-item">
           <a class="nav-link"><?= $_SESSION['user']['name'] ?></a>
