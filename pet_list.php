@@ -1,5 +1,5 @@
 <?php
-// require __DIR__ . "/parts/admin-required.php";
+require __DIR__ . "/parts/admin-required.php";
 require __DIR__ . "/parts/pdo-connect.php";
 
 $title = "寵物基本資訊";
