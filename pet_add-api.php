@@ -38,7 +38,11 @@ if (!empty($_POST["name"])) {
   // TODO: 檢查資料格式
   if (mb_strlen($_POST["name"]) < 3) {
     $isPass = false;
-    $output["error"] = "姓名請填2個字以上";
+    $output["error"] = "姓名請填3個字以上";
+  }
+  if (mb_strlen($_POST["tag"]) < 2) {
+    $isPass = false;
+    $output["error"] = "請填2個字以上";
   }
 
   if ($isPass) {
