@@ -61,6 +61,7 @@ if (isset($_SESSION['user'])) {
 </div>
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 
+<?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
 <script>
     const {
@@ -114,5 +115,4 @@ if (isset($_SESSION['user'])) {
     }
     const failureModal = new bootstrap.Modal('#failureModal');
 </script>
-
 <?php include __DIR__ . '/parts/6_foot.php' ?>

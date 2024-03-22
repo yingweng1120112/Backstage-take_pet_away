@@ -1,5 +1,5 @@
 <?php
-// require __DIR__ . '/parts/admin-required.php';
+require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 
 $questionId = isset($_GET["question_id"]) ? intval ($_GET["question_id"]) : 0;
