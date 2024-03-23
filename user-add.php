@@ -9,12 +9,68 @@ $pageName = 'user list add';
 <?php include __DIR__ . '/parts/1_head.php' ?>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
-<div class="container">
-  <div class="row mt-5 mb-5 justify-content-center">
-    <div class="col-6">
-      <div class="card">
+<style>
+  .form-text {
+    color: red;
+  }
+
+  /* header 側nav */
+  :root {
+    --bs-dark-rgb: 83, 46, 28;
+  }
+
+  .sb-sidenav-dark {
+    background-color: #8E806A;
+  }
+
+  .sb-sidenav-dark .sb-sidenav-footer {
+    background-color: #8E806A;
+  }
+
+  /* 編輯表單 */
+
+  .card-header {
+    background-color: #D7C0AE;
+  }
+
+  .card-footer {
+    background-color: #D7C0AE;
+  }
+
+  .modal-header {
+    background-color: #967E76;
+    color: white;
+  }
+
+  /* .form-control {
+        border: 1px solid #b99549;
+    } */
+  /* .form-select {
+        border: 1px solid #b99549;
+    } */
+
+  /* option{
+        border: 1px solid #b99549;
+        margin: 10% auto;
+    } */
+  .btn-primary {
+    --bs-btn-bg: #D7C0AE;
+    --bs-btn-border-color: #b99549;
+    --bs-btn-hover-bg: #a16a38;
+  }
+
+  .row {
+    --bs-gutter-x: 0rem;
+  }
+</style>
+<section>
+  <div class="row mb-5 justify-content-center">
+    <div class="col-lg-5">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header">
+          <h4 class="text-center font-weight-light my-4">新增會員</h4>
+        </div>
         <div class="card-body">
-          <h5 class="card-title text-center">新增會員列表</h5>
           <form name="form1" onsubmit="sendData(event)">
             <div class="mb-3">
               <label for="name" class="form-label">姓名</label>
@@ -48,8 +104,7 @@ $pageName = 'user list add';
       </div>
     </div>
   </div>
-</div>
-
+</section>
 
 <!-- Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

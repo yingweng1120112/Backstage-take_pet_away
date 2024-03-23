@@ -113,8 +113,8 @@ if ($totalRows > 0) {
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th class="align-middle"><i class="fa-solid fa-trash"></i></th>
-                <th class="align-middle"><i class="fa-solid fa-file-pen"></i></th>
+                <th class="align-middle">刪除</i></th>
+                <th class="align-middle">修改</i></th>
                 <th class="align-middle">編號</th>
                 <th class="align-middle">姓名</th>
                 <th class="align-middle">手機</th>
