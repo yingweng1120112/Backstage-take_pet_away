@@ -119,7 +119,7 @@ if ($totalRows > 0) {
                 <th class="align-middle">姓名</th>
                 <th class="align-middle">手機</th>
                 <th class="align-middle">Email</th>
-                <th class="align-middle" style="width: 10%;" scope="col">照片</th>
+                <th style="width: 10%;" scope="col">照片</th>
                 <th class="align-middle">地址</th>
               </tr>
             </thead>
