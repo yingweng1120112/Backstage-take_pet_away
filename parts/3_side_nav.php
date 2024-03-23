@@ -20,10 +20,10 @@
               <a class="nav-link collapsed" href="login.php">
                 登入/註冊
               </a>
-              <a class="nav-link collapsed" href="user_list.php">
-                修改會員資料
+              <a class="nav-link collapsed" href="user.php">
+                會員專區
               </a>
-              <a class="nav-link collapsed" href="user_list_add.php">
+              <a class="nav-link collapsed" href="user-add.php">
                 新增會員資料
               </a>
               <a class="nav-link collapsed" href="adoptList.php">

@@ -1,8 +1,20 @@
 <?php
 require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
-$title = '新增會員列表';
-$pageName = 'user list add';
+$title = '編輯會員列表';
+$pageName = 'user list edit';
+
+$user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+if (empty($user_id)) {
+  header('Location: user.php');
+  exit;
+}
+
+$r = $pdo->query("SELECT * FROM user WHERE user_id = $user_id")->fetch();
+if (empty($r)) {
+  header('Location: user.php');
+  exit;
+}
 
 
 ?>
@@ -10,25 +22,30 @@ $pageName = 'user list add';
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 <div class="container">
-  <div class="row mt-3">
-    <div class="col-6">
+  <div class="row mt-5 mb-5 justify-content-center">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">新增會員列表</h5>
+          <h5 class="card-title text-center">編輯會員列表</h5>
           <form name="form1" onsubmit="sendData(event)">
+            <input type="hidden" class="form-control" name="user_id" value="<?= $r['user_id'] ?>">
+            <div class="mb-3">
+              <label for="user_id" class="form-label">會員編號</label>
+              <input type="text" class="form-control" id="user_id" name="user_id" value="<?= $r['user_id'] ?>" disabled>
+            </div>
             <div class="mb-3">
               <label for="name" class="form-label">姓名</label>
-              <input type="text" class="form-control" id="name" name="name">
+              <input type="text" class="form-control" id="name" name="name" value="<?= $r['name'] ?>">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
               <label for="account" class="form-label">手機</label>
-              <input type="text" class="form-control" id="account" name="account">
+              <input type="text" class="form-control" id="account" name="account" value="<?= $r['account'] ?>">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">電子郵件</label>
-              <input type="text" class="form-control" id="email" name="email">
+              <input type="text" class="form-control" id="email" name="email" value="<?= $r['email'] ?>">
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
@@ -36,13 +53,13 @@ $pageName = 'user list add';
               <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
               <br />
               <img id="show_image" src="" />
+              <img id="a" src="uploads/<?= $r['pic'] ?>" alt="">
             </div>
             <div class="mb-3">
               <label for="address_detail" class="form-label">地址</label>
-              <textarea class="form-control" name="address_detail" id="address_detail" cols="30" rows="3"></textarea>
-              <div class="form-text"></div>
+              <textarea class="form-control" name="address_detail" id="address_detail" cols="30" rows="3"><?= $r['address_detail'] ?></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">確認新增</button>
+            <button type="submit" class="btn btn-primary">修改</button>
           </form>
         </div>
       </div>
@@ -56,17 +73,17 @@ $pageName = 'user list add';
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">資料新增結果</h1>
+        <h1 class="modal-title fs-5">資料修改結果</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="alert alert-success" role="alert">
-          資料新增成功
+          資料修改成功
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-        <a href="user_list.php" class="btn btn-primary">跳到列表頁</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續修改</button>
+        <a href="javascript: location.href=document.referrer" class="btn btn-primary">跳到列表頁</a>
       </div>
     </div>
   </div>
@@ -76,17 +93,17 @@ $pageName = 'user list add';
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">資料沒有新增</h1>
+        <h1 class="modal-title fs-5">資料沒有修改</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="alert alert-danger" role="alert">
-          資料新增沒有成功
+          資料沒有修改成功
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續新增</button>
-        <a href="user_list.php" class="btn btn-primary">跳到列表頁</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">繼續修改</button>
+        <a href="javascript: location.href=document.referrer" class="btn btn-primary">跳到列表頁</a>
       </div>
     </div>
   </div>
@@ -113,7 +130,9 @@ $pageName = 'user list add';
     return pattern.test(account);
   }
 
+
   function sendData(e) {
+    // 欄位的外觀要回復原來的狀態
     nameField.style.border = "1px solid #CCC";
     nameField.nextElementSibling.innerHTML = '';
     emailField.style.border = "1px solid #CCC";
@@ -121,42 +140,33 @@ $pageName = 'user list add';
     accountField.style.border = "1px solid #CCC";
     accountField.nextElementSibling.innerHTML = '';
 
-
     e.preventDefault();
-
     let isPass = true;
 
-
     // 檢查資料的格式
-
     // 姓名是必填, 長度要 2 以上
     if (nameField.value.length < 2) {
       isPass = false;
       nameField.style.border = "2px solid red";
       nameField.nextElementSibling.innerHTML = '請輸入正確的名字';
     }
-
     // email 若有填才檢查格式, 沒填不檢查格式
     if (emailField.value && !validateEmail(emailField.value)) {
       isPass = false;
       emailField.style.border = "2px solid red";
       emailField.nextElementSibling.innerHTML = '請輸入正確的 Email';
     }
-
-    // account 若有填才檢查格式, 沒填不檢查格式
+    // mobile 若有填才檢查格式, 沒填不檢查格式
     if (accountField.value && !validateAccount(accountField.value)) {
       isPass = false;
       accountField.style.border = "2px solid red";
       accountField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
     }
-
-
-
     // 如果欄位都有通過檢查, 才要發 AJAX
     if (isPass) {
-      const fd = new FormData(document.form1);
+      const fd = new FormData(document.form1); // 看成沒有外觀的表單
 
-      fetch('user_list_add-api.php', {
+      fetch('user-edit-api.php', {
           method: 'POST',
           body: fd
         })
@@ -164,22 +174,19 @@ $pageName = 'user list add';
         .then(result => {
           console.log(result);
           if (result.success) {
-            //alert('資料新增成功')
             successModal.show();
           } else {
-            //alert('資料新增失敗')
             if (result.error) {
               failureInfo.innerHTML = result.error;
             } else {
-              failureInfo.innerHTML = '資料新增沒有成功';
+              failureInfo.innerHTML = '資料沒有修改成功';
             }
             failureModal.show();
           }
         })
         .catch(ex => {
           console.log(ex);
-          // alert('資料新增發生錯誤' + ex)
-          failureInfo.innerHTML = '資料新增發生錯誤' + ex;
+          failureInfo.innerHTML = '資料修改發生錯誤' + ex;
           failureModal.show();
         })
     }
@@ -196,6 +203,7 @@ $pageName = 'user list add';
           .attr("src", e.target.result)
           .css("height", "100px")
           .css("width", "100px");
+        $("#a").css("display", "none");
       };
       reader.readAsDataURL(input.files[0]);
     }

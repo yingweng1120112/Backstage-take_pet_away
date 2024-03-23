@@ -10,7 +10,7 @@ if ($page < 1) {
 }
 
 # 每一頁有幾筆
-$perPage = 10;
+$perPage = 15;
 
 # 計算總筆數
 $t_sql = "SELECT COUNT(1) FROM user";
@@ -111,7 +111,7 @@ if ($totalRows > 0) {
 
   function deleteOne(user_id) {
     if (confirm(`是否要刪除編號為 ${user_id} 的項目?`)) {
-      location.href = `user_list_delete.php?sid=${user_id}`;
+      location.href = `user-delete.php?sid=${user_id}`;
     }
   }
 </script>

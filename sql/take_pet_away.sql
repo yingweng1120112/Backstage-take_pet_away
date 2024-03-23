@@ -1883,7 +1883,7 @@ CREATE TABLE
         `name` varchar(15) NOT NULL,
         `account` varchar(10) NOT NULL,
         `password` varchar(12) NOT NULL,
-        `email` varchar(15) NOT NULL,
+        `email` varchar(30) NOT NULL,
         `pic` varchar(100) DEFAULT NULL,
         `address_detail` varchar(80) NOT NULL,
         `status` varchar(6) NOT NULL

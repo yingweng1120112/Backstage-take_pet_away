@@ -9,7 +9,7 @@ if (!empty($user_id)) {
   $pdo->query($sql);
 }
 
-$backTo = 'user_list.php';
+$backTo = 'user.php';
 if (!empty($_SERVER['HTTP_REFERER'])) {
   $backTo = $_SERVER['HTTP_REFERER'];
 }
