@@ -1,5 +1,7 @@
 <?php
+require __DIR__ . "/parts/admin-required.php";
 require __DIR__ . "/parts/pdo-connect.php";
+
 $title = "寵物基本資訊";
 $pageName = "pet_info_list";
 
@@ -10,7 +12,7 @@ if ($page < 1) {
 }
 
 # 每一頁有幾筆
-$perPage = 20;
+$perPage = 7;
 
 # 機算資料總筆數
 $t_sql = "SELECT COUNT(1) FROM pet_info";

@@ -1,5 +1,5 @@
 <?php
-// require __DIR__."/parts/admin-required.php";
+require __DIR__."/parts/admin-required.php";
 require __DIR__ . "/parts/pdo-connect.php";
 $title = "編輯寵物";
 $pageName = "pet_edit";
@@ -43,7 +43,7 @@ if (empty($row)) {
   <h1 class="my-3">編輯寵物資料</h1>
   <div class="row">
     <div class="col-6">
-      <div class="card mb-4 border border-3 border-dark border-opacity-50">
+      <div class="card mb-4 border border-3 border-secondary">
         <div class="card-body">
           <form name="form1" onsubmit="sendData(event)">
             <div class="mb-3">
@@ -218,9 +218,9 @@ if (empty($row)) {
           } else {
             // alert("資料新增失敗");
             if (result.error) {
-              failureInfo.innerHTML = result.error;
+              failureInfo.innerHTML = `<i class="fa-regular fa-circle-xmark me-2"></i>` + result.error;
             } else {
-              failureInfo.innerHTML = `<i class="fa-regular fa-circle-xmark me-2"></i>"資料修改失敗"`;
+              failureInfo.innerHTML = `<i class="fa-regular fa-circle-xmark me-2"></i>資料修改失敗`;
             }
             failureModal.show();
           }
@@ -228,7 +228,7 @@ if (empty($row)) {
         .catch(ex => {
           console.log(ex);
           // alert("資料新增發生錯誤"+ex);
-          failureInfo.innerHTML = `<i class="fa-regular fa-circle-xmark me-2"></i>"資料修改失敗"` + ex;
+          failureInfo.innerHTML = `<i class="fa-regular fa-circle-xmark me-2"></i>資料修改失敗` + ex;
           failureModal.show();
         })
     }

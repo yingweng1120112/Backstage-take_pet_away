@@ -14,15 +14,16 @@ if (isset($_SESSION['user'])) {
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
-<div id="container">
-    <div class="row justify-content-center">
-        <div class="col-6 col-lg-5 mx-auto my-auto">
-            <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+<div class="container">
+    <div class="row mt-5 mb-5 justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
                 <div class="card-body">
-                    <h5 class="text-center font-weight-light my-4">登入</h5>
+                    <h5 class="card-title text-center">登入</h5>
                     <form name="form1" onsubmit="sendData(event)">
                         <div class="mb-3">
-                            <label for="email" class="form-label">電子郵件</label>
+                            <label for="email" class="form-label">電子信箱</label>
                             <input type="text" class="form-control" id="email" name="email">
                             <div class="form-text"></div>
                         </div>
@@ -39,7 +40,7 @@ if (isset($_SESSION['user'])) {
         </div>
     </div>
 </div>
-</div>
+
 
 <div class="modal fade" id="failureModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -61,6 +62,7 @@ if (isset($_SESSION['user'])) {
 </div>
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 
+<?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
 <script>
     const {
@@ -114,5 +116,4 @@ if (isset($_SESSION['user'])) {
     }
     const failureModal = new bootstrap.Modal('#failureModal');
 </script>
-
 <?php include __DIR__ . '/parts/6_foot.php' ?>
