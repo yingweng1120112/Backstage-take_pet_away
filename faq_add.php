@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/parts/admin-required.php';
 // 連結到資料庫
 $conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "root", "");
 
@@ -26,7 +27,7 @@ $output = [
     'postData' => $_POST, # 除錯用
     'error' => '欄位資料不足',
     'code' => 0, # 除錯或追踪程式碼
-  ];
+];
 
 //抓出所有faq並以降冪排序
 $sql = "SELECT * FROM faq_shopinfo ORDER BY question_id DESC";
