@@ -39,7 +39,7 @@
           </div>
 
           <!-- 下拉式選單 -->
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesAnimal" aria-expanded="false" aria-controls="collapsePagesAnimal">
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesAnimal" aria-expanded="false" aria-controls="collapsePagesAnimal" onclick="toggleCollapse('collapsePagesAnimal')">
             <div class="sb-nav-link-icon">
               <i class="fas fa-book-open"></i>
             </div>
@@ -74,7 +74,7 @@
             </nav>
           </div>
           <div class="sb-sidenav-menu-heading">商城專區</div>
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesShop" aria-expanded="false" aria-controls="collapsePagesShop">
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesShop" aria-expanded="false" aria-controls="collapsePagesShop" onclick="toggleCollapse('collapsePagesShop')">
             <div class="sb-nav-link-icon">
               <i class="fa-solid fa-store"></i>
             </div>
@@ -106,7 +106,7 @@
             </div>
             注意事項
           </a>
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse">
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse" onclick="toggleCollapse('heartContentCollapse')">
             <div class="sb-nav-link-icon">
               <i class="fas fa-book-open"></i>
             </div>
@@ -131,6 +131,7 @@
         <div class="small">專題製作</div>
         Take Pet Away
       </div>
+
     </nav>
   </div>
   <div id="layoutSidenav_content">
