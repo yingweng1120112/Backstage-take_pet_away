@@ -62,7 +62,7 @@ if ($totalRows > 0) {
               <th>#</th>
               <th>編號</th>
               <th class="text-nowrap">會員編號</th>
-              <th class="text-nowrap">訂單詳情編號</th>
+              <th class="text-nowrap">訂單詳情</th>
               <th class="text-nowrap">收件人</th>
               <th class="text-nowrap">收件人電話</th>
               <th class="text-nowrap">訂單日期</th>
@@ -79,13 +79,15 @@ if ($totalRows > 0) {
             <?php foreach ($rows as $r) : ?>
               <tr>
                 <td>
-                <a href="order_history_edit.php?order_id=<?= $r['order_id'] ?>">
+                  <a href="order_history_edit.php?order_id=<?= $r['order_id'] ?>">
                     <p class="btn btn-outline-success btn-sm text-nowrap">變更狀態</p>
                   </a>
                 </td>
                 <td><?= $r['order_id'] ?></td>
                 <td><?= $r['user_id'] ?></td>
-                <td><?= $r['order_detail_id'] ?></td>
+                <td><a href="order_detail.php?order_detail_id=<?= $r['order_detail_id'] ?>">
+                <i class="fa-solid fa-file fa-xl" style="color: #59786e;"></i>
+                  </a></td>
                 <td><?= $r['recipient_name'] ?></td>
                 <td><?= $r['recipient_phone'] ?></td>
                 <td><?= $r['order_date'] ?></td>
@@ -95,47 +97,47 @@ if ($totalRows > 0) {
                 <td><?= $r['recipient_address_detail'] ?></td>
                 <td><?= $r['status'] ?></td>
                 <td><?= $r['Invoice_no'] ?></td>
-                
+
               </tr>
             <?php endforeach ?>
           </tbody>
         </table>
         <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=1">
-              <i class="fa-solid fa-angles-left"></i>
-            </a>
-          </li>
+          <ul class="pagination">
+            <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
+              <a class="page-link" href="?page=1">
+                <i class="fa-solid fa-angles-left"></i>
+              </a>
+            </li>
 
-          <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $page - 1 ?>">
-              <i class="fa-solid fa-angle-left"></i>
-            </a>
-          </li>
+            <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
+              <a class="page-link" href="?page=<?= $page - 1 ?>">
+                <i class="fa-solid fa-angle-left"></i>
+              </a>
+            </li>
 
-          <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
-            <?php if ($i >= 1 and $i <= $totalPages) : ?>
-              <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-              </li>
-            <?php endif ?>
-          <?php endfor ?>
+            <?php for ($i = $page - 5; $i <= $page + 5; $i++) : ?>
+              <?php if ($i >= 1 and $i <= $totalPages) : ?>
+                <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                  <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                </li>
+              <?php endif ?>
+            <?php endfor ?>
 
-          <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $page + 1 ?>">
-              <i class="fa-solid fa-angle-right"></i>
-            </a>
-          </li>
+            <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
+              <a class="page-link" href="?page=<?= $page + 1 ?>">
+                <i class="fa-solid fa-angle-right"></i>
+              </a>
+            </li>
 
-          <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
-            <a class="page-link" href="?page=<?= $totalPages ?>">
-              <i class="fa-solid fa-angles-right"></i>
-            </a>
-          </li>
+            <li class="page-item" <?= $page == $totalPages ? 'disabled' : '' ?>>
+              <a class="page-link" href="?page=<?= $totalPages ?>">
+                <i class="fa-solid fa-angles-right"></i>
+              </a>
+            </li>
 
-        </ul>
-      </nav>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
