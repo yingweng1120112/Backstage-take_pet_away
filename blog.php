@@ -134,7 +134,6 @@ if ($totalRows > 0) {
     </div>
   </div>
 </div>
-<a href="blog_add.php">+</a>
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
 
