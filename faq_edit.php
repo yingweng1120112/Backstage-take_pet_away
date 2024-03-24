@@ -1,6 +1,7 @@
 <?php
+require __DIR__ . '/parts/admin-required.php';
 //連結資料庫
-$conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "root", "");
+$conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "admin", "admin");
 
 //確認如果FAQ存在
 $sql = "SELECT * FROM faq_shopinfo WHERE question_id = ?";

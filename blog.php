@@ -62,8 +62,8 @@ if ($totalRows > 0) {
             <th>content</th>
             <th>picture</th>
             <th>time</th>
-            <th><i></i></th>
-            <th><i></i></th>
+            <th><i>編輯</i></th>
+            <th><i>刪除</i></th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -134,7 +134,6 @@ if ($totalRows > 0) {
     </div>
   </div>
 </div>
-<a href="blog_add.php">+</a>
 <?php include __DIR__ . '/parts/4_footer.php' ?>
 <?php include __DIR__ . '/parts/5_script.php' ?>
 

@@ -13,7 +13,7 @@ if ($page < 1) {
 $perPage = 10;
 
 # 計算總筆數
-$t_sql = "SELECT * FROM online_virtual_adoption_form";
+$t_sql = "SELECT COUNT(1) FROM online_virtual_adoption_form";
 $t_stmt = $pdo->query($t_sql);
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
 $totalPages = ceil($totalRows / $perPage); # 總頁數
@@ -73,8 +73,7 @@ if ($totalRows > 0) {
                 </a>
               </td>
               <td>
-                <a href="javascript: deleteOne(<?= $r
-                ['adopt_id'] ?>)">
+                <a href="javascript: deleteOne(<?= $r['adopt_id'] ?>)">
                   <i class="fa-solid fa-trash text-primary d-flex justify-content-center text-secondary"></i>
                 </a>
               </td>
