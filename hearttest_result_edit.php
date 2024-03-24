@@ -45,8 +45,8 @@ if (empty($r)) {
         <div class="card-body container">
           <form name="form1" onsubmit="sendData(event)" class="mb-1">
             <div class="row me-0">
-              <h3 class="card-title col-md-10 fw-bold">編輯結果類型</h3>
-              <input class="col-md-2 btn btn-dark disabled" name="result_id" value="<?= $r['result_id'] ?>" readonly>
+              <h5 class="card-title col-md-10">編輯結果類型</h5>
+              <input class="col-md-2 btn btn-info disabled" name="result_id" value="<?= $r['result_id'] ?>" readonly>
             </div>
             <label for="personalityType" class="form-label ">個性種類</label>
             <input type="text" class="form-control mb-3" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3" value="<?= $r['personality_type'] ?>">
@@ -59,7 +59,7 @@ if (empty($r)) {
             <label for="typeContent" class="form-label">個性說明</label>
             <textarea class="form-control" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"><?= $r['type__content'] ?></textarea>
             <div class="form-text"></div>
-            <button type="submit" class="btn btn-success col-md-12">修改結果類型</button>
+            <button type="submit" class="btn btn-primary col-md-12">修改結果類型</button>
           </form>
         </div>
       </div>
@@ -195,30 +195,7 @@ if (empty($r)) {
     const showImage = document.getElementById('show_image');
     showImage.src = `uploads/${originalPic}`;
   });
-  window.addEventListener('DOMContentLoaded', (event) => {
-    const originalPic = document.getElementById('originalPic').value;
-    const showImage = document.getElementById('imgEdit');
-    
-    // 设置初始图片预览
-    showImage.src = `uploads/${originalPic}`;
-
-    // 监听文件输入框的 change 事件
-    document.getElementById('previewImage').addEventListener('change', function(e) {
-      const file = e.target.files[0]; // 获取所选文件
-
-      // 检查是否选择了文件
-      if (file) {
-        const reader = new FileReader(); // 创建 FileReader 对象
-
-        // 读取文件完成后的回调函数
-        reader.onload = function(e) {
-          showImage.src = e.target.result; // 将文件内容设置为图像的 src
-        };
-
-        reader.readAsDataURL(file); // 读取文件
-      }
-    });
-  });
+  
 </script>
 
 <?php include __DIR__ . '/parts/6_foot.php' ?>

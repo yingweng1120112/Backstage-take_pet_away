@@ -44,44 +44,42 @@ $select = $r['status'];
         <div class="card-body container">
           <form name="form1" onsubmit="sendData(event)" class="mb-1" method="POST">
             <div class="row me-0">
-              <h2 class="card-title col-md-10 mb-3 fw-bold">編輯訂單狀態</h2>
-              <input class="col-md-2 btn btn-dark disabled " name="order_id" id="orderId" value="<?= $r['order_id'] ?>" readonly>
+              <h5 class="card-title col-md-10">編輯訂單狀態</h5>
+              <input class="col-md-2 btn btn-info disabled" name="order_id" id="orderId" value="<?= $r['order_id'] ?>" readonly>
             </div>
-            <div class="row">
-              <div class="col-12 d-flex justify-content-between">
-                <div class="col-5">
-                  <label for="userId" class="form-label">會員編號</label>
-                  <input type="text" class="form-control input-style mb-3" id="userId" name="user_id" value="<?= $r['user_id'] ?>" readonly>
-                  <label for="orderDetailId" class="form-label">訂單詳情編號</label>
-                  <input type="text" class="form-control input-style mb-3" id="orderDetailId" name="order_detail_id" value="<?= $r['order_detail_id'] ?>" readonly>
-                  <label for="recipientName" class="form-label">收件人</label>
-                  <input type="text" class="form-control input-style mb-3" id="recipientName" name="recipient_name" value="<?= $r['recipient_name'] ?>" readonly>
-                  <label for="recipientPhone" class="form-label">收件人電話</label>
-                  <input type="text" class="form-control input-style mb-3" id="recipientPhone" name="recipient_phone" value="<?= $r['recipient_phone'] ?>" readonly>
-                  <label for="orderDate" class="form-label">訂單日期</label>
-                  <input type="text" class="form-control input-style mb-3" id="orderDate" name="order_date" value="<?= $r['order_date'] ?>" readonly>
-                  <label for="orderRemark" class="form-label">備註</label>
-                  <input type="text" class="form-control input-style mb-3" id="orderRemark" name="order_remark" value="<?= $r['order_remark'] ?>" readonly>
-                </div>
-                <div class="col-6">
-                  <label for="deliveryMethod" class="form-label">寄送方式</label>
-                  <input type="text" class="form-control input-style mb-3" id="deliveryMethod" name="delivery_method" value="<?= $r['delivery_method'] ?>" readonly>
-                  <label for="paymentMethod" class="form-label">付款方式</label>
-                  <input type="text" class="form-control input-style mb-3" id="paymentMethod" name="payment_method" value="<?= $r['payment_method'] ?>" readonly>
-                  <label for="recipientAddressDetail" class="form-label">寄送地址</label>
-                  <input type="text" class="form-control input-style mb-3" id="recipientAddressDetail" name="recipient_address_detail" value="<?= $r['recipient_address_detail'] ?>" readonly>
-                  <label for="status" class="form-label">訂單狀態</label>
-                  <select class="form-select mb-3" aria-label="Default select example" name="status" id="status" value="<?= $r['status'] ?>">
-                    <option value="未出貨" <?php if (!empty($select) && $select == '未出貨')  echo 'selected = "selected"'; ?>>未出貨</option>
-                    <option value="已出貨" <?php if (!empty($select) && $select == '已出貨')  echo 'selected = "selected"'; ?>>已出貨</option>
-                    <option value="運送中" <?php if (!empty($select) && $select == '運送中')  echo 'selected = "selected"'; ?>>運送中</option>
-                    <option value="已送達" <?php if (!empty($select) && $select == '已送達')  echo 'selected = "selected"'; ?>>已送達</option>
-                    <option value="訂單取消" <?php if (!empty($select) && $select == '訂單取消')  echo 'selected = "selected"'; ?>>訂單取消</option>
-                  </select>
-                  <label for="InvoiceNo" class="form-label">電子條碼</label>
-                  <input type="text" class="form-control input-style mb-5" id="InvoiceNo" name="Invoice_no" value="<?= $r['Invoice_no'] ?>" readonly>
-                  <button type="submit" class="btn btn-success col-md-12">修改結果類型</button>
-                </div>
+            <div class="row mb-4">
+              <div class="col-6">
+                <label for="userId" class="form-label">會員編號</label>
+                <input type="text" class="form-control input-style mb-3" id="userId" name="user_id" value="<?= $r['user_id'] ?>" readonly>
+                <label for="orderDetailId" class="form-label">訂單詳情編號</label>
+                <input type="text" class="form-control input-style mb-3" id="orderDetailId" name="order_detail_id" value="<?= $r['order_detail_id'] ?>" readonly>
+                <label for="recipientName" class="form-label">收件人</label>
+                <input type="text" class="form-control input-style mb-3" id="recipientName" name="recipient_name" value="<?= $r['recipient_name'] ?>" readonly>
+                <label for="recipientPhone" class="form-label">收件人電話</label>
+                <input type="text" class="form-control input-style mb-3" id="recipientPhone" name="recipient_phone" value="<?= $r['recipient_phone'] ?>" readonly>
+                <label for="orderDate" class="form-label">訂單日期</label>
+                <input type="text" class="form-control input-style mb-3" id="orderDate" name="order_date" value="<?= $r['order_date'] ?>" readonly>
+                <label for="orderRemark" class="form-label">備註</label>
+                <input type="text" class="form-control input-style mb-3" id="orderRemark" name="order_remark" value="<?= $r['order_remark'] ?>" readonly>
+              </div>
+              <div class="col-6">
+                <label for="deliveryMethod" class="form-label">寄送方式</label>
+                <input type="text" class="form-control input-style mb-3" id="deliveryMethod" name="delivery_method" value="<?= $r['delivery_method'] ?>" readonly>
+                <label for="paymentMethod" class="form-label">付款方式</label>
+                <input type="text" class="form-control input-style mb-3" id="paymentMethod" name="payment_method" value="<?= $r['payment_method'] ?>" readonly>
+                <label for="recipientAddressDetail" class="form-label">寄送地址</label>
+                <input type="text" class="form-control input-style mb-3" id="recipientAddressDetail" name="recipient_address_detail" value="<?= $r['recipient_address_detail'] ?>" readonly>
+                <label for="status" class="form-label">訂單狀態</label>
+                <select class="form-select mb-3" aria-label="Default select example" name="status" id="status" value="<?= $r['status'] ?>">
+                  <option value="未出貨" <?php if (!empty($select) && $select == '未出貨')  echo 'selected = "selected"'; ?>>未出貨</option>
+                  <option value="已出貨" <?php if (!empty($select) && $select == '已出貨')  echo 'selected = "selected"'; ?>>已出貨</option>
+                  <option value="運送中" <?php if (!empty($select) && $select == '運送中')  echo 'selected = "selected"'; ?>>運送中</option>
+                  <option value="已送達" <?php if (!empty($select) && $select == '已送達')  echo 'selected = "selected"'; ?>>已送達</option>
+                  <option value="訂單取消" <?php if (!empty($select) && $select == '訂單取消')  echo 'selected = "selected"'; ?>>訂單取消</option>
+                </select>
+                <label for="InvoiceNo" class="form-label">電子條碼</label>
+                <input type="text" class="form-control input-style mb-5" id="InvoiceNo" name="Invoice_no" value="<?= $r['Invoice_no'] ?>" readonly>
+                <button type="submit" class="btn btn-primary col-md-12" >修改結果類型</button>
               </div>
             </div>
           </form>

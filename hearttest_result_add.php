@@ -19,22 +19,22 @@ $pageName = 'question_result_add'
     <div class="col-5">
       <div class="card">
         <div class="card-body container ">
-          <h3 class="card-title fw-bold">新增結果類型</h3>
+          <h5 class="card-title">新增結果類型</h5>
           <form name="form1" onsubmit="sendData(event)" class="mb-1">
             <label for="personalityType" class="form-label ">個性種類</label>
-            <input type="text" class="form-control mb-3" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3">
+            <input type="text" class="form-control" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3">
             <div class="form-text"></div>
 
             <label for="pic" class="form-label ">上傳圖片</label>
             <input class="form-control" type="file" id="previewImage" name="pic" accept="image/jpeg,image/png" />
             <div class="form-text"></div>
             <br />
-            <img class="mb-3" style="max-width: 100%" id="show_image" src="" />
-            <br/>
+            <img id="show_image" src="" />
+
             <label for="typeContent" class="form-label">個性說明</label>
-            <textarea class="form-control" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 290px"></textarea>
+            <textarea class="form-control" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"></textarea>
             <div class="form-text"></div>
-            <button type="submit" class="btn btn-success col-md-12">新增結果類型</button>
+            <button type="submit" class="btn btn-primary col-md-12">新增結果類型</button>
           </form>
         </div>
       </div>
@@ -99,7 +99,7 @@ $pageName = 'question_result_add'
   const failureInfo = document.querySelector('#failureModal .alert-danger');
   let personalityType = document.getElementById('personalityType');
   let typeContent = document.getElementById('typeContent');
-  let showImage = document.getElementById('show_image');
+
 
   function sendData(e) {
     //格式沒問題欄位的外觀要回復原來的狀態
@@ -171,14 +171,16 @@ $pageName = 'question_result_add'
   }
   var imageProc = function(input) {
     if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
       var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
       reader.onload = function(e) {
-        showImage.src = e.target.result;
-        showImage.style.display = 'block'; // 显示预览图像
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("width", "50%");
       };
       reader.readAsDataURL(input.files[0]);
-    } else {
-      showImage.style.display = 'none'; // 隐藏预览图像
     }
   };
 
@@ -187,8 +189,7 @@ $pageName = 'question_result_add'
     $("#previewImage").change(function() {
       imageProc(this);
     });
-        // 页面加载时隐藏预览图像
-        showImage.style.display = 'none';
+
   });
 </script>
 

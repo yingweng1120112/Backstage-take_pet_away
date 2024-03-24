@@ -67,7 +67,7 @@ $rows = $pdo->query($sql)->fetchAll();
                 <td>
                   <!-- 13-1. 符號設定-->
                   <a href="hearttest_question_delete.php?question_id=<?= $r['question_id'] ?>">
-                    <i class="fa-solid fa-trash btn btn-outline-danger"></i>
+                    <i class="fa-solid fa-trash"></i>
                   </a>
                 </td>
                 <td><?= $r['question_id'] ?></td>
