@@ -30,8 +30,8 @@ $pageName = 'add';
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
-              <br />
+              <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" style="margin-bottom: 1rem;" />
+              <br/>
               <img id="show_image" src="" />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
