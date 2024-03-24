@@ -19,7 +19,7 @@ $pageName = 'question_add'
         <div class="col-10">
             <div class="card">
                 <div class="card-body container ">
-                    <h5 class="card-title">新增測驗題目</h5>
+                    <h3 class="card-title fw-bold">新增測驗題目</h3>
                     <form name="form1" onsubmit="sendData(event)">
                         <div class="row mb-3">
                             <label for="question" class="form-label ">題目</label>
@@ -29,12 +29,12 @@ $pageName = 'question_add'
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-md-6">
+                            <div class="col-md-5 me-5">
                                 <label for="optionA" class="form-label">選項 A</label>
                                 <input type="text" class="form-control" id="optionA" name="option_a" placeholder="最多輸入 15 個字" maxlength="15">
                                 <div class="form-text"></div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5 ms-5">
                                 <label for="valueA" class="form-label">選項 A 分數</label>
                                 <select class="form-select" aria-label="Default select example" name="option_value_a" id="valueA">
                                     <option selected>選項</option>
@@ -47,12 +47,12 @@ $pageName = 'question_add'
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-md-6">
+                            <div class="col-md-5 me-5">
                                 <label for="optionB" class="form-label">選項 B</label>
                                 <input type="text" class="form-control" id="optionB" name="option_b" placeholder="最多輸入 15 個字" maxlength="15">
                                 <div class="form-text"></div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5 ms-5">
                                 <label for="valueB" class="form-label">選項 B 分數</label>
                                 <select class="form-select" aria-label="Default select example" name="option_value_b" id="valueB">
                                     <option selected>選項</option>
@@ -65,12 +65,12 @@ $pageName = 'question_add'
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-md-6">
+                            <div class="col-md-5 me-5">
                                 <label for="optionC" class="form-label">選項 C</label>
                                 <input type="text" class="form-control" id="optionC" name="option_c" placeholder="最多輸入 15 個字" maxlength="15">
                                 <div class="form-text"></div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5 ms-5">
                                 <label for="valueC" class="form-label">選項 C 分數</label>
                                 <select class="form-select" aria-label="Default select example" name="option_value_c" id="valueC">
                                     <option selected>選項</option>
@@ -83,12 +83,12 @@ $pageName = 'question_add'
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-md-6">
+                            <div class="col-md-5 me-5">
                                 <label for="optionD" class="form-label">選項 D</label>
                                 <input type="text" class="form-control" id="optionD" name="option_d" placeholder="最多輸入 15 個字" maxlength="15">
                                 <div class="form-text"></div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5 ms-5">
                                 <label for="valueD" class="form-label">選項 D 分數</label>
                                 <select class="form-select" aria-label="Default select example" name="option_value_d" id="valueD">
                                     <option selected>選項</option>
@@ -100,7 +100,7 @@ $pageName = 'question_add'
                                 <div class="form-text"></div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary col-md-12">新增題目</button>
+                        <button type="submit" class="btn btn-success col-md-12">新增題目</button>
                     </form>
                 </div>
             </div>

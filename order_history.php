@@ -80,7 +80,7 @@ if ($totalRows > 0) {
               <tr>
                 <td>
                 <a href="order_history_edit.php?order_id=<?= $r['order_id'] ?>">
-                    <p class="btn btn-outline-success btn-sm">變更狀態</p>
+                    <p class="btn btn-outline-success btn-sm text-nowrap">變更狀態</p>
                   </a>
                 </td>
                 <td><?= $r['order_id'] ?></td>
