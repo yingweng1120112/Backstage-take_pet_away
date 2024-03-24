@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/parts/admin-required.php';
 //connect database
 $conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "root", "");
 
