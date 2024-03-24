@@ -38,8 +38,45 @@
             </nav>
           </div>
 
-          <!-- 下拉式選單 -->
-          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesAnimal" aria-expanded="false" aria-controls="collapsePagesAnimal">
+          <div class="sb-sidenav-menu-heading">會員專區</div>
+          <!-- 會員 -->
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesUser" aria-expanded="false" aria-controls="collapsePagesUser" onclick="toggleCollapse('collapsePagesUser')">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            會員管理
+            <div class="sb-sidenav-collapse-arrow">
+              <i class="fas fa-angle-down"></i>
+            </div>
+          </a>
+          <div class="collapse" id="collapsePagesUser" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav accordion" id="collapsePagesUser">
+              <a class="nav-link collapsed" href="login.php">
+                登入/註冊
+              </a>
+              <a class="nav-link collapsed" href="user_list.php">
+                修改會員資料
+              </a>
+              <a class="nav-link collapsed" href="user_list_add.php">
+                新增會員資料
+              </a>
+              <a class="nav-link collapsed" href="#">
+                線上認養紀錄
+              </a>
+              <a class="nav-link collapsed" href="#">
+                預約紀錄
+              </a>
+              <a class="nav-link collapsed" href="#">
+                收藏
+              </a>
+              <a class="nav-link collapsed" href="logout.php">
+                登出
+              </a>
+            </nav>
+          </div>
+
+          <!-- 收容動物 -->
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesAnimal" aria-expanded="false" aria-controls="collapsePagesAnimal" onclick="toggleCollapse('collapsePagesAnimal')">
             <div class="sb-nav-link-icon">
               <i class="fas fa-book-open"></i>
             </div>
@@ -73,12 +110,31 @@
               </a>
             </nav>
           </div>
+
           <div class="sb-sidenav-menu-heading">商城專區</div>
+<<<<<<< HEAD
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesShop" aria-expanded="false" aria-controls="collapsePagesShop">
+=======
+
+          <!-- 產品資訊 -->
+          <a class="nav-link" href="#">
+>>>>>>> 022ac64 (side_nav修正並新增blog欄位)
             <div class="sb-nav-link-icon">
               <i class="fa-solid fa-store"></i>
             </div>
+<<<<<<< HEAD
             產品資料
+=======
+            產品資訊
+          </a>
+
+          <!-- 訂單紀錄 -->
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#order" aria-expanded="false" aria-controls="order">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            訂單紀錄
+>>>>>>> 022ac64 (side_nav修正並新增blog欄位)
             <div class="sb-sidenav-collapse-arrow">
               <i class="fas fa-angle-down"></i>
             </div>
@@ -95,6 +151,7 @@
                 新增商品
               </a>
           </div>
+<<<<<<< HEAD
           <a class="nav-link" href="order_history.php">
             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
             訂單紀錄
@@ -105,6 +162,34 @@
               <i class="fas fa-chart-area"></i>
             </div>
             注意事項
+=======
+
+          <div class="sb-sidenav-menu-heading">其他資訊</div>
+
+          <!-- 布告欄下拉式選單 -->
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesBulletin" aria-expanded="false" aria-controls="collapsePagesBulletin" onclick="toggleCollapse('collapsePagesBulletin')">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            布告欄
+            <div class="sb-sidenav-collapse-arrow">
+              <i class="fas fa-angle-down"></i>
+            </div>
+          </a>
+          <div class="collapse" id="collapsePagesBulletin" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav accordion" id="collapseContentBulletin">
+              <a class="nav-link collapsed" href="#">
+                公告事項
+              </a>
+              <a class="nav-link collapsed" href="#">
+                活動訊息
+              </a>
+            </nav>
+          </div>
+          <a class="nav-link" href="#">
+            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+            訂單紀錄
+>>>>>>> 022ac64 (side_nav修正並新增blog欄位)
           </a>
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse">
             <div class="sb-nav-link-icon">
@@ -125,6 +210,30 @@
               </a>
             </nav>
           </div>
+<<<<<<< HEAD
+=======
+
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#blogContentCollapse" aria-expanded="false" aria-controls="blogContentCollapse">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            寵物部落格
+            <div class="sb-sidenav-collapse-arrow">
+              <i class="fas fa-angle-down"></i>
+            </div>
+          </a>
+          <div class="collapse" id="blogContentCollapse" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav accordion" id="blogContentPages">
+              <a class="nav-link collapsed" href="blog.php">
+                部落格頁面
+              </a>
+              <a class="nav-link collapsed" href="blog_add.php">
+                新增貼文
+              </a>
+            </nav>
+          </div>
+
+>>>>>>> 022ac64 (side_nav修正並新增blog欄位)
         </div>
       </div>
       <div class="sb-sidenav-footer">
