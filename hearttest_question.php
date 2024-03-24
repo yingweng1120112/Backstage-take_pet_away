@@ -56,7 +56,7 @@ $rows = $pdo->query($sql)->fetchAll();
               <th class="text-nowrap">D 配分</th>
               <th>
                 <!-- 完全新增一筆資料 將question_id設為空值 -->
-              <a href="hearttest_question_add.php?question_id=" class="btn btn-primary btn-sm text-nowrap">新增題目</a>
+                <a href="hearttest_question_add.php?question_id=" class="btn btn-primary btn-sm text-nowrap">新增題目</a>
               </th>
             </tr>
           </thead>
@@ -66,7 +66,7 @@ $rows = $pdo->query($sql)->fetchAll();
               <tr>
                 <td>
                   <!-- 13-1. 符號設定-->
-                  <a href="hearttest_question_delete.php?question_id=<?= $r['question_id'] ?>">
+                  <a href="javascript: deleteOne(<?= $r['question_id'] ?>)">
                     <i class="fa-solid fa-trash btn btn-outline-danger"></i>
                   </a>
                 </td>
@@ -105,5 +105,13 @@ $rows = $pdo->query($sql)->fetchAll();
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
 
   console.log(myRows);
+
+
+  function deleteOne(question_id) {
+    if (confirm(`是否要刪除編號為 ${question_id} 的項目?`)) {
+      location.href = `hearttest_question_delete.php?question_id=${question_id}`;
+    }
+  }
+
 </script>
 <?php include __DIR__ . '/parts/6_foot.php' ?>
