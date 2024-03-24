@@ -61,13 +61,13 @@ $rows = $pdo->query($sql)->fetchAll();
               <tr>
                 <td>
                   <!-- 13-1. 符號設定-->
-                  <a href="hearttest_result_delete.php?result_id=<?= $r['result_id'] ?>">
+                  <a href="javascript: deleteOne(<?= $r['result_id'] ?>)">
                     <i class="fa-solid fa-trash btn btn-outline-danger"></i>
                   </a>
                 </td>
                 <td><?= $r['result_id'] ?></td>
                 <td><?= $r['personality_type'] ?></td>
-                <td><img src="uploads/<?= $r["pic"] ?>" alt="" style="width:90%"></td>
+                <td><img src="uploads/<?= $r["pic"] ?>" alt="" style="width:400px"></td>
                 <td><?= $r['type__content'] ?></td>
                 <!-- 13-2.符號設定 -->
                 <td>
@@ -94,5 +94,11 @@ $rows = $pdo->query($sql)->fetchAll();
   const myRows = <?= json_encode($rows, JSON_UNESCAPED_UNICODE) ?>;
 
   console.log(myRows);
+
+  function deleteOne(result_id) {
+    if (confirm(`是否要刪除編號為 ${result_id} 的項目?`)) {
+      location.href = `hearttest_result_delete.php?result_id=${result_id}`;
+    }
+  }
 </script>
 <?php include __DIR__ . '/parts/6_foot.php' ?>
