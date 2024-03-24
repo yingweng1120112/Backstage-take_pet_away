@@ -88,7 +88,7 @@ $pageName = 'user list add';
               <div class="form-text"></div>
             </div>
             <div class="mb-3">
-              <label for="pic" class="form-label">照片</label>
+              <label for="pic" class="form-label">新增會員照片</label>
               <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
               <br />
               <img id="show_image" src="" />

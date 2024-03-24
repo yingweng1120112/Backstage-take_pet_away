@@ -8,12 +8,23 @@ if (isset($_SESSION['user'])) {
     header('Location: user.php');
     exit;
 }
-
 ?>
+
 <?php include __DIR__ . '/parts/1_head.php' ?>
 <?php include __DIR__ . '/parts/2_nav.php' ?>
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
+<?php
+// session_start();
+// 如果存在登出消息，则显示
+if (isset($_SESSION['logout_message'])) {
+    // 更改消息内容为“您已登出”
+    $_SESSION['logout_message'] = "您已登出";
+    echo '<div class="alert alert-warning text-center mx-auto" role="alert" style="width: 150px;">' . $_SESSION['logout_message'] . '</div>';
+    // 清除登出消息
+    unset($_SESSION['logout_message']);
+}
+?>
 
 <div class="container">
     <div class="row mt-5 mb-5 justify-content-center">

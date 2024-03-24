@@ -68,7 +68,7 @@ if (isset($_SESSION['user'])) {
             </div>
             <div class="modal-body">
                 <div class="alert alert-success" role="alert">
-                    資料新增成功
+                    註冊成功
                 </div>
             </div>
             <div class="modal-footer">
@@ -88,7 +88,7 @@ if (isset($_SESSION['user'])) {
             </div>
             <div class="modal-body">
                 <div class="alert alert-danger" role="alert">
-                    資料新增沒有成功
+                    註冊沒有成功
                 </div>
             </div>
             <div class="modal-footer">
