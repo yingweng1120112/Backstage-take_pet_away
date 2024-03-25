@@ -1,6 +1,6 @@
 <?php
 // 連結到資料庫
-$conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "root", "");
+$conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "root", "admin");
 $title = "注意事項";
 
 //從資料庫抓取所有FAQ
