@@ -8,7 +8,7 @@
           <!-- 會員下拉式選單 -->
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesUser" aria-expanded="false" aria-controls="collapsePagesUser" onclick="toggleCollapse('collapsePagesUser')">
             <div class="sb-nav-link-icon">
-              <i class="fas fa-book-open"></i>
+              <i class="fa-solid fa-user"></i>
             </div>
             會員專區
             <div class="sb-sidenav-collapse-arrow">
@@ -41,7 +41,7 @@
           <!-- 下拉式選單 -->
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePagesAnimal" aria-expanded="false" aria-controls="collapsePagesAnimal" onclick="toggleCollapse('collapsePagesAnimal')">
             <div class="sb-nav-link-icon">
-              <i class="fas fa-book-open"></i>
+              <i class="fa-solid fa-paw"></i>
             </div>
             收容動物
             <div class="sb-sidenav-collapse-arrow">
@@ -99,13 +99,13 @@
           <div class="sb-sidenav-menu-heading">其他資訊</div>
           <a class="nav-link" href="faq_add.php">
             <div class="sb-nav-link-icon">
-              <i class="fas fa-chart-area"></i>
+              <i class="fa-solid fa-circle-exclamation"></i>
             </div>
             注意事項
           </a>
           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#heartContentCollapse" aria-expanded="false" aria-controls="heartContentCollapse" onclick="toggleCollapse('heartContentCollapse')">
             <div class="sb-nav-link-icon">
-              <i class="fas fa-book-open"></i>
+              <i class="fa-solid fa-heart-circle-check"></i>
             </div>
             心理測驗
             <div class="sb-sidenav-collapse-arrow">

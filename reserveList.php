@@ -36,9 +36,9 @@ if ($totalRows > 0) {
   .page-color {
     --bs-pagination-color: #6c757d;
     --bs-pagination-active-bg: #6c757d;
-  --bs-pagination-disabled-color: #6c757d;
+    --bs-pagination-disabled-color: #6c757d;
 
-    
+
     position: relative;
     display: block;
     padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
@@ -54,7 +54,11 @@ if ($totalRows > 0) {
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 <div class="container">
   <div class="row ">
-    <h3 class="text-center mt-5 fw-bold lh-lg text-secondary fs-2">線上預約紀錄</h3>
+    <h1 class="mt-4 fw-bold lh-lg text-secondary fs-2">線上預約紀錄</h1>
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item"><a href="index.php">首頁</a></li>
+      <li class="breadcrumb-item active">線上預約紀錄</li>
+    </ol>
     <div class="col table-striped table-hover ">
       <table class="table table-striped table-hover mt-2 border border-3 border-secondary">
         <thead>

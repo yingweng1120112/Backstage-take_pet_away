@@ -101,7 +101,7 @@ $rows = $pdo->query($sql)->fetchAll();
     <div class="container-fluid px-4">
         <h1 class="mt-4">商城產品</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="index_.html">首頁</a></li>
+            <li class="breadcrumb-item"><a href="index_.php">首頁</a></li>
             <li class="breadcrumb-item active">商城產品</li>
         </ol>
         <div class="card mb-4">

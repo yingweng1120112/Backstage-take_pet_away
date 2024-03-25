@@ -34,12 +34,20 @@ $rows = $pdo->query($sql)->fetchAll();
 <!-- 所有頁面的拼接順序 每一頁都主要是換掉section的部分 -->
 <?php include __DIR__ . '/parts/1_head.php' ?>
 <style>
-    thead, tbody, tfoot, tr, td, th {
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    td,
+    th {
         border-color: #EEE0C9;
     }
-    .table > :not(caption) > * > *, .datatable-table > :not(caption) > * > * {
+
+    .table> :not(caption)>*>*,
+    .datatable-table> :not(caption)>*>* {
         background-color: #F1F0E8;
     }
+
     .row .card-body .table-striped thead tr th {
         text-align: center;
     }
@@ -51,33 +59,42 @@ $rows = $pdo->query($sql)->fetchAll();
     .row .card-body .table-striped tbody tr td {
         text-align: center;
     }
+
     .card-header {
         background-color: #967E76;
     }
+
     .card {
         border-color: #D7C0AE;
     }
-    .pagination, .datatable-pagination ul {
+
+    .pagination,
+    .datatable-pagination ul {
         --bs-pagination-active-border-color: #EEE0C9;
         --bs-pagination-active-bg: #967E76;
         --bs-link-color: #967E76;
         --bs-link-hover-color: #967E76;
         --bs-dark-rgb: #967E76;
     }
+
     a:hover {
         color: brown;
     }
+
     /* header 側nav */
     :root {
         --bs-dark-rgb: 83, 46, 28;
         --bs-link-color: #8E806A;
     }
+
     .sb-sidenav-dark {
         background-color: #8E806A;
     }
+
     .sb-sidenav-dark .sb-sidenav-footer {
-    background-color: #8E806A;
+        background-color: #8E806A;
     }
+
     .row {
         --bs-gutter-x: 0rem;
     }
@@ -90,7 +107,7 @@ $rows = $pdo->query($sql)->fetchAll();
     <div class="container-fluid px-4">
         <h1 class="mt-4">產品編輯</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
+            <li class="breadcrumb-item"><a href="index.php">首頁</a></li>
             <li class="breadcrumb-item active">產品編輯</li>
         </ol>
         <div class="card mb-4">
