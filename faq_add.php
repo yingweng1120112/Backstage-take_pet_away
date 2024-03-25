@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/parts/admin-required.php';
 // 連結到資料庫
-$conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "admin", "admin");
+$conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "root", "");
 
 //判斷表單提交情形
 if (isset($_POST["submit"])) {
