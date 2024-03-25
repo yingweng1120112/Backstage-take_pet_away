@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/parts/admin-required.php'; 
+require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
 $title = '編輯測驗結果';
 $pageName = 'content_add';
@@ -51,10 +51,22 @@ if (empty($r)) {
             <label for="personalityType" class="form-label ">個性種類</label>
             <input type="text" class="form-control mb-3" id="personalityType" name="personality_type" placeholder="最多輸入 3 個字" maxlength="3" value="<?= $r['personality_type'] ?>">
             <div class="form-text"></div>
-            <input type="hidden" id="originalPic" name="original_pic" value="<?= $r['pic'] ?>">
-            <input type="file" id="previewImage" name="pic" accept="image/jpeg,image/png" class="mb-2">
-            <img id="imgEdit" src="uploads/<?= $r['pic'] ?>" alt="" style="width: 100%" class="mb-3">
 
+            <div class="mb-3">
+              <input type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" style="margin-bottom: 1rem;" />
+              <br />
+              <img id="show_image" src="" />
+            </div>
+            <div id="now_pic">
+              <!-- 原始圖片 -->
+              <input type="hidden" name="pic" value="<?= $r['pic'] ?>">
+              <p>當前檔案 : </p>
+              <?php if ($r['pic'] !== '') : ?>
+                <img width="100%" src="uploads/<?= $r['pic'] ?>" alt="" style="margin-bottom: 1rem;">
+              <?php else : ?>
+                <p>無</p>
+              <?php endif; ?>
+            </div>
 
             <label for="typeContent" class="form-label">個性說明</label>
             <textarea class="form-control" id="typeContent" name="type__content" cols="30" rows="3" placeholder="最多輸入 100 個字" maxlength="100" style="height: 300px"><?= $r['type__content'] ?></textarea>
@@ -190,33 +202,26 @@ if (empty($r)) {
   const failureModal = new bootstrap.Modal('#failureModal');
   const failureInfo = document.querySelector('#failureModal .alert-danger');
 
-  window.addEventListener('DOMContentLoaded', (event) => {
-    const originalPic = document.getElementById('originalPic').value;
-    const showImage = document.getElementById('show_image');
-    showImage.src = `uploads/${originalPic}`;
-  });
-  window.addEventListener('DOMContentLoaded', (event) => {
-    const originalPic = document.getElementById('originalPic').value;
-    const showImage = document.getElementById('imgEdit');
-    
-    // 设置初始图片预览
-    showImage.src = `uploads/${originalPic}`;
+  var imageProc = function(input) {
+    if (input.files && input.files[0]) {
+      // 建立一個 FileReader 物件
+      var reader = new FileReader();
+      // 當檔案讀取完後，所要進行的動作
+      reader.onload = function(e) {
+        // 顯示圖片
+        $("#show_image")
+          .attr("src", e.target.result)
+          .css("width", "100%");
+        $("#now_pic").css("display", "none");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  };
 
-    // 监听文件输入框的 change 事件
-    document.getElementById('previewImage').addEventListener('change', function(e) {
-      const file = e.target.files[0]; // 获取所选文件
-
-      // 检查是否选择了文件
-      if (file) {
-        const reader = new FileReader(); // 创建 FileReader 对象
-
-        // 读取文件完成后的回调函数
-        reader.onload = function(e) {
-          showImage.src = e.target.result; // 将文件内容设置为图像的 src
-        };
-
-        reader.readAsDataURL(file); // 读取文件
-      }
+  $(document).ready(function() {
+    // 綁定事件
+    $("#previewImage").change(function() {
+      imageProc(this);
     });
   });
 </script>
