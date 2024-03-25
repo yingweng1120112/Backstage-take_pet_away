@@ -1,6 +1,9 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class=" sb-topnav navbar navbar-expand navbar-dark bg-dark" style="height: 60px;">
   <!-- Navbar Brand-->
-  <a class="navbar-brand ps-3" href="index_.php">Take Pet Away</a>
+  <a class="navbar-brand ps-3" href="index_.php">
+    <img src="logo.png" style="width:50%; margin-left:20px" class="mt-3 mb-2" alt="">
+  </a>
+
   <!-- Navbar Search-->
   <!-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
     <input type="text" name="query" placeholder="Enter your search term">

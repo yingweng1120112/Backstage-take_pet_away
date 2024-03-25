@@ -103,6 +103,7 @@ if ($totalRows > 0) {
       <li class="breadcrumb-item"><a href="index_.html">首頁</a></li>
       <li class="breadcrumb-item active">會員列表</li>
     </ol>
+    <a href="user-add.php" class="btn btn-dark btn-sm float-right mb-3">新增會員</a>
     <div class="card mb-4">
       <div class="card-header">
         <i class="fas fa-table me-1"></i>
