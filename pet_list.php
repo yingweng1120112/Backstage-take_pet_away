@@ -12,7 +12,7 @@ if ($page < 1) {
 }
 
 # 每一頁有幾筆
-$perPage = 7;
+$perPage = 6;
 
 # 機算資料總筆數
 $t_sql = "SELECT COUNT(1) FROM pet_info";
