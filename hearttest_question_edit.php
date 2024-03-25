@@ -204,13 +204,9 @@ $selectD = $r['option_value_d'];
     optionC.nextElementSibling.innerHTML = '';
     optionD.style.border = "1px solid #CCC";
     optionD.nextElementSibling.innerHTML = '';
-    valueA.style.border = "1px solid #CCC";
     valueA.nextElementSibling.innerHTML = '';
-    valueB.style.border = "1px solid #CCC";
     valueB.nextElementSibling.innerHTML = '';
-    valueC.style.border = "1px solid #CCC";
     valueC.nextElementSibling.innerHTML = '';
-    valueD.style.border = "1px solid #CCC";
     valueD.nextElementSibling.innerHTML = '';
 
 
@@ -246,26 +242,22 @@ $selectD = $r['option_value_d'];
       optionD.style.border = "2px solid red"
       optionD.nextElementSibling.innerHTML = '此欄為必填';
     }
-    if (valueA.value.length < 1) {
-      isPass = false;
-      valueA.style.border = "2px solid red"
-      valueA.nextElementSibling.innerHTML = '此欄為必填';
-    }
-    if (valueB.value.length < 1) {
-      isPass = false;
-      valueB.style.border = "2px solid red"
-      valueB.nextElementSibling.innerHTML = '此欄為必填';
-    }
-    if (valueC.value.length < 1) {
-      isPass = false;
-      valueC.style.border = "2px solid red"
-      valueC.nextElementSibling.innerHTML = '此欄為必填';
-    }
-    if (valueD.value.length < 1) {
-      isPass = false;
-      valueD.style.border = "2px solid red"
-      valueD.nextElementSibling.innerHTML = '此欄為必填';
-    }
+    if (valueA.value === '選項') {
+            isPass = false;
+            valueA.nextElementSibling.innerHTML = '請選擇分數';
+        }
+        if (valueB.value === '選項') {
+            isPass = false;
+            valueB.nextElementSibling.innerHTML = '請選擇分數';
+        }
+        if (valueC.value === '選項') {
+            isPass = false;
+            valueC.nextElementSibling.innerHTML = '請選擇分數';
+        }
+        if (valueD.value === '選項') {
+            isPass = false;
+            valueD.nextElementSibling.innerHTML = '請選擇分數';
+        }
 
 
     //欄位都有通過檢查 發AJAX取得值
