@@ -249,8 +249,8 @@ $pageName = 'user list add';
         // 顯示圖片
         $("#show_image")
           .attr("src", e.target.result)
-          .css("height", "100px")
-          .css("width", "100px");
+          .css("height", "50%")
+          .css("width", "50%");
       };
       reader.readAsDataURL(input.files[0]);
     }
