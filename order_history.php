@@ -85,7 +85,7 @@ if ($totalRows > 0) {
                 </td>
                 <td><?= $r['order_id'] ?></td>
                 <td><?= $r['user_id'] ?></td>
-                <td><a href="order_detail.php?order_detail_id=<?= $r['order_detail_id'] ?>">
+                <td style="text-align: center;"><a href="order_detail.php?order_detail_id=<?= $r['order_detail_id'] ?>">
                     <i class="fa-solid fa-file fa-xl" style="color: #59786e;"></i>
                   </a></td>
                 <td><?= $r['recipient_name'] ?></td>
