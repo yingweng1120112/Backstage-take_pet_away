@@ -20,7 +20,7 @@ if (isset($_POST["submit"])) {
     $statement = $conn->prepare($sql);
     $statement->execute([$_POST["question"], $_POST["answer"]]);
 }
-
+// 1
 // # 回應給用戶端的欄位 (格式 JSON)
 // $output = [
 //     'success' => false,

@@ -13,7 +13,7 @@ $faq = $statement->fetch();
 if (!$faq) {
     die("FAQ 沒有找到");
 }
-
+// 1
 //確認修改表單有無提交
 if (isset($_POST["submit"])) {
     //update the FAQ in database

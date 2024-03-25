@@ -9,7 +9,7 @@ $statement = $conn->prepare($sql);
 $statement->execute([
     $_REQUEST["id"]
 ]);
-
+// 1
 $faq = $statement->fetch();
 
 if (!$faq) {
