@@ -59,7 +59,7 @@ if ($totalRows > 0) {
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>#</th>
+              <th>變更狀態</th>
               <th>編號</th>
               <th class="text-nowrap">會員編號</th>
               <th class="text-nowrap">訂單詳情</th>
