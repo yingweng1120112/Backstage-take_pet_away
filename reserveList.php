@@ -13,7 +13,7 @@ if ($page < 1) {
 $perPage = 10;
 
 # 計算總筆數
-$t_sql = "SELECT * FROM reserve_system";
+$t_sql = "SELECT COUNT(1) FROM reserve_system";
 $t_stmt = $pdo->query($t_sql);
 $totalRows = $t_stmt->fetch(PDO::FETCH_NUM)[0];
 $totalPages = ceil($totalRows / $perPage); # 總頁數
