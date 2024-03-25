@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/parts/pdo-connect.php';
-$title = '通訊錄列表';
+$title = '線上預約紀錄';
 $pageName = 'reserveList';
 
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -56,7 +56,7 @@ if ($totalRows > 0) {
   <div class="row ">
     <h1 class="mt-4 fw-bold lh-lg text-secondary fs-2">線上預約紀錄</h1>
     <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item"><a href="index.php">首頁</a></li>
+      <li class="breadcrumb-item"><a href="index_.php">首頁</a></li>
       <li class="breadcrumb-item active">線上預約紀錄</li>
     </ol>
     <div class="col table-striped table-hover ">

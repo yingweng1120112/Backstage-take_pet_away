@@ -1,6 +1,7 @@
 <?php
 // 連結到資料庫
 $conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "root", "");
+$title = "注意事項";
 
 //從資料庫抓取所有FAQ
 $sql = "SELECT * FROM faq_shopinfo";
@@ -21,11 +22,16 @@ $faqs = $statement->fetchAll();
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
 <!-- show all FAQs in a panel -->
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-	<a href="faq_add.php" class="btn btn-info mt-3 ml-3">回到新增頁面</a>
+<h1 class="mt-4 ml-3 fw-bold lh-lg text-secondary fs-2">預覽注意事項</h1>
+<ol class="breadcrumb mb-4 ml-3">
+	<li class="breadcrumb-item"><a href="index_.php">首頁</a></li>
+	<li class="breadcrumb-item active">預覽注意事項</li>
+</ol>
+<div class="container">
+	<a href="faq_add.php" class="btn btn-info ml-3">回到新增頁面</a>
 	<div class="row">
 		<div class="col-md-12 accordion_one">
-			<div class="panel-group">
+			<div class="panel-group mt-4">
 				<?php foreach ($faqs as $faq) : ?>
 					<div class="panel panel-default">
 
@@ -57,7 +63,7 @@ $faqs = $statement->fetchAll();
 <style>
 	.accordion_one .panel-group {
 		border: 1px solid #f1f1f1;
-		margin-top: 100px
+		/* margin-top: 100px */
 	}
 
 	a:link {

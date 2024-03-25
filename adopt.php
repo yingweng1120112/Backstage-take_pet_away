@@ -1,9 +1,8 @@
-<?
+<?php
 require __DIR__ . '/parts/admin-required.php';
 require __DIR__ . '/parts/pdo-connect.php';
-$title = '新增線上認養';
-$pageName = 'adopt';
-
+$title = "線上認養";
+$pageName = "adopt";
 ?>
 <?php include __DIR__ . '/parts/1_head.php' ?>
 <?php include __DIR__ . '/parts/2_nav.php' ?>

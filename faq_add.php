@@ -2,7 +2,7 @@
 require __DIR__ . '/parts/admin-required.php';
 // 連結到資料庫
 $conn = new PDO("mysql:host=localhost:3306;dbname=take_pet_away", "root", "");
-
+$title = "注意事項";
 //判斷表單提交情形
 if (isset($_POST["submit"])) {
     //創建 table 如果還未建立
