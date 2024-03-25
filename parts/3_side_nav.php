@@ -56,9 +56,6 @@
               <a class="nav-link collapsed" href="pet_add.php">
                 新增寵物資料
               </a>
-              <a class="nav-link collapsed" href="#">
-                動作與技能
-              </a>
               <a class="nav-link collapsed" href="blog.php">
                 寵物貼文
               </a>

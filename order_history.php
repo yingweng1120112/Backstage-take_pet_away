@@ -86,7 +86,7 @@ if ($totalRows > 0) {
                 <td><?= $r['order_id'] ?></td>
                 <td><?= $r['user_id'] ?></td>
                 <td><a href="order_detail.php?order_detail_id=<?= $r['order_detail_id'] ?>">
-                <i class="fa-solid fa-file fa-xl" style="color: #59786e;"></i>
+                    <i class="fa-solid fa-file fa-xl" style="color: #59786e;"></i>
                   </a></td>
                 <td><?= $r['recipient_name'] ?></td>
                 <td><?= $r['recipient_phone'] ?></td>
@@ -102,7 +102,7 @@ if ($totalRows > 0) {
             <?php endforeach ?>
           </tbody>
         </table>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
           <ul class="pagination">
             <li class="page-item" <?= $page == 1 ? 'disabled' : '' ?>>
               <a class="page-link" href="?page=1">
@@ -135,7 +135,6 @@ if ($totalRows > 0) {
                 <i class="fa-solid fa-angles-right"></i>
               </a>
             </li>
-
           </ul>
         </nav>
       </div>
