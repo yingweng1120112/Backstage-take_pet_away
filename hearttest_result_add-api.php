@@ -19,18 +19,18 @@ $exts = [   # 檔案類型的篩選
   'image/webp' => '.webp',
 ];
 
-if (!empty($_FILES) and !empty($_FILES['pic']) and $_FILES['pic']['error'] == 0) {
+# 確保有上傳檔案，並且有 avatar 欄位，並且沒有錯誤
+if (!empty($_FILES) and !empty($_FILES['avatar']) and $_FILES['avatar']['error'] == 0) {
   # 如果類型有對應到副檔名
-  $type = $_FILES['pic']['type'];
+  $type = $_FILES['avatar']['type'];
   if (!empty($exts[$type])) {
     $ext = $exts[$type]; # 副檔名
-    $f = sha1($_FILES['pic']['name'] . uniqid()); # 隨機的主檔名
-    if (move_uploaded_file($_FILES['pic']['tmp_name'], $dir . $f . $ext)) {
+    $f = sha1($_FILES['avatar']['name'] . uniqid()); # 隨機的主檔名
+    if (move_uploaded_file($_FILES['avatar']['tmp_name'], $dir . $f . $ext)) {
       $output['file'] = $f . $ext;
     }
   }
 }
-
 
 $isPass = true;
 
