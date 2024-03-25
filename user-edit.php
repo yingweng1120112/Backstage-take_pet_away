@@ -104,18 +104,19 @@ if (empty($r)) {
               <input type="text" class="form-control" id="email" name="email" value="<?= $r['email'] ?>">
               <div class="form-text"></div>
             </div>
-            <div class="mb-3">
-              <label for="address_detail" class="form-label">地址</label>
-              <textarea class="form-control" name="address_detail" id="address_detail" cols="30" rows="3"><?= $r['address_detail'] ?></textarea>
-            </div>
-            <div class="form-text"></div>
             <div class="mb-3 mt-3">
-              <label for="pic" class="form-label">產品修改圖片</label>
+              <label for="pic" class="form-label">修改會員照片</label>
               <input class="form-control " type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
               <br />
               <img id="show_image" src="" />
               <img id="pic" style="width: 50%;" src="uploads/<?= $r['pic'] ?>" alt="">
             </div>
+            <div class="mb-3">
+              <label for="address_detail" class="form-label">地址</label>
+              <textarea class="form-control" name="address_detail" id="address_detail" cols="30" rows="3"><?= $r['address_detail'] ?></textarea>
+            </div>
+
+
             <!-- <label for="species">目前產品圖</label>
             <input class="form-control" type="text" name="pic" value="<?= $r['pic'] ?>" readonly /> -->
             <button type="submit" class="btn btn-primary mt-3">確認修改</button>

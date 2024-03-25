@@ -19,6 +19,7 @@ if (isset($_SESSION['logout_message'])) {
 <?php include __DIR__ . '/parts/3_side_nav.php' ?>
 
 
+
 <div class="container">
   <div class="row mt-5 mb-5 justify-content-center">
     <div class="col-md-6">

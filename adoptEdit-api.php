@@ -22,6 +22,7 @@ if (!empty($_POST['adopt_id'])) {
   if ($isPass) {
     $sql = "UPDATE `online_virtual_adoption_form` SET 
       `pet_id`=?,
+      `user_id`=?,
       `donation_method`=?,
       `amount`=?,
       `payment`=?,
@@ -32,9 +33,10 @@ if (!empty($_POST['adopt_id'])) {
 
     WHERE `adopt_id`=?";
 
-$stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare($sql);
     $stmt->execute([
       $_POST['pet_id'],
+      $_POST['user_id'],
       $_POST['donation_method'],
       $_POST['amount'],
       $_POST['payment'],

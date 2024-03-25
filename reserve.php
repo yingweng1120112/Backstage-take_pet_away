@@ -16,7 +16,7 @@ $pageName = 'reserve';
                     <h3 class="card-title text-center fw-bold mb-3">線上預約</h3>
                     <form name="form1" onsubmit="sendData(event)" class="vstack">
                         <div class="mb-3">
-                            <label for="user_id" class="form-label  fw-bold">預約姓名</label>
+                            <label for="user_id" class="form-label  fw-bold">預約人ID</label>
                             <input type="text" class="form-control text-center fw-bold" id="user_id" name="user_id">
                             <div class="form-text"></div>
                         </div>

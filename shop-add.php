@@ -10,44 +10,52 @@ $title = '新增產品';
     .form-text {
         color: red;
     }
+
     /* header 側nav */
     :root {
         --bs-dark-rgb: 83, 46, 28;
     }
+
     .sb-sidenav-dark {
         background-color: #8E806A;
     }
+
     .sb-sidenav-dark .sb-sidenav-footer {
-    background-color: #8E806A;
+        background-color: #8E806A;
     }
+
     /* 編輯表單 */
-    
+
     .card-header {
         background-color: #D7C0AE;
     }
+
     .card-footer {
         background-color: #D7C0AE;
     }
+
     .modal-header {
         background-color: #967E76;
         color: white;
     }
+
     /* .form-control {
         border: 1px solid #b99549;
     } */
     /* .form-select {
         border: 1px solid #b99549;
     } */
-    
+
     /* option{
         border: 1px solid #b99549;
         margin: 10% auto;
     } */
     .btn-primary {
-    --bs-btn-bg: #D7C0AE;
-    --bs-btn-border-color: #b99549;
-    --bs-btn-hover-bg: #a16a38;
+        --bs-btn-bg: #D7C0AE;
+        --bs-btn-border-color: #b99549;
+        --bs-btn-hover-bg: #a16a38;
     }
+
     .row {
         --bs-gutter-x: 0rem;
     }
@@ -57,7 +65,7 @@ $title = '新增產品';
 <section>
     <div class="row justify-content-center">
         <div class="col-lg-5">
-            <div class="card shadow-lg border-0 rounded-lg mt-5">
+            <div class="card shadow-lg border-0 rounded-lg mt-5 mb-5">
                 <div class="card-header">
                     <h3 class="text-center font-weight-light my-4">新增商品</h3>
                 </div>
@@ -100,7 +108,7 @@ $title = '新增產品';
 
                         <div class="mb-3  mt-3">
                             <label for="pic" class="form-label">產品圖片</label>
-                            <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png"/>
+                            <input class="form-control" type="file" id="previewImage" name="avatar" accept="image/jpeg,image/png" />
                             <br />
                             <img id="show_image" src="" />
                         </div>

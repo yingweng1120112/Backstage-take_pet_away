@@ -42,8 +42,8 @@ if ($totalRows > 0) {
         <thead>
           <tr class="text-center text-secondary fs-4 ">
             <th>認養#</th>
-            <th>寵物ID</th>
             <th>使用者ID</th>
+            <th>寵物ID</th>
             <th>捐款方式</th>
             <th>捐款金額</th>
             <th>付款方式</th>
@@ -60,8 +60,8 @@ if ($totalRows > 0) {
           <?php foreach ($rows as $r) : ?>
             <tr class="text-center text-secondary fs-5">
               <td class="d-flex justify-content-center"><?= $r['adopt_id'] ?></td>
-              <td><?= $r['pet_id'] ?></td>
               <td><?= $r['user_id'] ?></td>
+              <td><?= $r['pet_id'] ?></td>
               <td><?= $r['donation_method'] ?></td>
               <td><?= $r['amount'] ?></td>
               <td><?= $r['payment'] ?></td>

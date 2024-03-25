@@ -103,6 +103,7 @@ if ($totalRows > 0) {
       <li class="breadcrumb-item"><a href="index_.html">首頁</a></li>
       <li class="breadcrumb-item active">會員列表</li>
     </ol>
+    <a href="user-add.php" class="btn btn-dark btn-sm float-right mb-3">新增會員</a>
     <div class="card mb-4">
       <div class="card-header">
         <i class="fas fa-table me-1"></i>
@@ -113,7 +114,6 @@ if ($totalRows > 0) {
           <table class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th class="align-middle">刪除</i></th>
                 <th class="align-middle">修改</i></th>
                 <th class="align-middle">編號</th>
                 <th class="align-middle">姓名</th>
@@ -121,16 +121,12 @@ if ($totalRows > 0) {
                 <th class="align-middle">Email</th>
                 <th style="width: 10%;" scope="col">照片</th>
                 <th class="align-middle">地址</th>
+                <th class="align-middle">刪除</i></th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($rows as $r) : ?>
                 <tr class="align-middle">
-                  <td class="align-middle">
-                    <a href="javascript: deleteOne(<?= $r['user_id'] ?>)">
-                      <i class="fa-solid fa-trash"></i>
-                    </a>
-                  </td>
                   <td class="align-middle">
                     <a href="user-edit.php?user_id=<?= $r['user_id'] ?>">
                       <i class="fa-solid fa-file-pen"></i>
@@ -142,6 +138,11 @@ if ($totalRows > 0) {
                   <td class="align-middle"><?= $r['email'] ?></td>
                   <td class="align-middle"><img style="width: 100%;" src="uploads/<?= $r['pic'] ?>" alt=""> </td>
                   <td class="align-middle"><?= htmlentities($r['address_detail']) ?></td>
+                  <td class="align-middle">
+                    <a href="javascript: deleteOne(<?= $r['user_id'] ?>)">
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                  </td>
                 </tr>
               <?php endforeach ?>
             </tbody>
