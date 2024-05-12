@@ -77,11 +77,11 @@ $pageName = 'user list add';
               <input type="text" class="form-control" id="name" name="name">
               <div class="form-text"></div>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
               <label for="account" class="form-label">手機</label>
               <input type="text" class="form-control" id="account" name="account">
               <div class="form-text"></div>
-            </div>
+            </div> -->
             <div class="mb-3">
               <label for="email" class="form-label">電子郵件</label>
               <input type="text" class="form-control" id="email" name="email">
@@ -154,7 +154,6 @@ $pageName = 'user list add';
   const {
     name: nameField,
     email: emailField,
-    account: accountField
   } = document.form1;
 
   function validateEmail(email) {
@@ -163,18 +162,18 @@ $pageName = 'user list add';
     return re.test(email);
   }
 
-  function validateAccount(account) {
-    const pattern = /^09\d{2}-?\d{3}-?\d{3}$/;
-    return pattern.test(account);
-  }
+  // function validateAccount(account) {
+  //   const pattern = /^09\d{2}-?\d{3}-?\d{3}$/;
+  //   return pattern.test(account);
+  // }
 
   function sendData(e) {
     nameField.style.border = "1px solid #CCC";
     nameField.nextElementSibling.innerHTML = '';
     emailField.style.border = "1px solid #CCC";
     emailField.nextElementSibling.innerHTML = '';
-    accountField.style.border = "1px solid #CCC";
-    accountField.nextElementSibling.innerHTML = '';
+    // accountField.style.border = "1px solid #CCC";
+    // accountField.nextElementSibling.innerHTML = '';
 
 
     e.preventDefault();
@@ -199,11 +198,11 @@ $pageName = 'user list add';
     }
 
     // account 若有填才檢查格式, 沒填不檢查格式
-    if (accountField.value && !validateAccount(accountField.value)) {
-      isPass = false;
-      accountField.style.border = "2px solid red";
-      accountField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
-    }
+    // if (accountField.value && !validateAccount(accountField.value)) {
+    //   isPass = false;
+    //   accountField.style.border = "2px solid red";
+    //   accountField.nextElementSibling.innerHTML = '請輸入正確的手機號碼';
+    // }
 
 
 

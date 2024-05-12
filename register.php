@@ -25,11 +25,11 @@ if (isset($_SESSION['user'])) {
                             <input type="text" class="form-control" id="name" name="name">
                             <div class="form-text"></div>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="account" class="form-label">電話</label>
                             <input type="text" class="form-control" id="account" name="account">
                             <div class="form-text"></div>
-                        </div>
+                        </div> -->
                         <div class="mb-3">
                             <label for="email" class="form-label">電子信箱</label>
                             <input type="text" class="form-control" id="email" name="email">

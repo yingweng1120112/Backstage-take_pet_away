@@ -48,7 +48,7 @@ if (!empty($_FILES) and !empty($_FILES['avatar']) and $_FILES['avatar']['error']
 
 if (!empty($_POST['name'])) {
   $sql = "INSERT INTO `user`(
-    `name`, `account`, `email`, 
+    `name`, `email`, 
     `pic`, `address_detail`
     ) VALUES (
       ?, ?, ?,
@@ -57,7 +57,7 @@ if (!empty($_POST['name'])) {
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
     $_POST['name'],
-    $_POST['account'],
+    // $_POST['account'],
     $_POST['email'],
     $output['file'],
     $_POST['address_detail'],

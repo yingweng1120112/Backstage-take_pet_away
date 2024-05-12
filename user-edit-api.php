@@ -39,7 +39,6 @@ if (!empty($_FILES) and !empty($_FILES['avatar']) and $_FILES['avatar']['error']
 if ($isPass) {
   $sql = "UPDATE `user` SET 
       `name`=?,
-      `account`=?,
       `email`=?,
       `pic`=?,
       `address_detail`=?
@@ -47,7 +46,6 @@ if ($isPass) {
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
     $_POST['name'],
-    $_POST['account'],
     $_POST['email'],
     $output['file'],
     $_POST['address_detail'],

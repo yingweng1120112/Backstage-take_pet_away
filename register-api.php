@@ -31,12 +31,11 @@ if (!empty($_FILES) and !empty($_FILES['avatar']) and $_FILES['avatar']['error']
 
 
 $sql = "INSERT INTO `user`(
-    `name`,`account`,`password`,`email`,`pic`,`address_detail`
-    ) VALUES(?,?,?,?,?,?)";
+    `name`,`password`,`email`,`pic`,`address_detail`
+    ) VALUES(?,?,?,?,?)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
     $_POST['name'],
-    $_POST['account'],
     $_POST['password'],
     $_POST['email'],
     $output['file'],
