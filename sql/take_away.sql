@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2024-05-31 05:26:44
+-- 產生時間： 2024-05-31 06:17:46
 -- 伺服器版本： 10.4.32-MariaDB
 -- PHP 版本： 8.2.12
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `take_away`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `adopt`
+--
+
+CREATE TABLE `adopt` (
+  `adopt_id` int(11) NOT NULL,
+  `pet` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `donation_method` text DEFAULT NULL,
+  `amount` text DEFAULT NULL,
+  `payment` text DEFAULT NULL,
+  `donation` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -50,6 +69,48 @@ INSERT INTO `blog` (`blog_id`, `pet_id`, `content`, `pic1`, `pic2`, `pic3`, `pic
 (10004, 10010, '新來的真的好煩，快受不了了。', '', '', '', '', '', '2022-01-04 00:00:00'),
 (10005, 10010, '有主人在陪他玩，總算不會來煩我了。', '', '', '', '', '', '2022-01-05 00:00:00'),
 (10006, 10010, '都不放我出去外面玩，生氣。', '', '', '', '', '', '2022-01-06 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `brand`
+--
+
+CREATE TABLE `brand` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `info` text DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `color`
+--
+
+CREATE TABLE `color` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -336,6 +397,22 @@ INSERT INTO `order_history` (`order_id`, `user_id`, `order_detail_id`, `name`, `
 (10039, 10008, 10039, '尹殷盛', '0901234567', '2021-11-23 11:21:01', '請儘快出貨，我們家的狗等不及了！', '超商取貨', 'LINE_Pay', '7-11 忠孝門市', '訂單取消', '/J9IP141'),
 (10040, 10010, 10040, '金陽基', '0998765432', '2024-01-04 02:20:55', '請儘快出貨，我們家的貓等不及了！', '超商取貨', 'LINE_Pay', '7-11 興隆門市', '已送達', '/J9IP143'),
 (10041, 10010, 10041, '金陽基', '0998765432', '2020-05-06 00:03:15', '貨物為易碎品，請謹慎處理以避免損壞。', '超商取貨', '信用卡', '7-11 和平門市', '訂單取消', '/J9IP143');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `otp`
+--
+
+CREATE TABLE `otp` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `exp_timestamp` bigint(20) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -691,6 +768,48 @@ INSERT INTO `product` (`product_id`, `name`, `brand_name`, `price`, `pic1`, `pic
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `product_color`
+--
+
+CREATE TABLE `product_color` (
+  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `product_size`
+--
+
+CREATE TABLE `product_size` (
+  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `sid` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `product_tag`
+--
+
+CREATE TABLE `product_tag` (
+  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `tid` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `psycological_test`
 --
 
@@ -748,6 +867,43 @@ INSERT INTO `psycological_test_result` (`result_id`, `personality_type`, `pic`, 
 (10003, '獨立型', '10003.jpg', '獨立型的浪浪通常只願意與他認可的一兩個人建立關係，對待其他人感覺很冷漠。就算主人不在，他們通常也能將自己照顧得很好。'),
 (10004, '自信型', '10004.jpg', '自信型的浪浪善於擔任領導者的角色。他善於面對新情況，表現勇敢、甚至出現興奮的態度；在肢體語言上也充滿信心。'),
 (10005, '適應型', '10005.jpg', '適應型的浪浪最好相處了，也最容易訓練。牠們通常願意主動去取悅主人，但不會如樂天型的那麼熱情、過於失控，個性友好、冷靜、有愛心，和不同的小動物也能相處得很好，展現成熟的姿態。');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `purchase_item`
+--
+
+CREATE TABLE `purchase_item` (
+  `id` int(11) NOT NULL,
+  `order_id` varchar(255) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `purchase_order`
+--
+
+CREATE TABLE `purchase_order` (
+  `id` varchar(255) NOT NULL COMMENT 'UUID',
+  `user_id` int(11) NOT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `transaction_id` varchar(255) DEFAULT NULL,
+  `payment` varchar(255) DEFAULT NULL COMMENT 'LINE Pay, 信用卡, ATM',
+  `shipping` varchar(255) DEFAULT NULL COMMENT '7-11, Family Mart, Hi-Life, OK Mart, 郵局, 宅配',
+  `status` varchar(255) DEFAULT NULL COMMENT 'pending, paid, fail, cancel, error',
+  `order_info` text DEFAULT NULL COMMENT 'send to line pay',
+  `reservation` text DEFAULT NULL COMMENT 'get from line pay',
+  `confirm` text DEFAULT NULL COMMENT 'confirm from line pay',
+  `return_code` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -903,18 +1059,45 @@ INSERT INTO `reviews` (`reviews_id`, `product_id`, `user_id`, `content`, `time`,
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `size`
+--
+
+CREATE TABLE `size` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `tag`
+--
+
+CREATE TABLE `tag` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `user`
 --
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `pic` varchar(255) DEFAULT NULL,
-  `address_detail` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
+  `name` varchar(15) NOT NULL,
+  `password` varchar(15) DEFAULT NULL,
+  `phone` varchar(10) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `pic` varchar(100) DEFAULT NULL,
+  `address_detail` varchar(80) DEFAULT NULL,
+  `status` varchar(6) DEFAULT NULL,
+  `verification_code` int(11) NOT NULL,
   `google_uid` varchar(255) DEFAULT NULL,
   `line_uid` varchar(255) DEFAULT NULL,
   `line_access_token` text DEFAULT NULL,
@@ -926,22 +1109,28 @@ CREATE TABLE `user` (
 -- 傾印資料表的資料 `user`
 --
 
-INSERT INTO `user` (`user_id`, `name`, `password`, `phone`, `email`, `pic`, `address_detail`, `status`, `google_uid`, `line_uid`, `line_access_token`, `created_at`, `updated_at`) VALUES
-(10001, 'dana', 'Pa55w.rd01', '0912561009', 'danawang0607@gmail.com', '', '澎湖縣六合路300號', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10002, '白賢祐', 'Pa55w.rd02', '0912345678', 'Hyunwoo01@gmail.com', '', '桃園市龜山區萬壽路１段14號', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10003, '洪海仁', 'Pa55w.rd03', '0987654321', 'Hairen02@gmail.com', '', '屏東縣鹽埔鄉博愛街58號', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10004, '洪秀哲', 'Pa55w.rd04', '0923456789', 'Xiuzhe03@gmail.com', '', '嘉義市西區博愛市場7號12樓之16', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10005, '千多慧', 'Pa55w.rd05', '0956789123', 'Duohui04@gmail.com', '', '宜蘭縣大同鄉泰雅路６段7號', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10006, '洪凡資', 'Pa55w.rd06', '0934567890', 'Fanzi05@gmail.com', '', '新竹縣竹北市光明六路51號', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10007, '全峰藹', 'Pa55w.rd07', '0978912345', 'Fengai06@gmail.com', '', '新竹縣竹北市豆子埔57號之11', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10008, '白斗關', 'Pa55w.rd08', '0945678912', 'baiduguan07@gmail.com', '', '彰化縣社頭鄉中', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10009, '尹殷盛', 'Pa55w.rd09', '0901234567', 'Yinsheng08@gmail.com', '', '新竹縣湖口鄉中平路１段38號之3', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10010, '羅彩妍', 'Pa55w.rd10', '0967890123', 'Caiyan09@gmail.com', '', '桃園市大園區國際路２段6號2樓', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10011, '金陽基', 'Pa55w.rd11', '0998765432', 'Yangki10@gmail.com', '', '新竹市北區西安街48號', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `user` (`user_id`, `name`, `password`, `phone`, `email`, `pic`, `address_detail`, `status`, `verification_code`, `google_uid`, `line_uid`, `line_access_token`, `created_at`, `updated_at`) VALUES
+(10001, 'dana', 'Pa55w.rd01', '0912561009', 'danawang0607@gmail.com', '', '澎湖縣六合路300號', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10002, '白賢祐', 'Pa55w.rd02', '0912345678', 'Hyunwoo01@gmail.com', '', '桃園市龜山區萬壽路１段14號', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10003, '洪海仁', 'Pa55w.rd03', '0987654321', 'Hairen02@gmail.com', '', '屏東縣鹽埔鄉博愛街58號', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10004, '洪秀哲', 'Pa55w.rd04', '0923456789', 'Xiuzhe03@gmail.com', '', '嘉義市西區博愛市場7號12樓之16', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10005, '千多慧', 'Pa55w.rd05', '0956789123', 'Duohui04@gmail.com', '', '宜蘭縣大同鄉泰雅路６段7號', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10006, '洪凡資', 'Pa55w.rd06', '0934567890', 'Fanzi05@gmail.com', '', '新竹縣竹北市光明六路51號', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10007, '全峰藹', 'Pa55w.rd07', '0978912345', 'Fengai06@gmail.com', '', '新竹縣竹北市豆子埔57號之11', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10008, '白斗關', 'Pa55w.rd08', '0945678912', 'baiduguan07@gmail.com', '', '彰化縣社頭鄉中', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10009, '尹殷盛', 'Pa55w.rd09', '0901234567', 'Yinsheng08@gmail.com', '', '新竹縣湖口鄉中平路１段38號之3', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10010, '羅彩妍', 'Pa55w.rd10', '0967890123', 'Caiyan09@gmail.com', '', '桃園市大園區國際路２段6號2樓', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10011, '金陽基', 'Pa55w.rd11', '0998765432', 'Yangki10@gmail.com', '', '新竹市北區西安街48號', '', 0, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 --
 -- 已傾印資料表的索引
 --
+
+--
+-- 資料表索引 `adopt`
+--
+ALTER TABLE `adopt`
+  ADD PRIMARY KEY (`adopt_id`);
 
 --
 -- 資料表索引 `blog`
@@ -949,6 +1138,24 @@ INSERT INTO `user` (`user_id`, `name`, `password`, `phone`, `email`, `pic`, `add
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`blog_id`) USING BTREE,
   ADD KEY `pet_info_blog_fk` (`pet_id`);
+
+--
+-- 資料表索引 `brand`
+--
+ALTER TABLE `brand`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `color`
+--
+ALTER TABLE `color`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `faq_report`
@@ -1006,6 +1213,12 @@ ALTER TABLE `order_history`
   ADD PRIMARY KEY (`order_id`);
 
 --
+-- 資料表索引 `otp`
+--
+ALTER TABLE `otp`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `pet_action`
 --
 ALTER TABLE `pet_action`
@@ -1024,6 +1237,24 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`);
 
 --
+-- 資料表索引 `product_color`
+--
+ALTER TABLE `product_color`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `product_size`
+--
+ALTER TABLE `product_size`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `product_tag`
+--
+ALTER TABLE `product_tag`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `psycological_test`
 --
 ALTER TABLE `psycological_test`
@@ -1034,6 +1265,18 @@ ALTER TABLE `psycological_test`
 --
 ALTER TABLE `psycological_test_result`
   ADD PRIMARY KEY (`result_id`);
+
+--
+-- 資料表索引 `purchase_item`
+--
+ALTER TABLE `purchase_item`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `purchase_order`
+--
+ALTER TABLE `purchase_order`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `reserve_system`
@@ -1048,6 +1291,18 @@ ALTER TABLE `reviews`
   ADD PRIMARY KEY (`reviews_id`);
 
 --
+-- 資料表索引 `size`
+--
+ALTER TABLE `size`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `tag`
+--
+ALTER TABLE `tag`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `user`
 --
 ALTER TABLE `user`
@@ -1058,10 +1313,34 @@ ALTER TABLE `user`
 --
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `adopt`
+--
+ALTER TABLE `adopt`
+  MODIFY `adopt_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `blog`
 --
 ALTER TABLE `blog`
   MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10010;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `brand`
+--
+ALTER TABLE `brand`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `color`
+--
+ALTER TABLE `color`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `faq_report`
@@ -1112,6 +1391,12 @@ ALTER TABLE `order_history`
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10994;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `otp`
+--
+ALTER TABLE `otp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `pet_action`
 --
 ALTER TABLE `pet_action`
@@ -1130,6 +1415,24 @@ ALTER TABLE `product`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13936;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `product_color`
+--
+ALTER TABLE `product_color`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `product_size`
+--
+ALTER TABLE `product_size`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `product_tag`
+--
+ALTER TABLE `product_tag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `psycological_test`
 --
 ALTER TABLE `psycological_test`
@@ -1142,6 +1445,12 @@ ALTER TABLE `psycological_test_result`
   MODIFY `result_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11005;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `purchase_item`
+--
+ALTER TABLE `purchase_item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `reserve_system`
 --
 ALTER TABLE `reserve_system`
@@ -1152,6 +1461,18 @@ ALTER TABLE `reserve_system`
 --
 ALTER TABLE `reviews`
   MODIFY `reviews_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10101;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `size`
+--
+ALTER TABLE `size`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `tag`
+--
+ALTER TABLE `tag`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user`
